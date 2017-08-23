@@ -1,0 +1,20 @@
+{
+    "name": "inetstudio/polls",
+    "description": "Package for polls",
+    "homepage": "https://github.com/inetstudio/polls",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Konstantin Bukin",
+        "email": "bukin@inetstudio.ru"
+      }
+    ],
+    "require": {
+      "inetstudio/admin-panel": "1.*"
+    },
+    "autoload": {
+      "psr-4": {
+        "InetStudio\\Polls\\": "src/"
+      }
+    }
+}

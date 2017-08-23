@@ -8,6 +8,10 @@ class PollsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../public' => public_path(),
+        ], 'public');
+        
         $this->loadViewsFrom(__DIR__.'/../resources/views/admin', 'admin.module.polls');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 

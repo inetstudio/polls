@@ -36,28 +36,6 @@
                                 ],
                             ]) !!}
 
-                            {!! Form::checks('single', $item->single, [
-                                'label' => [
-                                    'title' => 'Одиночный выбор',
-                                ],
-                                'checks' => [
-                                    [
-                                        'value' => 1,
-                                    ],
-                                ],
-                            ]) !!}
-
-                            {!! Form::checks('closed', $item->closed, [
-                                'label' => [
-                                    'title' => 'Закрыть опрос',
-                                ],
-                                'checks' => [
-                                    [
-                                        'value' => 1,
-                                    ],
-                                ],
-                            ]) !!}
-
                         {!! Form::close()!!}
                     </div>
                 </div>
@@ -70,5 +48,3 @@
         </div>
     </div>
 </div>
-
-{!! Form::modals_list() !!}

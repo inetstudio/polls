@@ -14,7 +14,7 @@
 @section('content')
 
     @push('breadcrumbs')
-        @include('admin.module.ingredients::partials.polls.breadcrumbs')
+        @include('admin.module.ingredients::partials.breadcrumbs')
         <li>
             <a href="{{ route('back.polls.index') }}">Опросы</a>
         </li>

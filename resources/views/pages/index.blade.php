@@ -14,7 +14,7 @@
 @section('content')
 
     @push('breadcrumbs')
-        @include('admin.module.ingredients::partials.polls.breadcrumbs')
+        @include('admin.module.ingredients::partials.breadcrumbs')
     @endpush
 
     <div class="wrapper wrapper-content">

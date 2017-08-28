@@ -32,7 +32,7 @@ class PollsController extends Controller
         $table->ajax($this->getAjaxOptions());
         $table->parameters($this->getTableParameters());
 
-        return view('admin.module.polls::pages.polls.index', compact('table'));
+        return view('admin.module.polls::pages.index', compact('table'));
     }
 
     /**
@@ -105,7 +105,7 @@ class PollsController extends Controller
      */
     public function create()
     {
-        return view('admin.module.polls::pages.polls.form', [
+        return view('admin.module.polls::pages.form', [
             'item' => new PollModel(),
         ]);
     }
@@ -130,7 +130,7 @@ class PollsController extends Controller
     public function edit($id = null)
     {
         if (! is_null($id) && $id > 0 && $item = PollModel::find($id)) {
-            return view('admin.module.polls::pages.polls.form', [
+            return view('admin.module.polls::pages.form', [
                 'item' => $item,
             ]);
         } else {

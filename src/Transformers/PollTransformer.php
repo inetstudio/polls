@@ -18,7 +18,7 @@ class PollTransformer extends TransformerAbstract
             'question' => $poll->question,
             'created_at' => (string) $poll->created_at,
             'updated_at' => (string) $poll->updated_at,
-            'actions' => view('admin.module.polls::pages.polls.datatables.actions', ['id' => $poll->id])->render(),
+            'actions' => view('admin.module.polls::partials.datatables.actions', ['id' => $poll->id])->render(),
         ];
     }
 }

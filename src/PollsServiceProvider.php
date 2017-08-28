@@ -12,7 +12,7 @@ class PollsServiceProvider extends ServiceProvider
             __DIR__.'/../public' => public_path(),
         ], 'public');
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views/admin', 'admin.module.polls');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'admin.module.polls');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
         if ($this->app->runningInConsole()) {

@@ -1,50 +1,87 @@
-<!-- CUSTOM STYLE -->
-<link href="{!! asset('admin/css/modules/polls/custom.css') !!}" rel="stylesheet">
-
-<div class="modal inmodal fade" id="modal_poll" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="ibox-content form-horizontal">
-                    <div class="row">
-                        {!! Form::open(['url' => (!$item->id) ? route('back.polls.store') : route('back.polls.update', [$item->id]), 'id' => 'mainForm', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal']) !!}
-
-                            @if ($item->id)
-                                {{ method_field('PUT') }}
-                            @endif
-
-                            {!! Form::hidden('poll_id', (!$item->id) ? '' : $item->id) !!}
-
-                            {!! Form::string('question', $item->question, [
+@pushonce('modals:poll')
+    <div id="add_poll_modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal inmodal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+                    <h1 class="modal-title">Добавление опроса</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="ibox-content form-horizontal">
+                        <div class="row">
+                            {!! Form::dropdown('poll', [], [
                                 'label' => [
-                                    'title' => 'Вопрос',
+                                    'title' => 'Опросы',
                                 ],
+                                'field' => [
+                                    'class' => 'select2 form-control',
+                                    'data-placeholder' => 'Выберите опрос',
+                                    'style' => 'width: 100%',
+                                ],
+                                'options' => [null => ''] + \InetStudio\Polls\Models\PollModel::select('id', 'question as name')->pluck('name', 'id')->toArray(),
                             ]) !!}
-
-                            {!! Form::list('option', [], [
-                                'label' => [
-                                    'title' => 'Варианты ответа',
-                                ],
-                                'fields' => [
-                                    [
-                                        'title' => 'Ответ',
-                                        'name' => 'answer',
-                                    ],
-                                ],
-                            ]) !!}
-
-                        {!! Form::close()!!}
+                            <p class="text-right"><a href="#" class="btn btn-xs btn-primary create-poll">создать новый</a></p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-white" data-dismiss="modal">Закрыть</button>
-                <a href="#" class="btn btn-primary" @click.prevent="save">Сохранить</a>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Закрыть</button>
+                    <a href="#" class="btn btn-primary save">Сохранить</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div id="poll_modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal inmodal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+                    <h1 class="modal-title">Создание опроса</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="ibox-content form-horizontal">
+                        <div class="row">
+                            {!! Form::open(['url' => '', 'id' => 'mainForm', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal']) !!}
+
+                                {{ method_field('') }}
+
+                                {!! Form::hidden('poll_id', '') !!}
+
+                                {!! Form::string('question', '', [
+                                    'label' => [
+                                        'title' => 'Вопрос',
+                                    ],
+                                ]) !!}
+
+                                {!! Form::list('options', [], [
+                                    'label' => [
+                                        'title' => 'Варианты ответа',
+                                    ],
+                                    'fields' => [
+                                        [
+                                            'title' => 'Ответ',
+                                            'name' => 'answer',
+                                        ],
+                                    ],
+                                ]) !!}
+
+                            {!! Form::close()!!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Закрыть</button>
+                    <a href="#" class="btn btn-primary save">Сохранить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endpushonce
+
+@pushonce('styles:polls_custom')
+    <!-- CUSTOM STYLE -->
+    <link href="{!! asset('admin/css/modules/polls/custom.css') !!}" rel="stylesheet">
+@endpushonce

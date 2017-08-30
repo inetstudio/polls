@@ -173,21 +173,31 @@ class PollsController extends Controller
 
         $this->saveOptions($item, $request);
 
-        Session::flash('success', 'Опрос «'.$item->question.'» успешно '.$action);
+        if($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'id' => $item->id,
+                'title' => $item->question,
+            ], 200);
+        } else {
+            Session::flash('success', 'Опрос «'.$item->question.'» успешно '.$action);
 
-        return redirect()->to(route('back.polls.edit', $item->fresh()->id));
+            return redirect()->to(route('back.polls.edit', $item->fresh()->id));
+        }
     }
 
     private function saveOptions($item, $request)
     {
         $item->detachOptionsExcept($request->get('options'));
 
-        foreach ($request->get('options') as $option) {
-            if ($option['id']) {
-                PollOptionModel::where('id', $option['id'])->update($option['properties']);
-            } else {
-                $option['properties']['id'] = $option['id'];
-                $item->attachOption($option['properties']);
+        if ($request->has('options')) {
+            foreach ($request->get('options') as $option) {
+                if ($option['id']) {
+                    PollOptionModel::where('id', $option['id'])->update($option['properties']);
+                } else {
+                    $option['properties']['id'] = $option['id'];
+                    $item->attachOption($option['properties']);
+                }
             }
         }
     }
@@ -211,5 +221,46 @@ class PollsController extends Controller
                 'success' => false,
             ]);
         }
+    }
+
+    public function getInfo(Request $request)
+    {
+        $id = $request->get('id');
+
+        if (! is_null($id) && $id > 0 && $item = PollModel::find($id)) {
+            return response()->json([
+                'id' => $item->id,
+                'question' => $item->question,
+                'options' => $item->options->map(function ($option) {
+                    return [
+                        'id' => $option->id,
+                        'properties' => [
+                            'answer' => $option->answer,
+                        ],
+                    ];
+                })->toArray(),
+                'success' => true,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+            ]);
+        }
+    }
+
+    /**
+     * Возвращаем опросы для поля.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getSuggestions(Request $request)
+    {
+        $search = $request->get('q');
+        $data = [];
+
+        $data['items'] = PollModel::select(['id', 'question as name'])->where('question', 'LIKE', '%'.$search.'%')->get()->toArray();
+
+        return response()->json($data);
     }
 }

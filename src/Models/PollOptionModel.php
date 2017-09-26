@@ -46,6 +46,11 @@ class PollOptionModel extends Model
         return $this->belongsTo(PollModel::class);
     }
 
+    public function votes()
+    {
+        return $this->hasMany(PollVoteModel::class, 'option_id', 'id');
+    }
+
     /**
      * Get the voters who voted to that option.
      *

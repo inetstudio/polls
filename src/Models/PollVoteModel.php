@@ -38,6 +38,6 @@ class PollVoteModel extends Model
 
     public function option()
     {
-        return $this->belongsTo(PollOptionModel::class);
+        return $this->belongsTo(PollOptionModel::class, 'id', 'option_id');
     }
 }

@@ -17,6 +17,15 @@ class PollVoteModel extends Model
     protected $table = 'polls_votes';
 
     /**
+     * Атрибуты, для которых разрешено массовое назначение.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'option_id',
+    ];
+
+    /**
      * Атрибуты, которые должны быть преобразованы в даты.
      *
      * @var array
@@ -26,4 +35,9 @@ class PollVoteModel extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function option()
+    {
+        return $this->belongsTo(PollOptionModel::class);
+    }
 }

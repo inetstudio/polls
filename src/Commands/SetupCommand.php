@@ -81,6 +81,14 @@ class SetupCommand extends Command
                     '--force' => true,
                 ],
             ],
+            [
+                'description' => 'Publish config',
+                'command' => 'vendor:publish',
+                'params' => [
+                    '--provider' => 'InetStudio\Polls\PollsServiceProvider',
+                    '--tag' => 'config',
+                ],
+            ],
         ];
     }
 }

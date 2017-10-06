@@ -34,7 +34,6 @@ class CreatePollsTables extends Migration
             $table->softDeletes();
 
             $table->foreign('option_id')->references('id')->on('polls_options');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

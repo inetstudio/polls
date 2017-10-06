@@ -8,12 +8,16 @@ class PollsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'admin.module.polls');
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+
+        $this->publishes([
+            __DIR__.'/../config/polls.php' => config_path('polls.php'),
+        ], 'config');
+
         $this->publishes([
             __DIR__.'/../public' => public_path(),
         ], 'public');
-
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'admin.module.polls');
-        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
         if ($this->app->runningInConsole()) {
             if (! class_exists('CreatePollsTables')) {

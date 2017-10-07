@@ -118,8 +118,8 @@ class PollsController extends Controller
         }
 
         $item->question = strip_tags($request->get('question'));
-        $item->single = ($request->has('single')) ? 1 : 0;
-        $item->closed = ($request->has('closed')) ? 1 : 0;
+        $item->single = ($request->filled('single')) ? 1 : 0;
+        $item->closed = ($request->filled('closed')) ? 1 : 0;
         $item->save();
 
         $this->saveOptions($item, $request);
@@ -141,7 +141,7 @@ class PollsController extends Controller
     {
         $item->detachOptionsExcept($request->get('options'));
 
-        if ($request->has('options')) {
+        if ($request->filled('options')) {
             foreach ($request->get('options') as $option) {
                 if ($option['id']) {
                     PollOptionModel::where('id', $option['id'])->update($option['properties']);

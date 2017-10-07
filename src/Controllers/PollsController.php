@@ -3,7 +3,7 @@
 namespace InetStudio\Polls\Controllers;
 
 use Illuminate\Http\Request;
-use Yajra\Datatables\Datatables;
+use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
 use InetStudio\Polls\Models\PollModel;
 use Illuminate\Support\Facades\Session;
@@ -24,10 +24,10 @@ class PollsController extends Controller
     /**
      * Список опросов.
      *
-     * @param Datatables $dataTable
+     * @param DataTables $dataTable
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Datatables $dataTable)
+    public function index(DataTables $dataTable)
     {
         $table = $this->generateTable($dataTable, 'polls', 'index');
 
@@ -43,9 +43,9 @@ class PollsController extends Controller
     {
         $items = PollModel::query();
 
-        return Datatables::of($items)
+        return DataTables::of($items)
             ->setTransformer(new PollTransformer)
-            ->escapeColumns(['actions'])
+            ->rawColumns(['actions'])
             ->make();
     }
 

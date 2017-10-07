@@ -40,6 +40,5 @@ class PollsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
     }
 }

@@ -124,7 +124,7 @@ class PollsController extends Controller
 
         $this->saveOptions($item, $request);
 
-        if($request->ajax()) {
+        if ($request->ajax()) {
             return response()->json([
                 'success' => true,
                 'id' => $item->id,

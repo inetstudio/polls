@@ -42,7 +42,7 @@ class PollModel extends Model
     ];
 
     /**
-     * A poll has many options
+     * A poll has many options.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -72,8 +72,6 @@ class PollModel extends Model
     }
 
     /**
-     *
-     *
      * @return bool
      */
     public function isRadio()
@@ -82,7 +80,7 @@ class PollModel extends Model
     }
 
     /**
-     * Check if it accepts many options
+     * Check if it accepts many options.
      *
      * @return bool
      */
@@ -92,7 +90,7 @@ class PollModel extends Model
     }
 
     /**
-     * Check if the poll is closed
+     * Check if the poll is closed.
      *
      * @return bool
      */
@@ -163,7 +161,7 @@ class PollModel extends Model
         return $this;
     }
 
-    /**
+    /*
      * @param string|\InetStudio\Polls\Models\PollOptionModel $option
      *
      * @return $this
@@ -175,7 +173,7 @@ class PollModel extends Model
     }
     */
 
-    /**
+    /*
      * Close the poll
      *
      * @return mixed
@@ -193,7 +191,7 @@ class PollModel extends Model
 
     //protected $results = null;
 
-    /**
+    /*
      * Get Poll results
      *
      * @return array
@@ -213,7 +211,7 @@ class PollModel extends Model
     }
     */
 
-    /**
+    /*
      * Get the result in order
      *
      * @return mixed
@@ -228,7 +226,7 @@ class PollModel extends Model
     }
     */
 
-    /**
+    /*
      * Get results in poll order
      *
      * @return mixed

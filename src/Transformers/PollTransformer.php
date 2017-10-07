@@ -2,8 +2,8 @@
 
 namespace Inetstudio\Polls\Transformers;
 
-use League\Fractal\TransformerAbstract;
 use InetStudio\Polls\Models\PollModel;
+use League\Fractal\TransformerAbstract;
 
 class PollTransformer extends TransformerAbstract
 {

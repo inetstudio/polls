@@ -9,8 +9,8 @@ use InetStudio\Polls\Models\PollModel;
 use Illuminate\Support\Facades\Session;
 use InetStudio\Polls\Models\PollOptionModel;
 use InetStudio\Polls\Requests\SavePollRequest;
-use InetStudio\AdminPanel\Traits\DatatablesTrait;
 use InetStudio\Polls\Transformers\PollTransformer;
+use InetStudio\AdminPanel\Http\Controllers\Back\Traits\DatatablesTrait;
 
 /**
  * Контроллер для управления опросами.

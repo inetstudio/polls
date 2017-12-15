@@ -20,7 +20,7 @@
     "extra": {
       "laravel": {
         "providers": [
-          "InetStudio\\Polls\\PollsServiceProvider"
+          "InetStudio\\Polls\\Providers\\PollsServiceProvider"
         ]
       }
     }

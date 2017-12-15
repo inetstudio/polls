@@ -1,6 +1,6 @@
 <?php
 
-namespace InetStudio\Polls\Requests;
+namespace InetStudio\Polls\Http\Requests\Back;
 
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;

@@ -1,15 +1,17 @@
 <?php
 
-namespace InetStudio\Polls\Controllers;
+namespace InetStudio\Polls\Http\Controllers\Back;
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
 use InetStudio\Polls\Models\PollModel;
 use Illuminate\Support\Facades\Session;
 use InetStudio\Polls\Models\PollOptionModel;
-use InetStudio\Polls\Requests\SavePollRequest;
 use InetStudio\Polls\Transformers\PollTransformer;
+use InetStudio\Polls\Http\Requests\Back\SavePollRequest;
 use InetStudio\AdminPanel\Http\Controllers\Back\Traits\DatatablesTrait;
 
 /**
@@ -31,13 +33,14 @@ class PollsController extends Controller
     {
         $table = $this->generateTable($dataTable, 'polls', 'index');
 
-        return view('admin.module.polls::pages.index', compact('table'));
+        return view('admin.module.polls::back.pages.index', compact('table'));
     }
 
     /**
-     * Datatables serverside.
+     * DataTables ServerSide.
      *
      * @return mixed
+     * @throws \Exception
      */
     public function data()
     {
@@ -56,7 +59,7 @@ class PollsController extends Controller
      */
     public function create()
     {
-        return view('admin.module.polls::pages.form', [
+        return view('admin.module.polls::back.pages.form', [
             'item' => new PollModel(),
         ]);
     }
@@ -81,7 +84,7 @@ class PollsController extends Controller
     public function edit($id = null)
     {
         if (! is_null($id) && $id > 0 && $item = PollModel::find($id)) {
-            return view('admin.module.polls::pages.form', [
+            return view('admin.module.polls::back.pages.form', [
                 'item' => $item,
             ]);
         } else {
@@ -108,7 +111,7 @@ class PollsController extends Controller
      * @param null $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    private function save($request, $id = null)
+    private function save($request, $id = null): RedirectResponse
     {
         if (! is_null($id) && $id > 0 && $item = PollModel::find($id)) {
             $action = 'отредактирован';
@@ -137,7 +140,7 @@ class PollsController extends Controller
         }
     }
 
-    private function saveOptions($item, $request)
+    private function saveOptions($item, $request): void
     {
         $item->detachOptionsExcept($request->get('options'));
 
@@ -159,7 +162,7 @@ class PollsController extends Controller
      * @param null $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id = null)
+    public function destroy($id = null): JsonResponse
     {
         if (! is_null($id) && $id > 0 && $item = PollModel::find($id)) {
             $item->delete();
@@ -170,11 +173,12 @@ class PollsController extends Controller
         } else {
             return response()->json([
                 'success' => false,
+
             ]);
         }
     }
 
-    public function getInfo(Request $request)
+    public function getInfo(Request $request): JsonResponse
     {
         $id = $request->get('id');
 
@@ -205,7 +209,7 @@ class PollsController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getSuggestions(Request $request)
+    public function getSuggestions(Request $request): JsonResponse
     {
         $search = $request->get('q');
         $data = [];

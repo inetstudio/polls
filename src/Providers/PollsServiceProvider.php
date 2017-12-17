@@ -2,8 +2,12 @@
 
 namespace InetStudio\Polls\Providers;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use InetStudio\Polls\Events\ModifyPollEvent;
+use InetStudio\Polls\Services\Front\PollsService;
 use InetStudio\Polls\Console\Commands\SetupCommand;
+use InetStudio\Polls\Listeners\ClearPollsCacheListener;
 
 class PollsServiceProvider extends ServiceProvider
 {
@@ -18,6 +22,7 @@ class PollsServiceProvider extends ServiceProvider
         $this->registerPublishes();
         $this->registerRoutes();
         $this->registerViews();
+        $this->registerEvents();
     }
 
     /**
@@ -27,6 +32,7 @@ class PollsServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->registerBindings();
     }
 
     /**
@@ -82,5 +88,25 @@ class PollsServiceProvider extends ServiceProvider
     protected function registerViews(): void
     {
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'admin.module.polls');
+    }
+
+    /**
+     * Регистрация событий.
+     *
+     * @return void
+     */
+    protected function registerEvents(): void
+    {
+        Event::listen(ModifyPollEvent::class, ClearPollsCacheListener::class);
+    }
+
+    /**
+     * Регистрация привязок, алиасов и сторонних провайдеров сервисов.
+     *
+     * @return void
+     */
+    public function registerBindings(): void
+    {
+        $this->app->bind('PollsService', PollsService::class);
     }
 }

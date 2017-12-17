@@ -2,13 +2,14 @@
 
 namespace InetStudio\Polls\Http\Controllers\Back;
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use InetStudio\Polls\Models\PollModel;
 use Illuminate\Support\Facades\Session;
+use InetStudio\Polls\Events\ModifyPollEvent;
 use InetStudio\Polls\Models\PollOptionModel;
 use InetStudio\Polls\Transformers\PollTransformer;
 use InetStudio\Polls\Http\Requests\Back\SavePollRequest;
@@ -126,6 +127,8 @@ class PollsController extends Controller
         $item->save();
 
         $this->saveOptions($item, $request);
+
+        event(new ModifyPollEvent($item));
 
         if ($request->ajax()) {
             return response()->json([

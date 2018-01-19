@@ -14,7 +14,7 @@
 @section('content')
 
     @push('breadcrumbs')
-        @include('admin.module.ingredients::back.partials.breadcrumbs.form')
+        @include('admin.module.polls::back.partials.breadcrumbs.form')
     @endpush
 
     <div class="row m-sm">

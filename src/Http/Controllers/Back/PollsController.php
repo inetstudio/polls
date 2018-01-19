@@ -2,23 +2,23 @@
 
 namespace InetStudio\Polls\Http\Controllers\Back;
 
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use InetStudio\Polls\Models\PollModel;
 use Illuminate\Support\Facades\Session;
 use InetStudio\Polls\Events\ModifyPollEvent;
 use InetStudio\Polls\Models\PollOptionModel;
-use InetStudio\Polls\Transformers\PollTransformer;
+use InetStudio\Polls\Transformers\Back\PollTransformer;
 use InetStudio\Polls\Http\Requests\Back\SavePollRequest;
+use InetStudio\Polls\Transformers\Back\AnalyticsPollTransformer;
 use InetStudio\AdminPanel\Http\Controllers\Back\Traits\DatatablesTrait;
 
 /**
- * Контроллер для управления опросами.
- *
  * Class PollsController
+ * @package InetStudio\Polls\Http\Controllers\Back
  */
 class PollsController extends Controller
 {
@@ -28,9 +28,12 @@ class PollsController extends Controller
      * Список опросов.
      *
      * @param DataTables $dataTable
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * @throws \Throwable
      */
-    public function index(DataTables $dataTable)
+    public function index(DataTables $dataTable): View
     {
         $table = $this->generateTable($dataTable, 'polls', 'index');
 
@@ -41,6 +44,7 @@ class PollsController extends Controller
      * DataTables ServerSide.
      *
      * @return mixed
+     *
      * @throws \Exception
      */
     public function data()
@@ -54,11 +58,46 @@ class PollsController extends Controller
     }
 
     /**
+     * Список опросов.
+     *
+     * @param DataTables $dataTable
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * @throws \Throwable
+     */
+    public function getAnalytics(DataTables $dataTable): View
+    {
+        $table = $this->generateTable($dataTable, 'polls', 'analytics');
+
+        return view('admin.module.polls::back.pages.analytics', compact('table'));
+    }
+
+    /**
+     * DataTables ServerSide.
+     *
+     * @return mixed
+     *
+     * @throws \Exception
+     */
+    public function analyticsData()
+    {
+        $items = PollModel::with(['options' => function ($query) {
+            $query->withCount('votes');
+        }])->select(['id', 'question'])->get();
+
+        return DataTables::of($items)
+            ->setTransformer(new AnalyticsPollTransformer)
+            ->rawColumns(['results'])
+            ->make();
+    }
+
+    /**
      * Добавление опроса.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(): View
     {
         return view('admin.module.polls::back.pages.form', [
             'item' => new PollModel(),
@@ -69,6 +108,7 @@ class PollsController extends Controller
      * Создание опроса.
      *
      * @param SavePollRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(SavePollRequest $request)
@@ -80,9 +120,10 @@ class PollsController extends Controller
      * Редактирование опроса.
      *
      * @param null $id
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id = null)
+    public function edit($id = null): View
     {
         if (! is_null($id) && $id > 0 && $item = PollModel::find($id)) {
             return view('admin.module.polls::back.pages.form', [
@@ -98,6 +139,7 @@ class PollsController extends Controller
      *
      * @param SavePollRequest $request
      * @param null $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(SavePollRequest $request, $id = null)
@@ -110,9 +152,10 @@ class PollsController extends Controller
      *
      * @param SavePollRequest $request
      * @param null $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    private function save($request, $id = null): RedirectResponse
+    private function save($request, $id = null)
     {
         if (! is_null($id) && $id > 0 && $item = PollModel::find($id)) {
             $action = 'отредактирован';
@@ -139,7 +182,7 @@ class PollsController extends Controller
         } else {
             Session::flash('success', 'Опрос «'.$item->question.'» успешно '.$action);
 
-            return redirect()->to(route('back.polls.edit', $item->fresh()->id));
+            return response()->redirectToRoute('back.polls.edit', [$item->fresh()->id]);
         }
     }
 
@@ -203,6 +246,29 @@ class PollsController extends Controller
             return response()->json([
                 'success' => false,
             ]);
+        }
+    }
+
+    /**
+     * @param null $id
+     *
+     * @return string
+     *
+     * @throws \Throwable
+     */
+    public function getPollResults($id = null)
+    {
+        if (! is_null($id) && $id > 0) {
+            $item = PollModel::select(['id', 'question'])
+                ->with(['options' => function ($query) {
+                    $query->withCount('votes');
+                }])
+                ->whereId($id)
+                ->first();
+
+            return view('admin.module.polls::back.pages.modals.result', ['poll' => $item])->render();
+        } else {
+            abort(404);
         }
     }
 

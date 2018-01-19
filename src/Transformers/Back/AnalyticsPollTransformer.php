@@ -1,17 +1,19 @@
 <?php
 
-namespace Inetstudio\Polls\Transformers;
+namespace InetStudio\Polls\Transformers\Back;
 
 use InetStudio\Polls\Models\PollModel;
 use League\Fractal\TransformerAbstract;
 
-class PollTransformer extends TransformerAbstract
+class AnalyticsPollTransformer extends TransformerAbstract
 {
     /**
      * Подготовка данных для отображения в таблице.
      *
      * @param PollModel $poll
+     *
      * @return array
+     *
      * @throws \Throwable
      */
     public function transform(PollModel $poll): array
@@ -19,9 +21,8 @@ class PollTransformer extends TransformerAbstract
         return [
             'id' => (int) $poll->id,
             'question' => $poll->question,
-            'created_at' => (string) $poll->created_at,
-            'updated_at' => (string) $poll->updated_at,
-            'actions' => view('admin.module.polls::back.partials.datatables.actions', [
+            'voters' => $poll->options->sum('votes_count'),
+            'results' => view('admin.module.polls::back.partials.datatables.results', [
                 'id' => $poll->id,
             ])->render(),
         ];

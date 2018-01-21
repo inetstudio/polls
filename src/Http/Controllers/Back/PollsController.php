@@ -27,15 +27,13 @@ class PollsController extends Controller
     /**
      * Список опросов.
      *
-     * @param DataTables $dataTable
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
      * @throws \Throwable
      */
-    public function index(DataTables $dataTable): View
+    public function index(): View
     {
-        $table = $this->generateTable($dataTable, 'polls', 'index');
+        $table = $this->generateTable('polls', 'index');
 
         return view('admin.module.polls::back.pages.index', compact('table'));
     }
@@ -60,15 +58,13 @@ class PollsController extends Controller
     /**
      * Список опросов.
      *
-     * @param DataTables $dataTable
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
      * @throws \Throwable
      */
-    public function getAnalytics(DataTables $dataTable): View
+    public function getAnalytics(): View
     {
-        $table = $this->generateTable($dataTable, 'polls', 'analytics');
+        $table = $this->generateTable('polls', 'analytics');
 
         return view('admin.module.polls::back.pages.analytics', compact('table'));
     }

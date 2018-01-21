@@ -20,17 +20,7 @@ return [
             ],
         ],
         'table' => [
-            'index' => [
-                'paging' => true,
-                'pagingType' => 'full_numbers',
-                'searching' => true,
-                'info' => false,
-                'searchDelay' => 350,
-                'language' => [
-                    'url' => '/admin/js/plugins/datatables/locales/russian.json',
-                ],
-            ],
-            'analytics' => [
+            'default' => [
                 'paging' => true,
                 'pagingType' => 'full_numbers',
                 'searching' => true,

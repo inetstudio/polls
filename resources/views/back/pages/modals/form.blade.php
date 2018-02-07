@@ -18,7 +18,9 @@
                                     'data-placeholder' => 'Выберите опрос',
                                     'style' => 'width: 100%',
                                 ],
-                                'options' => [null => ''] + \InetStudio\Polls\Models\PollModel::select('id', 'question as name')->pluck('name', 'id')->toArray(),
+                                'options' => [
+                                    'values' => [null => ''] + \InetStudio\Polls\Models\PollModel::select('id', 'question as name')->pluck('name', 'id')->toArray(),
+                                ],
                             ]) !!}
                             <p class="text-right"><a href="#" class="btn btn-xs btn-primary create-poll">создать новый</a></p>
                         </div>

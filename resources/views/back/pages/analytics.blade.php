@@ -6,11 +6,6 @@
 
 @section('title', $title)
 
-@pushonce('styles:datatables')
-    <!-- DATATABLES -->
-    <link href="{!! asset('admin/css/plugins/datatables/datatables.min.css') !!}" rel="stylesheet">
-@endpushonce
-
 @section('content')
 
     @push('breadcrumbs')
@@ -50,16 +45,6 @@
     </div>
 @endsection
 
-@pushonce('scripts:datatables')
-    <!-- DATATABLES -->
-    <script src="{!! asset('admin/js/plugins/datatables/datatables.min.js') !!}"></script>
-@endpushonce
-
 @pushonce('scripts:datatables_polls_index')
     {!! $table->scripts() !!}
-@endpushonce
-
-@pushonce('scripts:polls_custom')
-    <!-- POLLS CUSTOM -->
-    <script src="{!! asset('admin/js/modules/polls/custom.js') !!}"></script>
 @endpushonce

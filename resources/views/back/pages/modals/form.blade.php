@@ -82,8 +82,3 @@
         </div>
     </div>
 @endpushonce
-
-@pushonce('styles:polls_custom')
-    <!-- CUSTOM STYLE -->
-    <link href="{!! asset('admin/css/modules/polls/custom.css') !!}" rel="stylesheet">
-@endpushonce

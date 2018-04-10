@@ -57,10 +57,6 @@ class PollsServiceProvider extends ServiceProvider
     protected function registerPublishes(): void
     {
         $this->publishes([
-            __DIR__.'/../../public' => public_path(),
-        ], 'public');
-
-        $this->publishes([
             __DIR__.'/../../config/polls.php' => config_path('polls.php'),
         ], 'config');
 

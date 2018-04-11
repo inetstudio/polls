@@ -69,7 +69,7 @@ pollModal.find('.save').on('click', function (event) {
 window.tinymce.PluginManager.add('polls', function (editor) {
     editor.addButton('polls', {
         title: 'Опросы',
-        image: '/images/tinymce-button-polls.png',
+        image: '/admin/images/tinymce-button-polls.png',
         onclick: function() {
             let content = window.tinymce.get(editor.id).selection.getContent();
 

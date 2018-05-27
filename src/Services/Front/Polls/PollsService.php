@@ -2,7 +2,6 @@
 
 namespace InetStudio\Polls\Services\Front\Polls;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use InetStudio\Polls\Models\PollVoteModel;
 use InetStudio\Polls\Contracts\Models\PollModelContract;
@@ -17,16 +16,15 @@ class PollsService implements PollsServiceContract
     /**
      * @var PollsRepositoryContract
      */
-    private $repository;
+    private $repositories;
 
     /**
      * PollsService constructor.
-     *
-     * @param PollsRepositoryContract $repository
      */
-    public function __construct(PollsRepositoryContract $repository)
+    public function __construct()
     {
-        $this->repository = $repository;
+        $this->repositories['polls'] = app()->make('InetStudio\Polls\Contracts\Repositories\PollsRepositoryContract');
+        $this->repositories['pollsVotes'] = app()->make('InetStudio\Polls\Contracts\Repositories\PollsVotesRepositoryContract');
     }
 
     /**
@@ -38,7 +36,7 @@ class PollsService implements PollsServiceContract
      */
     public function getPollById(int $id): ?PollModelContract
     {
-        $item = $this->repository->getItemsByIDs($id, false, [], ['options'])->first();
+        $item = $this->repositories['polls']->getItemsByIDs($id, false, [], ['options'])->first();
 
         return $item ?? null;
     }
@@ -57,7 +55,7 @@ class PollsService implements PollsServiceContract
 
         $voteCookie = (bool) request()->cookie('poll_vote_'.$pollID, false);
 
-        $vote = ($userID > 0 && ! $voteCookie) ? $this->repository->checkUserVote($pollID, $userID) : $voteCookie;
+        $vote = ($userID > 0 && ! $voteCookie) ? $this->repositories['polls']->checkUserVote($pollID, $userID) : $voteCookie;
 
         return [
             'userID' => $userID,
@@ -68,35 +66,32 @@ class PollsService implements PollsServiceContract
     /**
      * Голосуем в опросе.
      *
-     * @param Request $request
-     * @param int $id
+     * @param int $pollID
+     * @param int $optionID
      *
      * @return PollModelContract|null
      */
-    public function vote(Request $request,
-                         int $id): ?PollModelContract
+    public function vote(int $pollID, int $optionID): ?PollModelContract
     {
-        $poll = $this->getPollById($id);
+        $poll = $this->getPollById($pollID);
 
-        if (! $poll) {
+        if (! $poll->id) {
             return null;
         }
-
-        $optionID = $request->get('result')[0]['value'] ?? 0;
 
         if (! $poll->options->contains('id', $optionID)) {
             return null;
         }
 
-        $vote = $this->isVote($request, $id);
+        $result = $this->isVote($pollID);
 
-        if (! $vote['vote']) {
-            PollVoteModel::create([
-                'user_id' => $vote['userID'],
+        if (! $result['vote']) {
+            $this->repositories['pollsVotes']->save([
+                'user_id' => $result['userID'],
                 'option_id' => $optionID,
             ]);
 
-            Cookie::queue('poll_vote_'.$id, '1', 14400);
+            Cookie::queue('poll_vote_'.$pollID, '1', 14400);
         }
 
         return $poll;

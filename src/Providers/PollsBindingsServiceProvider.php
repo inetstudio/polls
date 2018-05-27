@@ -29,11 +29,12 @@ class PollsBindingsServiceProvider extends ServiceProvider
         'InetStudio\Polls\Contracts\Models\PollVoteModelContract' => 'InetStudio\Polls\Models\PollVoteModel',
 
         // Observers
-        'InetStudio\Polls\Contracts\Observers\PollObserverContract' => 'InetStudio\Polls\Contracts\Observers\PollObserver',
+        'InetStudio\Polls\Contracts\Observers\PollObserverContract' => 'InetStudio\Polls\Observers\PollObserver',
 
         // Repositories
         'InetStudio\Polls\Contracts\Repositories\PollsRepositoryContract' => 'InetStudio\Polls\Repositories\PollsRepository',
         'InetStudio\Polls\Contracts\Repositories\PollsOptionsRepositoryContract' => 'InetStudio\Polls\Repositories\PollsOptionsRepository',
+        'InetStudio\Polls\Contracts\Repositories\PollsVotesRepositoryContract' => 'InetStudio\Polls\Repositories\PollsVotesRepository',
 
         // Requests
         'InetStudio\Polls\Contracts\Http\Requests\Back\Polls\SavePollRequestContract' => 'InetStudio\Polls\Http\Requests\Back\Polls\SavePollRequest',
@@ -47,6 +48,7 @@ class PollsBindingsServiceProvider extends ServiceProvider
         'InetStudio\Polls\Contracts\Http\Responses\Back\Polls\SaveResponseContract' => 'InetStudio\Polls\Http\Responses\Back\Polls\SaveResponse',
         'InetStudio\Polls\Contracts\Http\Responses\Back\Polls\ShowResponseContract' => 'InetStudio\Polls\Http\Responses\Back\Polls\ShowResponse',
         'InetStudio\Polls\Contracts\Http\Responses\Back\Utility\SuggestionsResponseContract' => 'InetStudio\Polls\Http\Responses\Back\Utility\SuggestionsResponse',
+        'InetStudio\Polls\Contracts\Http\Responses\Front\Polls\VoteResponseContract' => 'InetStudio\Polls\Http\Responses\Front\Polls\VoteResponse',
 
         // Services
         'InetStudio\Polls\Contracts\Services\Back\Analytics\PollsDataTableServiceContract' => 'InetStudio\Polls\Services\Back\Analytics\PollsDataTableService',
@@ -85,6 +87,7 @@ class PollsBindingsServiceProvider extends ServiceProvider
             'InetStudio\Polls\Contracts\Observers\PollObserverContract',
             'InetStudio\Polls\Contracts\Repositories\PollsRepositoryContract',
             'InetStudio\Polls\Contracts\Repositories\PollsOptionsRepositoryContract',
+            'InetStudio\Polls\Contracts\Repositories\PollsVotesRepositoryContract',
             'InetStudio\Polls\Contracts\Http\Requests\Back\Polls\SavePollRequestContract',
             'InetStudio\Polls\Contracts\Http\Responses\Back\Analytics\IndexResponseContract',
             'InetStudio\Polls\Contracts\Http\Responses\Back\Analytics\ResultResponseContract',
@@ -94,6 +97,7 @@ class PollsBindingsServiceProvider extends ServiceProvider
             'InetStudio\Polls\Contracts\Http\Responses\Back\Polls\SaveResponseContract',
             'InetStudio\Polls\Contracts\Http\Responses\Back\Polls\ShowResponseContract',
             'InetStudio\Polls\Contracts\Http\Responses\Back\Utility\SuggestionsResponseContract',
+            'InetStudio\Polls\Contracts\Http\Responses\Front\Polls\VoteResponseContract',
             'InetStudio\Polls\Contracts\Services\Back\Analytics\PollsDataTableServiceContract',
             'InetStudio\Polls\Contracts\Services\Back\Polls\PollsDataTableServiceContract',
             'InetStudio\Polls\Contracts\Services\Back\Polls\PollsObserverServiceContract',

@@ -2,7 +2,9 @@
 
 namespace InetStudio\Polls\Http\Controllers\Front\Polls;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use InetStudio\Polls\Contracts\Http\Responses\Front\Polls\VoteResponseContract;
 use InetStudio\Polls\Contracts\Http\Controllers\Front\Polls\PollsControllerContract;
 
 /**
@@ -25,19 +27,22 @@ class PollsController extends Controller implements PollsControllerContract
         $this->services['polls'] = app()->make('InetStudio\Polls\Contracts\Services\Front\Polls\PollsServiceContract');
     }
 
-    public function vote(Request $request): string
+    /**
+     * Голосование в опросе.
+     *
+     * @param Request $request
+     *
+     * @return VoteResponseContract
+     */
+    public function vote(Request $request): VoteResponseContract
     {
-        $type = ($request->filled('type')) ? strtolower(trim($request->get('type'))) : '';
-        $id = ($request->filled('id')) ? (int)($request->get('id')) : '';
+        $pollID = ($request->filled('id')) ? (int)($request->get('id')) : 0;
+        $optionID = $request->get('result')[0]['value'] ?? 0;
 
-        if ($type != 'poll') {
-            return '';
-        }
+        $item = $this->services['polls']->vote($pollID, $optionID);
 
-        $poll = $this->services['pollsService']->vote($request, $id);
-
-        return view('front.ajax.pollResult', [
-            'poll' => $poll,
-        ])->render();
+        return app()->makeWith('InetStudio\Polls\Contracts\Http\Responses\Front\Polls\VoteResponseContract', [
+            'item' => $item,
+        ]);
     }
 }

@@ -71,7 +71,7 @@ class PollsVotesRepository implements PollsVotesRepositoryContract
         $item = $this->getItemByID((int) $data['id']);
 
         $item->user_id = $data['user_id'];
-        $item->poll_id = $data['poll_id'];
+        $item->option_id = $data['option_id'];
         $item->save();
 
         return $item;

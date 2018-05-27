@@ -87,6 +87,7 @@ class PollsService implements PollsServiceContract
 
         if (! $result['vote']) {
             $this->repositories['pollsVotes']->save([
+                'id' => 0,
                 'user_id' => $result['userID'],
                 'option_id' => $optionID,
             ]);

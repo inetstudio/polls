@@ -6,8 +6,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 
 /**
- * Class SetupCommand
- * @package InetStudio\Polls\Console\Commands
+ * Class SetupCommand.
  */
 class SetupCommand extends Command
 {
@@ -83,15 +82,6 @@ class SetupCommand extends Command
                 'type' => 'artisan',
                 'description' => 'Migration',
                 'command' => 'migrate',
-            ],
-            [
-                'type' => 'artisan',
-                'description' => 'Publish config',
-                'command' => 'vendor:publish',
-                'params' => [
-                    '--provider' => 'InetStudio\Polls\Providers\PollsServiceProvider',
-                    '--tag' => 'config',
-                ],
             ],
             [
                 'type' => 'cli',

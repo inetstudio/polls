@@ -4,8 +4,12 @@ namespace InetStudio\Polls\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use InetStudio\Polls\Contracts\Models\PollVoteModelContract;
 
-class PollVoteModel extends Model
+/**
+ * Class PollVoteModel.
+ */
+class PollVoteModel extends Model implements PollVoteModelContract
 {
     use SoftDeletes;
 
@@ -36,8 +40,13 @@ class PollVoteModel extends Model
         'deleted_at',
     ];
 
+    /**
+     * Обратное отношение "один ко многим" с моделью ответа.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function option()
     {
-        return $this->belongsTo(PollOptionModel::class, 'id', 'option_id');
+        return $this->belongsTo(app()->make('InetStudio\Polls\Contracts\Models\PollOptionModelContract'), 'id', 'option_id');
     }
 }

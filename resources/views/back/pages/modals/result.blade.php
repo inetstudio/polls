@@ -1,5 +1,5 @@
 @php
-    $options = $poll->options;
+    $options = $item->options;
     $count = 0;
     foreach ($options as $option) {
         $count += $option->votes_count;
@@ -7,9 +7,9 @@
 @endphp
 
 <div class="ibox-content">
-    <h2>{{ $poll->question }}</h2>
+    <h2>{{ $item->question }}</h2>
     <div>
-        @foreach ($poll->options as $option)
+        @foreach ($item->options as $option)
             <div>
                 <span>{{ $option->answer }}</span>
                 <small class="pull-right">{{ $option->votes_count }}</small>

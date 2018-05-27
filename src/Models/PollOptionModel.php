@@ -4,8 +4,12 @@ namespace InetStudio\Polls\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use InetStudio\Polls\Contracts\Models\PollOptionModelContract;
 
-class PollOptionModel extends Model
+/**
+ * Class PollOptionModel.
+ */
+class PollOptionModel extends Model implements PollOptionModelContract
 {
     use SoftDeletes;
 
@@ -37,22 +41,27 @@ class PollOptionModel extends Model
     ];
 
     /**
-     * An option belongs to one poll.
+     * Обратное отношение "один ко многим" с моделью опроса.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function poll()
     {
-        return $this->belongsTo(PollModel::class);
-    }
-
-    public function votes()
-    {
-        return $this->hasMany(PollVoteModel::class, 'option_id', 'id');
+        return $this->belongsTo(app()->make('InetStudio\Polls\Contracts\Models\PollModelContract'));
     }
 
     /**
-     * Get the voters who voted to that option.
+     * Отношение "один ко многим" с моделью голосов.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function votes()
+    {
+        return $this->hasMany(app()->make('InetStudio\Polls\Contracts\Models\PollVoteModelContract'), 'option_id', 'id');
+    }
+
+    /**
+     * Получаем проголосовавших за этот ответ.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -62,46 +71,12 @@ class PollOptionModel extends Model
     }
 
     /**
-     * Check if the option is voted.
+     * Проверяем, что за этот ответ голосовали.
      *
      * @return bool
      */
     public function isVoted()
     {
         return $this->voters()->count() != 0;
-    }
-
-    public static function findOrCreate($values, $pollID = 0)
-    {
-        $options = collect($values)->map(function ($value) use ($pollID) {
-            if ($value instanceof PollOptionModel) {
-                return $value;
-            }
-
-            return static::findOrCreateFromArray($value, $pollID);
-        });
-
-        return is_string($values) ? $options->first() : $options;
-    }
-
-    public static function findFromArray($value, $pollID)
-    {
-        return static::query()
-            ->where('id', $value['id'])
-            ->where('poll_id', $pollID)
-            ->first();
-    }
-
-    protected static function findOrCreateFromArray($value, $pollID)
-    {
-        $option = static::findFromArray($value, $pollID);
-
-        if (! $option) {
-            $option = static::create(array_merge($value, [
-                'poll_id' => $pollID,
-            ]));
-        }
-
-        return $option;
     }
 }

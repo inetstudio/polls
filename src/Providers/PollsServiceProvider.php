@@ -2,13 +2,11 @@
 
 namespace InetStudio\Polls\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-use InetStudio\Polls\Events\ModifyPollEvent;
-use InetStudio\Polls\Services\Front\PollsService;
-use InetStudio\Polls\Console\Commands\SetupCommand;
-use InetStudio\Polls\Listeners\ClearPollsCacheListener;
 
+/**
+ * Class PollsServiceProvider.
+ */
 class PollsServiceProvider extends ServiceProvider
 {
     /**
@@ -22,17 +20,7 @@ class PollsServiceProvider extends ServiceProvider
         $this->registerPublishes();
         $this->registerRoutes();
         $this->registerViews();
-        $this->registerEvents();
-    }
-
-    /**
-     * Регистрация привязки в контейнере.
-     *
-     * @return void
-     */
-    public function register(): void
-    {
-        $this->registerBindings();
+        $this->registerObservers();
     }
 
     /**
@@ -44,7 +32,7 @@ class PollsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                SetupCommand::class,
+                'InetStudio\Polls\Console\Commands\SetupCommand',
             ]);
         }
     }
@@ -56,10 +44,6 @@ class PollsServiceProvider extends ServiceProvider
      */
     protected function registerPublishes(): void
     {
-        $this->publishes([
-            __DIR__.'/../../config/polls.php' => config_path('polls.php'),
-        ], 'config');
-
         if ($this->app->runningInConsole()) {
             if (! class_exists('CreatePollsTables')) {
                 $timestamp = date('Y_m_d_His', time());
@@ -91,22 +75,12 @@ class PollsServiceProvider extends ServiceProvider
     }
 
     /**
-     * Регистрация событий.
+     * Регистрация наблюдателей.
      *
      * @return void
      */
-    protected function registerEvents(): void
+    public function registerObservers(): void
     {
-        Event::listen(ModifyPollEvent::class, ClearPollsCacheListener::class);
-    }
-
-    /**
-     * Регистрация привязок, алиасов и сторонних провайдеров сервисов.
-     *
-     * @return void
-     */
-    public function registerBindings(): void
-    {
-        $this->app->bind('PollsService', PollsService::class);
+        $this->app->make('InetStudio\Polls\Contracts\Models\PollModelContract')::observe($this->app->make('InetStudio\Polls\Contracts\Observers\PollObserverContract'));
     }
 }

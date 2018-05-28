@@ -36,8 +36,8 @@ class PollsController extends Controller implements PollsControllerContract
      */
     public function vote(Request $request): VoteResponseContract
     {
-        $pollID = ($request->filled('id')) ? (int)($request->get('id')) : 0;
-        $optionID = $request->get('result')[0]['value'] ?? 0;
+        $pollID = $request->get('id') ?? 0;
+        $optionID = $request->get('answer') ?? 0;
 
         $item = $this->services['polls']->vote($pollID, $optionID);
 

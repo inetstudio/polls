@@ -134,6 +134,8 @@ window.tinymce.PluginManager.add('polls', function (editor) {
                     });
                 });
             } else {
+                widgetID = '';
+
                 $('#add_poll_modal').modal();
             }
         }

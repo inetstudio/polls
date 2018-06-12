@@ -67,7 +67,7 @@ class PollOptionModel extends Model implements PollOptionModelContract
      */
     public function voters()
     {
-        return $this->belongsToMany(\App\User::class, 'polls_votes')->withTimestamps();
+        return $this->belongsToMany(app()->make('InetStudio\ACL\Users\Contracts\Models\UserModelContract'), 'polls_votes')->withTimestamps();
     }
 
     /**

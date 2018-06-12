@@ -50,7 +50,7 @@ class PollsService implements PollsServiceContract
      */
     public function isVote(int $pollID): array
     {
-        $usersService = app()->make('UsersService');
+        $usersService = app()->make('InetStudio\ACL\Users\Contracts\Services\Front\UsersServiceContract');
         $userID = $usersService->getUserId();
 
         $voteCookie = (bool) request()->cookie('poll_vote_'.$pollID, false);

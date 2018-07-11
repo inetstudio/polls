@@ -95,17 +95,14 @@ class PollsRepository implements PollsRepositoryContract
     /**
      * Ищем объекты.
      *
-     * @param string $field
-     * @param $value
+     * @param array $conditions
      * @param bool $returnBuilder
-     * @param array $fields
-     * @param array $relations
      *
      * @return mixed
      */
-    public function searchItemsByField(string $field, string $value, bool $returnBuilder = false, array $fields = [], array $relations = [])
+    public function searchItems(array $conditions, bool $returnBuilder = false)
     {
-        $builder = $this->getItemsQuery($fields, $relations)->where($field, 'LIKE', '%'.$value.'%');
+        $builder = $this->getItemsQuery([])->where($conditions);
 
         if ($returnBuilder) {
             return $builder;

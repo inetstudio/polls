@@ -110,6 +110,10 @@ class PollsDataTableService extends DataTable implements PollsDataTableServiceCo
         $i18n = trans('admin::datatables');
 
         return [
+            'order' => [
+                1,
+                'desc'
+            ],
             'paging' => true,
             'pagingType' => 'full_numbers',
             'searching' => true,

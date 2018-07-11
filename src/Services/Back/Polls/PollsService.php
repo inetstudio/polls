@@ -104,7 +104,7 @@ class PollsService implements PollsServiceContract
      */
     public function getSuggestions(string $search, $type): array
     {
-        $items = $this->repository->searchItemsByField('question', $search);
+        $items = $this->repository->searchItems([['question', 'LIKE', '%'.$search.'%']]);
 
         $resource = (app()->makeWith('InetStudio\Polls\Contracts\Transformers\Back\Polls\SuggestionTransformerContract', [
             'type' => $type,

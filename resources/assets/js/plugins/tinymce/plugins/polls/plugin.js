@@ -1,6 +1,6 @@
 let addPollModal = $('#add_poll_modal'),
     pollModal = $('#poll_modal'),
-    widgetID = '';
+    pollWidgetID = '';
 
 addPollModal.find('.create-poll').on('click', function (event) {
     event.preventDefault();
@@ -18,7 +18,7 @@ addPollModal.find('.save').on('click', function (event) {
         id = option.val();
 
     if (id !== '') {
-        window.Admin.modules.widgets.saveWidget(widgetID, {
+        window.Admin.modules.widgets.saveWidget(pollWidgetID, {
             view: 'admin.module.polls::front.partials.content.poll_widget',
             params: {
                 id: id
@@ -49,7 +49,7 @@ pollModal.find('.save').on('click', function (event) {
             if (data.success === true) {
                 $('#poll_modal').modal('hide');
 
-                window.Admin.modules.widgets.saveWidget(widgetID, {
+                window.Admin.modules.widgets.saveWidget(pollWidgetID, {
                     view: 'admin.module.polls::front.partials.content.poll_widget',
                     params: {
                         id: data.id
@@ -102,9 +102,9 @@ window.tinymce.PluginManager.add('polls', function (editor) {
 
                 return false;
             } else if (content !== '') {
-                widgetID = $(content).attr('data-id');
+                pollWidgetID = $(content).attr('data-id');
 
-                window.Admin.modules.widgets.getWidget(widgetID, function (widget) {
+                window.Admin.modules.widgets.getWidget(pollWidgetID, function (widget) {
                     let pollID = widget.params.id;
 
                     $.ajax({
@@ -134,7 +134,7 @@ window.tinymce.PluginManager.add('polls', function (editor) {
                     });
                 });
             } else {
-                widgetID = '';
+                pollWidgetID = '';
 
                 $('#add_poll_modal').modal();
             }

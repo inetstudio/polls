@@ -20,7 +20,6 @@ class PollsServiceProvider extends ServiceProvider
         $this->registerPublishes();
         $this->registerRoutes();
         $this->registerViews();
-        $this->registerObservers();
     }
 
     /**
@@ -72,15 +71,5 @@ class PollsServiceProvider extends ServiceProvider
     protected function registerViews(): void
     {
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'admin.module.polls');
-    }
-
-    /**
-     * Регистрация наблюдателей.
-     *
-     * @return void
-     */
-    public function registerObservers(): void
-    {
-        $this->app->make('InetStudio\Polls\Contracts\Models\PollModelContract')::observe($this->app->make('InetStudio\Polls\Contracts\Observers\PollObserverContract'));
     }
 }

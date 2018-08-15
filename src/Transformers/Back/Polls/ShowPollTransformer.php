@@ -37,7 +37,7 @@ class ShowPollTransformer extends TransformerAbstract implements ShowPollTransfo
     }
 
     /**
-     * Включаем ответы в трасформацию.
+     * Включаем ответы в трансформацию.
      *
      * @param PollModelContract $item
      *

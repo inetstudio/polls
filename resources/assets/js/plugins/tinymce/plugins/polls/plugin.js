@@ -84,9 +84,9 @@ pollModal.find('.save').on('click', function (event) {
 });
 
 window.tinymce.PluginManager.add('polls', function (editor) {
-    editor.addButton('polls', {
+    editor.addButton('add_poll_widget', {
         title: 'Опросы',
-        image: '/admin/images/tinymce-button-polls.png',
+        icon: 'question',
         onclick: function() {
             addPollModal.find('.save').attr('data-editor', editor.id);
             pollModal.find('.save').attr('data-editor', editor.id);

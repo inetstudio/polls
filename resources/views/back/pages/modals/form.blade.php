@@ -45,7 +45,7 @@
                 <div class="modal-body">
                     <div class="ibox-content form-horizontal">
                         <div class="row">
-                            {!! Form::open(['url' => '', 'id' => 'pollModalForm', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal']) !!}
+                            {!! Form::open(['url' => route('back.polls.store'), 'id' => 'pollModalForm', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal']) !!}
 
                                 {{ method_field('') }}
 

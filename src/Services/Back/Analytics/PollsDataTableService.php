@@ -81,7 +81,7 @@ class PollsDataTableService extends DataTable implements PollsDataTableServiceCo
     {
         return [
             ['data' => 'question', 'name' => 'question', 'title' => 'Вопрос'],
-            ['data' => 'voters', 'name' => 'voters', 'title' => 'Количество участников'],
+            ['data' => 'voters', 'name' => 'voters', 'title' => 'Количество участников', 'searchable' => false],
             ['data' => 'results', 'name' => 'results', 'title' => 'Результаты', 'orderable' => false, 'searchable' => false],
         ];
     }

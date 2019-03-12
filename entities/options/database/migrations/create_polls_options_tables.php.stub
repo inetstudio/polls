@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+/**
+ * Class CreatePollsOptionsTables.
+ */
+class CreatePollsOptionsTables extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('polls_options', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('poll_id');
+            $table->string('answer');
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('poll_id')->references('id')->on('polls');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('polls_options');
+    }
+}

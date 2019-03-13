@@ -1,7 +1,9 @@
-@inject('pollsService', 'InetStudio\PollsPackage\Polls\Services\Front\PollsServiceContract')
+@inject('pollsService', 'InetStudio\PollsPackage\Polls\Contracts\Services\Front\PollsServiceContract')
 
 @php
-    $poll = $pollsService->getItemById($id);
+    $poll = $pollsService->getItemById($id, [
+        'relations' => ['options'],
+    ]);
     $result = $pollsService->isVote($id);
 @endphp
 

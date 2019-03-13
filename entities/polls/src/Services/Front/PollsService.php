@@ -48,7 +48,7 @@ class PollsService extends BaseService implements PollsServiceContract
             $pollsVotesService->save([
                 'user_id' => $result['userID'],
                 'option_id' => $optionID,
-            ]);
+            ], 0);
 
             Cookie::queue('poll_vote_'.$pollID, '1', 14400);
         }

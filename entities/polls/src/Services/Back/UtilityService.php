@@ -4,6 +4,7 @@ namespace InetStudio\PollsPackage\Polls\Services\Back;
 
 use Illuminate\Support\Collection;
 use InetStudio\AdminPanel\Base\Services\Back\BaseService;
+use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Back\UtilityServiceContract;
 
 /**
@@ -13,10 +14,12 @@ class UtilityService extends BaseService implements UtilityServiceContract
 {
     /**
      * UtilityService constructor.
+     *
+     * @param PollModelContract $model
      */
-    public function __construct()
+    public function __construct(PollModelContract $model)
     {
-        parent::__construct(app()->make('InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract'));
+        parent::__construct($model);
     }
 
     /**

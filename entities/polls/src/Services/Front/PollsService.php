@@ -14,10 +14,12 @@ class PollsService extends BaseService implements PollsServiceContract
 {
     /**
      * PollsService constructor.
+     *
+     * @param PollModelContract $model
      */
-    public function __construct()
+    public function __construct(PollModelContract $model)
     {
-        parent::__construct(app()->make('InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract'));
+        parent::__construct($model);
     }
 
     /**

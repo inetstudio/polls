@@ -14,10 +14,12 @@ class PollsVotesService extends BaseService implements PollsVotesServiceContract
 {
     /**
      * PollsVotesService constructor.
+     *
+     * @param PollVoteModelContract $model
      */
-    public function __construct()
+    public function __construct(PollVoteModelContract $model)
     {
-        parent::__construct(app()->make('InetStudio\PollsPackage\Votes\Contracts\Models\PollVoteModelContract'));
+        parent::__construct($model);
     }
 
     /**
@@ -30,7 +32,9 @@ class PollsVotesService extends BaseService implements PollsVotesServiceContract
      */
     public function save(array $data, int $id): PollVoteModelContract
     {
-        $item = $this->saveModel(Arr::only($data, $this->model->getFillable()), $id);
+        $data = Arr::only($data, $this->model->getFillable());
+
+        $item = $this->saveModel($data, $id);
 
         return $item;
     }

@@ -7,4 +7,12 @@ namespace InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back;
  */
 interface PollTransformerContract
 {
+    /**
+     * Подготовка данных.
+     *
+     * @param object $item
+     *
+     * @return array
+     */
+    public function transform($item): array;
 }

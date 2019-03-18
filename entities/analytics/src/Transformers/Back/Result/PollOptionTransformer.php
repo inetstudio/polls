@@ -24,7 +24,7 @@ class PollOptionTransformer extends TransformerAbstract implements PollOptionTra
     }
 
     /**
-     * Подготовка данных для отображения в таблице.
+     * Подготовка данных.
      *
      * @param PollOptionModelContract $item
      *

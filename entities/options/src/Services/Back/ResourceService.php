@@ -15,10 +15,12 @@ class ResourceService extends BaseService implements ResourceServiceContract
 {
     /**
      * ResourceService constructor.
+     *
+     * @param PollOptionModelContract $model
      */
-    public function __construct()
+    public function __construct(PollOptionModelContract $model)
     {
-        parent::__construct(app()->make('InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract'));
+        parent::__construct($model);
     }
 
     /**
@@ -31,7 +33,9 @@ class ResourceService extends BaseService implements ResourceServiceContract
      */
     public function save(array $data, int $id): PollOptionModelContract
     {
-        $item = $this->saveModel(Arr::only($data, $this->model->getFillable()), $id);
+        $data = Arr::only($data, $this->model->getFillable());
+
+        $item = $this->saveModel($data, $id);
 
         return $item;
     }

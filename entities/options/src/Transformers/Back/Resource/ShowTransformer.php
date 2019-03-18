@@ -12,7 +12,7 @@ use InetStudio\PollsPackage\Options\Contracts\Transformers\Back\Resource\ShowTra
 class ShowTransformer extends TransformerAbstract implements ShowTransformerContract
 {
     /**
-     * Подготовка данных для отображения в таблице.
+     * Подготовка данных.
      *
      * @param PollOptionModelContract $item
      *

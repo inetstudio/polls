@@ -20,7 +20,7 @@ class ShowTransformer extends TransformerAbstract implements ShowTransformerCont
     ];
 
     /**
-     * Подготовка данных для отображения в таблице.
+     * Подготовка данных.
      *
      * @param PollModelContract $item
      *
@@ -43,7 +43,7 @@ class ShowTransformer extends TransformerAbstract implements ShowTransformerCont
      *
      * @return FractalCollection
      */
-    public function includeOptions(PollModelContract $item)
+    public function includeOptions(PollModelContract $item): FractalCollection
     {
         $transformer = app()->make('InetStudio\PollsPackage\Options\Contracts\Transformers\Back\Resource\ShowTransformerContract');
 

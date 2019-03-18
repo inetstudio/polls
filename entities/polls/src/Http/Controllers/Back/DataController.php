@@ -2,6 +2,7 @@
 
 namespace InetStudio\PollsPackage\Polls\Http\Controllers\Back;
 
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Back\DataTableServiceContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Back\DataControllerContract;
@@ -16,9 +17,9 @@ class DataController extends Controller implements DataControllerContract
      *
      * @param DataTableServiceContract $dataTableService
      *
-     * @return mixed
+     * @return JsonResponse
      */
-    public function data(DataTableServiceContract $dataTableService)
+    public function data(DataTableServiceContract $dataTableService): JsonResponse
     {
         return $dataTableService->ajax();
     }

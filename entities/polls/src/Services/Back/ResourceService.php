@@ -14,11 +14,13 @@ use InetStudio\PollsPackage\Polls\Contracts\Services\Back\ResourceServiceContrac
 class ResourceService extends BaseService implements ResourceServiceContract
 {
     /**
-     * PollsService constructor.
+     * ResourceService constructor.
+     *
+     * @param PollModelContract $model
      */
-    public function __construct()
+    public function __construct(PollModelContract $model)
     {
-        parent::__construct(app()->make('InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract'));
+        parent::__construct($model);
     }
 
     /**

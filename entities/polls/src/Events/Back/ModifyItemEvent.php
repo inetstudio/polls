@@ -3,6 +3,7 @@
 namespace InetStudio\PollsPackage\Polls\Events\Back;
 
 use Illuminate\Queue\SerializesModels;
+use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Events\Back\ModifyItemEventContract;
 
 /**
@@ -13,16 +14,16 @@ class ModifyItemEvent implements ModifyItemEventContract
     use SerializesModels;
 
     /**
-     * @var
+     * @var PollModelContract
      */
     public $item;
 
     /**
      * ModifyItemEvent constructor.
      *
-     * @param $item
+     * @param PollModelContract $item
      */
-    public function __construct($item)
+    public function __construct(PollModelContract $item)
     {
         $this->item = $item;
     }

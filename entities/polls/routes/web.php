@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::group([
     'namespace' => 'InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Back',
     'middleware' => ['web', 'back.auth'],

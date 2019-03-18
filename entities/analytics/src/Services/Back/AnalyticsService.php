@@ -3,6 +3,7 @@
 namespace InetStudio\PollsPackage\Analytics\Services\Back;
 
 use InetStudio\AdminPanel\Base\Services\Back\BaseService;
+use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Analytics\Contracts\Services\Back\AnalyticsServiceContract;
 
 /**
@@ -12,10 +13,12 @@ class AnalyticsService extends BaseService implements AnalyticsServiceContract
 {
     /**
      * AnalyticsService constructor.
+     *
+     * @param PollModelContract $model
      */
-    public function __construct()
+    public function __construct(PollModelContract $model)
     {
-        parent::__construct(app()->make('InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract'));
+        parent::__construct($model);
     }
 
     /**

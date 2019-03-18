@@ -37,9 +37,10 @@ class SaveItemRequest extends FormRequest implements SaveItemRequestContract
      * Правила проверки запроса.
      *
      * @param Request $request
+     *
      * @return array
      */
-    public function rules(Request $request)
+    public function rules(Request $request): array
     {
         return [
 

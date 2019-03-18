@@ -3,6 +3,7 @@
 namespace InetStudio\PollsPackage\Polls\Services\Back;
 
 use Yajra\DataTables\DataTables;
+use Illuminate\Http\JsonResponse;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Back\DataTableServiceContract;
@@ -28,11 +29,11 @@ class DataTableService extends DataTable implements DataTableServiceContract
     /**
      * Запрос на получение данных таблицы.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      *
      * @throws \Exception
      */
-    public function ajax()
+    public function ajax(): JsonResponse
     {
         $transformer = app()->make('InetStudio\PollsPackage\Polls\Contracts\Transformers\Back\Resource\IndexTransformerContract');
 
@@ -43,7 +44,7 @@ class DataTableService extends DataTable implements DataTableServiceContract
     }
 
     /**
-     * Get the query object to be processed by dataTables.
+     * Запрос в бд для получения данных для формирования таблицы.
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|\Illuminate\Support\Collection
      */

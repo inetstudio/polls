@@ -48,7 +48,7 @@ class AnalyticsService extends BaseService implements AnalyticsServiceContract
                 $items[] = [
                     'id' => $article->id,
                     'title' => $article->title,
-                    'href' => url($article->href)
+                    'href' => url($article->href),
                 ];
             }
         }

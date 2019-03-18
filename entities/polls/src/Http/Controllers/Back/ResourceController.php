@@ -22,7 +22,7 @@ class ResourceController extends Controller implements ResourceControllerContrac
      * Список объектов.
      *
      * @param DataTableServiceContract $dataTableService
-     * 
+     *
      * @return IndexResponseContract
      */
     public function index(DataTableServiceContract $dataTableService): IndexResponseContract
@@ -55,7 +55,7 @@ class ResourceController extends Controller implements ResourceControllerContrac
      * Добавление объекта.
      *
      * @param ResourceServiceContract $resourceService
-     * 
+     *
      * @return FormResponseContract
      */
     public function create(ResourceServiceContract $resourceService): FormResponseContract

@@ -44,7 +44,6 @@ class ResultResponse implements ResultResponseContract, Responsable
 
         $resource = new Item($this->item, $transformer);
 
-
         $manager = new Manager();
         $manager->setSerializer($serializer);
 

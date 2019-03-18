@@ -6,8 +6,8 @@ use League\Fractal\Manager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\Support\Responsable;
 use League\Fractal\Resource\Item as FractalItem;
-use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\AdminPanel\Serializers\SimpleDataArraySerializer;
+use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Resource\ShowResponseContract;
 
 /**
@@ -48,7 +48,7 @@ class ShowResponse implements ShowResponseContract, Responsable
         $manager->setSerializer(new SimpleDataArraySerializer());
 
         $transformation = $manager->createData($resource)->toArray();
-        $transformation['success'] = (!! $transformation['id']);
+        $transformation['success'] = ((bool) $transformation['id']);
 
         return response()->json($transformation);
     }

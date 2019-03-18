@@ -73,14 +73,14 @@ class PollsService extends BaseService implements PollsServiceContract
         $voteCookie = (bool) request()->cookie('poll_vote_'.$pollID, false);
 
         $userVote = $this->model::whereHas('options', function ($optionsQuery) use ($userID) {
-                $optionsQuery->whereHas('votes', function ($votesQuery) use ($userID) {
-                    $votesQuery->where('user_id', $userID);
-                });
-            })
+            $optionsQuery->whereHas('votes', function ($votesQuery) use ($userID) {
+                $votesQuery->where('user_id', $userID);
+            });
+        })
             ->where('id', $pollID)
             ->first();
 
-        $vote = ($userID > 0 && ! $voteCookie) ? (!! $userVote) : $voteCookie;
+        $vote = ($userID > 0 && ! $voteCookie) ? ((bool) $userVote) : $voteCookie;
 
         return [
             'userID' => $userID,

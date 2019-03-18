@@ -54,6 +54,11 @@ class SuggestionsResponse implements SuggestionsResponseContract, Responsable
 
         $transformation = $manager->createData($resource)->toArray();
 
+        $data = [
+            'suggestions' => [],
+            'items' => [],
+        ];
+
         if ($this->type && $this->type == 'autocomplete') {
             $data['suggestions'] = $transformation['data'];
         } else {

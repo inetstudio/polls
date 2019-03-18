@@ -74,7 +74,7 @@ class PollModel extends Model implements PollModelContract
      */
     public function setQuestionAttribute($value)
     {
-        $this->attributes['question'] = trim(str_replace("&nbsp;", ' ', strip_tags((isset($value['text'])) ? $value['text'] : (! is_array($value) ? $value : ''))));
+        $this->attributes['question'] = trim(str_replace('&nbsp;', ' ', strip_tags((isset($value['text'])) ? $value['text'] : (! is_array($value) ? $value : ''))));
     }
 
     /**

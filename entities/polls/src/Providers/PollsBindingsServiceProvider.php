@@ -10,13 +10,13 @@ use Illuminate\Support\ServiceProvider;
 class PollsBindingsServiceProvider extends ServiceProvider
 {
     /**
-    * @var  bool
-    */
+     * @var  bool
+     */
     protected $defer = true;
 
     /**
-    * @var  array
-    */
+     * @var  array
+     */
     public $bindings = [
         'InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract' => 'InetStudio\PollsPackage\Polls\Models\PollModel',
         'InetStudio\PollsPackage\Polls\Contracts\Transformers\Back\Resource\IndexTransformerContract' => 'InetStudio\PollsPackage\Polls\Transformers\Back\Resource\IndexTransformer',

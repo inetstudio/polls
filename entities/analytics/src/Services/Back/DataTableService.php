@@ -4,8 +4,8 @@ namespace InetStudio\PollsPackage\Analytics\Services\Back;
 
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\JsonResponse;
-use Yajra\DataTables\Html\Builder;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
 use InetStudio\PollsPackage\Analytics\Contracts\Services\Back\DataTableServiceContract;
 

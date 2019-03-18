@@ -38,7 +38,7 @@ class PollOptionTransformer extends TransformerAbstract implements PollOptionTra
             'id' => $item['id'],
             'answer' => $item['answer'],
             'votes' => $item['votes_count'],
-            'votes_percent' => ($this->totalVotes == 0) ? 0 : round(($item['votes_count'] / $this->totalVotes)*100),
+            'votes_percent' => ($this->totalVotes == 0) ? 0 : round(($item['votes_count'] / $this->totalVotes) * 100),
         ];
     }
 }

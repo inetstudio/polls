@@ -73,7 +73,7 @@ class PollOptionModel extends Model implements PollOptionModelContract
      */
     public function setAnswerAttribute($value)
     {
-        $this->attributes['answer'] = trim(str_replace("&nbsp;", ' ', strip_tags((isset($value['text'])) ? $value['text'] : (! is_array($value) ? $value : ''))));
+        $this->attributes['answer'] = trim(str_replace('&nbsp;', ' ', strip_tags((isset($value['text'])) ? $value['text'] : (! is_array($value) ? $value : ''))));
     }
 
     /**

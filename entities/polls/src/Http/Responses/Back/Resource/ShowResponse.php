@@ -3,7 +3,6 @@
 namespace InetStudio\PollsPackage\Polls\Http\Responses\Back\Resource;
 
 use League\Fractal\Manager;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\Support\Responsable;
 use League\Fractal\Resource\Item as FractalItem;
 use InetStudio\AdminPanel\Serializers\SimpleDataArraySerializer;
@@ -35,9 +34,9 @@ class ShowResponse implements ShowResponseContract, Responsable
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function toResponse($request): JsonResponse
+    public function toResponse($request)
     {
         $resource = new FractalItem(
             $this->item,

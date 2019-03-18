@@ -31,7 +31,7 @@ class SaveResponse implements SaveResponseContract, Responsable
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function toResponse($request)
     {

@@ -33,11 +33,11 @@ class ResultResponse implements ResultResponseContract, Responsable
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return string
+     * @return \Illuminate\Http\Response|string
      *
      * @throws \Throwable
      */
-    public function toResponse($request): string
+    public function toResponse($request)
     {
         $transformer = app()->make('InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back\Result\PollTransformerContract');
         $serializer = app()->make('InetStudio\AdminPanel\Contracts\Serializers\SimpleDataArraySerializerContract');

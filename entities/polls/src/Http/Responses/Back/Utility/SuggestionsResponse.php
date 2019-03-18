@@ -3,7 +3,6 @@
 namespace InetStudio\PollsPackage\Polls\Http\Responses\Back\Utility;
 
 use League\Fractal\Manager;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Support\Responsable;
 use League\Fractal\Serializer\DataArraySerializer;
@@ -41,9 +40,9 @@ class SuggestionsResponse implements SuggestionsResponseContract, Responsable
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function toResponse($request): JsonResponse
+    public function toResponse($request)
     {
         $resource = (app()->makeWith('InetStudio\PollsPackage\Polls\Contracts\Transformers\Back\Utility\SuggestionTransformerContract', [
             'type' => $this->type,

@@ -2,7 +2,6 @@
 
 namespace InetStudio\PollsPackage\Polls\Http\Responses\Back\Resource;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\Support\Responsable;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Resource\DestroyResponseContract;
 
@@ -33,7 +32,7 @@ class DestroyResponse implements DestroyResponseContract, Responsable
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function toResponse($request): JsonResponse
+    public function toResponse($request)
     {
         return response()->json([
             'success' => $this->result,

@@ -3,7 +3,7 @@
 namespace InetStudio\PollsPackage\Polls\Http\Controllers\Back;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use InetStudio\AdminPanel\Base\Http\Controllers\Controller;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Back\UtilityServiceContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Back\UtilityControllerContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Utility\SuggestionsResponseContract;

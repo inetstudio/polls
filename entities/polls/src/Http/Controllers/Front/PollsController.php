@@ -3,7 +3,7 @@
 namespace InetStudio\PollsPackage\Polls\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use InetStudio\AdminPanel\Base\Http\Controllers\Controller;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Front\PollsServiceContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Front\VoteResponseContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Front\PollsControllerContract;

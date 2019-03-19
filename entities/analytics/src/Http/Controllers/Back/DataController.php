@@ -3,7 +3,7 @@
 namespace InetStudio\PollsPackage\Analytics\Http\Controllers\Back;
 
 use Illuminate\Http\JsonResponse;
-use App\Http\Controllers\Controller;
+use InetStudio\AdminPanel\Base\Http\Controllers\Controller;
 use InetStudio\PollsPackage\Analytics\Contracts\Services\Back\DataTableServiceContract;
 use InetStudio\PollsPackage\Analytics\Contracts\Http\Controllers\Back\DataControllerContract;
 

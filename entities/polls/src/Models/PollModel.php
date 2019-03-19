@@ -123,6 +123,6 @@ class PollModel extends Model implements PollModelContract
      */
     public function voters()
     {
-        return $this->options->voters;
+        return $this->getAttribute('options')->voters;
     }
 }

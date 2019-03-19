@@ -70,7 +70,7 @@ class PollsService extends BaseService implements PollsServiceContract
         $usersService = app()->make('InetStudio\ACL\Users\Contracts\Services\Front\UsersServiceContract');
         $userID = $usersService->getUserId();
 
-        $voteCookie = (bool) request()->cookie('poll_vote_'.$pollID, false);
+        $voteCookie = (bool) request()->cookie('poll_vote_'.$pollID, null);
 
         $userVote = $this->model::whereHas('options', function ($optionsQuery) use ($userID) {
             $optionsQuery->whereHas('votes', function ($votesQuery) use ($userID) {

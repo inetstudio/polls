@@ -95,8 +95,10 @@ class PollOptionModel extends Model implements PollOptionModelContract
      */
     public function votes()
     {
+        $voteModel = app()->make('InetStudio\PollsPackage\Votes\Contracts\Models\PollVoteModelContract');
+
         return $this->hasMany(
-            app()->make('InetStudio\PollsPackage\Votes\Contracts\Models\PollVoteModelContract'),
+            get_class($voteModel),
             'option_id',
             'id'
         );
@@ -109,8 +111,10 @@ class PollOptionModel extends Model implements PollOptionModelContract
      */
     public function voters()
     {
+        $userModel = app()->make('InetStudio\ACL\Users\Contracts\Models\UserModelContract');
+
         return $this->belongsToMany(
-            app()->make('InetStudio\ACL\Users\Contracts\Models\UserModelContract'),
+            get_class($userModel),
             'polls_votes'
         )->withTimestamps();
     }

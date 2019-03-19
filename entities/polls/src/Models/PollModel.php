@@ -108,8 +108,10 @@ class PollModel extends Model implements PollModelContract
      */
     public function options()
     {
+        $optionModel = app()->make('InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract');
+
         return $this->hasMany(
-            app()->make('InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract'),
+            get_class($optionModel),
             'poll_id'
         );
     }

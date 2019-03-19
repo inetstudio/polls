@@ -55,6 +55,7 @@ class DataTableService extends DataTable implements DataTableServiceContract
      */
     public function html(): Builder
     {
+        /** @var Builder $table */
         $table = app('datatables.html');
 
         return $table

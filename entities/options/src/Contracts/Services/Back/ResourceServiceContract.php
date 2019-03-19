@@ -28,4 +28,13 @@ interface ResourceServiceContract
      * @return Collection
      */
     public function saveCollection($data): Collection;
+
+    /**
+     * Удаляем модель.
+     *
+     * @param mixed $id
+     *
+     * @return bool|null
+     */
+    public function destroy($id): ?bool;
 }

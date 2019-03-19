@@ -3,6 +3,7 @@
 namespace InetStudio\PollsPackage\Analytics\Services\Back;
 
 use InetStudio\AdminPanel\Base\Services\Back\BaseService;
+use InetStudio\Widgets\Contracts\Models\WidgetModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Analytics\Contracts\Services\Back\AnalyticsServiceContract;
 
@@ -33,13 +34,15 @@ class AnalyticsService extends BaseService implements AnalyticsServiceContract
         $widgetsService = app()->make('InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract');
         $articlesService = app()->make('InetStudio\Articles\Contracts\Services\Back\ArticlesServiceContract');
 
-        $widgetsWithPoll = $widgetsService->model::where([
-            ['view', '=', 'admin.module.polls::front.partials.content.poll_widget'],
-            ['params', 'like', '%'.$id.'%'],
-        ])->get();
+        if ($widgetsService->model instanceof WidgetModelContract) {
+            $widgetsWithPoll = $widgetsService->model::where([
+                ['view', '=', 'admin.module.polls::front.partials.content.poll_widget'],
+                ['params', 'like', '%' . $id . '%'],
+            ])->get();
+        }
 
         $items = [];
-        foreach ($widgetsWithPoll as $widget) {
+        foreach ($widgetsWithPoll ?? [] as $widget) {
             $articles = $articlesService->model::where([
                 ['content', 'like', '%data-type="poll" data-id="'.$widget->id.'"%'],
             ])->get();

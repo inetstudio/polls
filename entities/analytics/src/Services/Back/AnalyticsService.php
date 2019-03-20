@@ -35,7 +35,7 @@ class AnalyticsService extends BaseService implements AnalyticsServiceContract
 
         $widgetsWithPoll = $widgetsService->model::where([
             ['view', '=', 'admin.module.polls::front.partials.content.poll_widget'],
-            ['params', 'like', '%' . $id . '%'],
+            ['params', 'like', '%'.$id.'%'],
         ])->get();
 
         $items = [];

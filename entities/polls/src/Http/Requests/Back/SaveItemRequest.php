@@ -48,7 +48,7 @@ class SaveItemRequest extends FormRequest implements SaveItemRequestContract
     {
         return [
             'question' => 'required|max:255',
-            'options' => 'required|array'
+            'options' => 'required|array',
         ];
     }
 }

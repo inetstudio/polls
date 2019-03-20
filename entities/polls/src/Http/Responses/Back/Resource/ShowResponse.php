@@ -5,7 +5,6 @@ namespace InetStudio\PollsPackage\Polls\Http\Responses\Back\Resource;
 use League\Fractal\Manager;
 use Illuminate\Contracts\Support\Responsable;
 use League\Fractal\Resource\Item as FractalItem;
-use InetStudio\AdminPanel\Serializers\SimpleDataArraySerializer;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Resource\ShowResponseContract;
 
@@ -43,8 +42,10 @@ class ShowResponse implements ShowResponseContract, Responsable
             app()->make('InetStudio\PollsPackage\Polls\Contracts\Transformers\Back\Resource\ShowTransformerContract')
         );
 
+        $serializer = app()->make('InetStudio\AdminPanel\Contracts\Serializers\SimpleDataArraySerializerContract');
+
         $manager = new Manager();
-        $manager->setSerializer(new SimpleDataArraySerializer());
+        $manager->setSerializer($serializer);
 
         $transformation = $manager->createData($resource)->toArray();
         $transformation['success'] = ((bool) $transformation['id']);

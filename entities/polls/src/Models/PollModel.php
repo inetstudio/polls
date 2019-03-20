@@ -2,8 +2,11 @@
 
 namespace InetStudio\PollsPackage\Polls\Models;
 
+use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\AdminPanel\Base\Models\Traits\Scopes\BuildQueryScopeTrait;
 
@@ -61,7 +64,7 @@ class PollModel extends Model implements PollModelContract
         ];
 
         self::$buildQueryScopeDefaults['relations'] = [
-            'options' => function ($optionsQuery) {
+            'options' => function (Builder $optionsQuery) {
                 $optionsQuery->select(['id', 'poll_id', 'answer'])->withCount('votes');
             },
         ];
@@ -72,7 +75,7 @@ class PollModel extends Model implements PollModelContract
      *
      * @param $value
      */
-    public function setQuestionAttribute($value)
+    public function setQuestionAttribute($value): void
     {
         $this->attributes['question'] = trim(str_replace('&nbsp;', ' ', strip_tags((isset($value['text'])) ? $value['text'] : (! is_array($value) ? $value : ''))));
     }
@@ -82,7 +85,7 @@ class PollModel extends Model implements PollModelContract
      *
      * @param $value
      */
-    public function setSingleAttribute($value)
+    public function setSingleAttribute($value): void
     {
         $value = $value[0] ?? (is_array($value) ? '' : $value);
 
@@ -94,7 +97,7 @@ class PollModel extends Model implements PollModelContract
      *
      * @param $value
      */
-    public function setClosedAttribute($value)
+    public function setClosedAttribute($value): void
     {
         $value = $value[0] ?? (is_array($value) ? '' : $value);
 
@@ -104,9 +107,9 @@ class PollModel extends Model implements PollModelContract
     /**
      * Отношение "один ко многим" с моделью ответов.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function options()
+    public function options(): HasMany
     {
         $optionModel = app()->make('InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract');
 
@@ -119,9 +122,9 @@ class PollModel extends Model implements PollModelContract
     /**
      * Получаем проголосовавших.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function voters()
+    public function voters(): BelongsToMany
     {
         return $this->getAttribute('options')->voters;
     }

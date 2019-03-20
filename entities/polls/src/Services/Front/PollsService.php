@@ -2,6 +2,7 @@
 
 namespace InetStudio\PollsPackage\Polls\Services\Front;
 
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Cookie;
 use InetStudio\AdminPanel\Base\Services\BaseService;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
@@ -72,9 +73,9 @@ class PollsService extends BaseService implements PollsServiceContract
 
         $voteCookie = (bool) request()->cookie('poll_vote_'.$pollID, null);
 
-        $userVote = $this->model::whereHas('options', function ($optionsQuery) use ($userID) {
-            $optionsQuery->whereHas('votes', function ($votesQuery) use ($userID) {
-                $votesQuery->where('user_id', $userID);
+        $userVote = $this->model::whereHas('options', function (Builder $optionsQuery) use ($userID) {
+            $optionsQuery->whereHas('votes', function (Builder $votesQuery) use ($userID) {
+                $votesQuery->where('user_id', '=', $userID);
             });
         })
             ->where('id', $pollID)

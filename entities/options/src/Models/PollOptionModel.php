@@ -2,8 +2,12 @@
 
 namespace InetStudio\PollsPackage\Options\Models;
 
+use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use InetStudio\AdminPanel\Base\Models\Traits\Scopes\BuildQueryScopeTrait;
 use InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract;
 
@@ -54,6 +58,20 @@ class PollOptionModel extends Model implements PollOptionModelContract
         self::$buildQueryScopeDefaults['columns'] = [
             'id', 'poll_id', 'answer',
         ];
+
+        self::$buildQueryScopeDefaults['relations'] = [
+            'voters' => function (Builder $votersQuery) {
+                $votersQuery->select(['id', 'name', 'email']);
+            },
+
+            'votes' => function (Builder $votesQuery) {
+                $votesQuery->select(['id', 'user_id', 'option_id']);
+            },
+
+            'poll' => function (Builder $pollQuery) {
+                $pollQuery->select(['id', 'question', 'single', 'closed']);
+            },
+        ];
     }
 
     /**
@@ -61,7 +79,7 @@ class PollOptionModel extends Model implements PollOptionModelContract
      *
      * @param $value
      */
-    public function setPollIdAttribute($value)
+    public function setPollIdAttribute($value): void
     {
         $this->attributes['poll_id'] = (int) trim(strip_tags($value));
     }
@@ -71,7 +89,7 @@ class PollOptionModel extends Model implements PollOptionModelContract
      *
      * @param $value
      */
-    public function setAnswerAttribute($value)
+    public function setAnswerAttribute($value): void
     {
         $this->attributes['answer'] = trim(str_replace('&nbsp;', ' ', strip_tags((isset($value['text'])) ? $value['text'] : (! is_array($value) ? $value : ''))));
     }
@@ -79,9 +97,9 @@ class PollOptionModel extends Model implements PollOptionModelContract
     /**
      * Обратное отношение "один ко многим" с моделью опроса.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function poll()
+    public function poll(): BelongsTo
     {
         $pollModel = app()->make('InetStudio\PollsPackage\Votes\Contracts\Models\PollVoteModelContract');
 
@@ -93,9 +111,9 @@ class PollOptionModel extends Model implements PollOptionModelContract
     /**
      * Отношение "один ко многим" с моделью голосов.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function votes()
+    public function votes(): HasMany
     {
         $voteModel = app()->make('InetStudio\PollsPackage\Votes\Contracts\Models\PollVoteModelContract');
 
@@ -109,9 +127,9 @@ class PollOptionModel extends Model implements PollOptionModelContract
     /**
      * Получаем проголосовавших за этот ответ.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function voters()
+    public function voters(): BelongsToMany
     {
         $userModel = app()->make('InetStudio\ACL\Users\Contracts\Models\UserModelContract');
 
@@ -126,7 +144,7 @@ class PollOptionModel extends Model implements PollOptionModelContract
      *
      * @return bool
      */
-    public function isVoted()
+    public function isVoted(): bool
     {
         return $this->voters()->count() != 0;
     }

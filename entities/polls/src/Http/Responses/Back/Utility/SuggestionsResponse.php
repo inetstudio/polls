@@ -5,7 +5,6 @@ namespace InetStudio\PollsPackage\Polls\Http\Responses\Back\Utility;
 use League\Fractal\Manager;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Support\Responsable;
-use League\Fractal\Serializer\DataArraySerializer;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Utility\SuggestionsResponseContract;
 
 /**
@@ -19,7 +18,7 @@ class SuggestionsResponse implements SuggestionsResponseContract, Responsable
     protected $items;
 
     /**
-     * @var mixed
+     * @var string
      */
     protected $type;
 
@@ -27,9 +26,9 @@ class SuggestionsResponse implements SuggestionsResponseContract, Responsable
      * SuggestionsResponse constructor.
      *
      * @param Collection $items
-     * @param mixed $type
+     * @param string $type
      */
-    public function __construct(Collection $items, $type)
+    public function __construct(Collection $items, string $type = '')
     {
         $this->items = $items;
         $this->type = $type;
@@ -48,8 +47,10 @@ class SuggestionsResponse implements SuggestionsResponseContract, Responsable
             'type' => $this->type,
         ]))->transformCollection($this->items);
 
+        $serializer = app()->make('InetStudio\AdminPanel\Contracts\Serializers\SimpleDataArraySerializerContract');
+
         $manager = new Manager();
-        $manager->setSerializer(new DataArraySerializer());
+        $manager->setSerializer($serializer);
 
         $transformation = $manager->createData($resource)->toArray();
 
@@ -58,10 +59,10 @@ class SuggestionsResponse implements SuggestionsResponseContract, Responsable
             'items' => [],
         ];
 
-        if ($this->type && $this->type == 'autocomplete') {
-            $data['suggestions'] = $transformation['data'];
+        if ($this->type == 'autocomplete') {
+            $data['suggestions'] = $transformation;
         } else {
-            $data['items'] = $transformation['data'];
+            $data['items'] = $transformation;
         }
 
         return response()->json($data);

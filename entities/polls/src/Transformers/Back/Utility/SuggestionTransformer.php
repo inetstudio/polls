@@ -20,9 +20,9 @@ class SuggestionTransformer extends TransformerAbstract implements SuggestionTra
     /**
      * SuggestionTransformer constructor.
      *
-     * @param $type
+     * @param string $type
      */
-    public function __construct($type)
+    public function __construct(string $type = '')
     {
         $this->type = $type;
     }
@@ -33,21 +33,18 @@ class SuggestionTransformer extends TransformerAbstract implements SuggestionTra
      * @param PollModelContract $item
      *
      * @return array
-     *
-     * @throws \Throwable
      */
     public function transform(PollModelContract $item): array
     {
-        return ($this->type && $this->type == 'autocomplete') ? [
-            'value' => $item['question'],
-            'data' => [
-                'id' => $item['id'],
-                'name' => $item['question'],
-            ],
-        ] : [
+        $itemData = [
             'id' => $item['id'],
             'name' => $item['question'],
         ];
+
+        return ($this->type == 'autocomplete') ? [
+            'value' => $item['question'],
+            'data' => $itemData,
+        ] : $itemData;
     }
 
     /**

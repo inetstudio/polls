@@ -14,12 +14,12 @@ use InetStudio\PollsPackage\Polls\Contracts\Services\Back\DataTableServiceContra
 class DataTableService extends DataTable implements DataTableServiceContract
 {
     /**
-     * @var mixed PollModelContract
+     * @var mixed
      */
     public $model;
 
     /**
-     * PollsDataTableService constructor.
+     * DataTableService constructor.
      */
     public function __construct()
     {

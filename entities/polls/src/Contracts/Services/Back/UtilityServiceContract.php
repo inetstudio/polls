@@ -3,11 +3,12 @@
 namespace InetStudio\PollsPackage\Polls\Contracts\Services\Back;
 
 use Illuminate\Support\Collection;
+use InetStudio\AdminPanel\Base\Contracts\Services\BaseServiceContract;
 
 /**
  * Interface UtilityServiceContract.
  */
-interface UtilityServiceContract
+interface UtilityServiceContract extends BaseServiceContract
 {
     /**
      * Получаем подсказки.

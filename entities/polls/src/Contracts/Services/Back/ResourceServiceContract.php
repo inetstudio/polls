@@ -3,22 +3,13 @@
 namespace InetStudio\PollsPackage\Polls\Contracts\Services\Back;
 
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
+use InetStudio\AdminPanel\Base\Contracts\Services\BaseServiceContract;
 
 /**
  * Interface ResourceServiceContract.
  */
-interface ResourceServiceContract
+interface ResourceServiceContract extends BaseServiceContract
 {
-    /**
-     * Получаем объект по id.
-     *
-     * @param mixed $id
-     * @param array $params
-     *
-     * @return PollModelContract
-     */
-    public function getItemById($id = 0, array $params = []);
-
     /**
      * Сохраняем модель.
      *
@@ -28,23 +19,4 @@ interface ResourceServiceContract
      * @return PollModelContract
      */
     public function save(array $data, int $id): PollModelContract;
-
-    /**
-     * Сохраняем модель.
-     *
-     * @param array $data
-     * @param int $id
-     *
-     * @return PollModelContract
-     */
-    public function saveModel(array $data, int $id = 0);
-
-    /**
-     * Удаляем модель.
-     *
-     * @param mixed $id
-     *
-     * @return bool|null
-     */
-    public function destroy($id): ?bool;
 }

@@ -10,12 +10,12 @@ use Illuminate\Support\ServiceProvider;
 class PollsBindingsServiceProvider extends ServiceProvider
 {
     /**
-     * @var  bool
+     * @var bool
      */
     protected $defer = true;
 
     /**
-     * @var  array
+     * @var array
      */
     public $bindings = [
         'InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract' => 'InetStudio\PollsPackage\Polls\Models\PollModel',
@@ -44,7 +44,7 @@ class PollsBindingsServiceProvider extends ServiceProvider
     /**
      * Получить сервисы от провайдера.
      *
-     * @return  array
+     * @return array
      */
     public function provides()
     {

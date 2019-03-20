@@ -49,9 +49,9 @@ class DataTableService extends DataTable implements DataTableServiceContract
     }
 
     /**
-     * Optional method if you want to use html builder.
+     * Билдер для таблицы.
      *
-     * @return \Yajra\DataTables\Html\Builder
+     * @return Builder
      */
     public function html(): Builder
     {

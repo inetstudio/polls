@@ -12,7 +12,7 @@ use InetStudio\PollsPackage\Polls\Contracts\Transformers\Back\Resource\IndexTran
 class IndexTransformer extends TransformerAbstract implements IndexTransformerContract
 {
     /**
-     * Подготовка данных.
+     * Трансформация данных.
      *
      * @param PollModelContract $item
      *

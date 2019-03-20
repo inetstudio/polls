@@ -3,7 +3,7 @@
 namespace InetStudio\PollsPackage\Polls\Services\Front;
 
 use Illuminate\Support\Facades\Cookie;
-use InetStudio\AdminPanel\Base\Services\Front\BaseService;
+use InetStudio\AdminPanel\Base\Services\BaseService;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Front\PollsServiceContract;
 

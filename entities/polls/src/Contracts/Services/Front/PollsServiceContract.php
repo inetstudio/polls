@@ -3,11 +3,12 @@
 namespace InetStudio\PollsPackage\Polls\Contracts\Services\Front;
 
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
+use InetStudio\AdminPanel\Base\Contracts\Services\BaseServiceContract;
 
 /**
  * Interface PollsServiceContract.
  */
-interface PollsServiceContract
+interface PollsServiceContract extends BaseServiceContract
 {
     /**
      * Голосуем в опросе.

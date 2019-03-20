@@ -11,7 +11,7 @@ use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 interface SuggestionTransformerContract
 {
     /**
-     * Подготовка данных.
+     * Трансформация данных.
      *
      * @param PollModelContract $item
      *

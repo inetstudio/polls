@@ -14,7 +14,7 @@ use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Utility\Suggesti
 class UtilityController extends Controller implements UtilityControllerContract
 {
     /**
-     * Возвращаем статьи для поля.
+     * Возвращаем опросы для поля.
      *
      * @param UtilityServiceContract $utilityService
      * @param Request $request

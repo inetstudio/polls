@@ -3,7 +3,7 @@
 namespace InetStudio\PollsPackage\Polls\Services\Back;
 
 use Illuminate\Support\Collection;
-use InetStudio\AdminPanel\Base\Services\Back\BaseService;
+use InetStudio\AdminPanel\Base\Services\BaseService;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Back\UtilityServiceContract;
 

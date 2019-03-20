@@ -10,7 +10,7 @@ use Illuminate\Support\ServiceProvider;
 class PollsOptionsBindingsServiceProvider extends ServiceProvider
 {
     /**
-     * @var  bool
+     * @var bool
      */
     protected $defer = true;
 
@@ -26,7 +26,7 @@ class PollsOptionsBindingsServiceProvider extends ServiceProvider
     /**
      * Получить сервисы от провайдера.
      *
-     * @return  array
+     * @return array
      */
     public function provides()
     {

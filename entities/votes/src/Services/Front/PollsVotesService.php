@@ -3,7 +3,7 @@
 namespace InetStudio\PollsPackage\Votes\Services\Front;
 
 use Illuminate\Support\Arr;
-use InetStudio\AdminPanel\Base\Services\Front\BaseService;
+use InetStudio\AdminPanel\Base\Services\BaseService;
 use InetStudio\PollsPackage\Votes\Contracts\Models\PollVoteModelContract;
 use InetStudio\PollsPackage\Votes\Contracts\Services\Front\PollsVotesServiceContract;
 

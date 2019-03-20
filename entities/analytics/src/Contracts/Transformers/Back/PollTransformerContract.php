@@ -8,7 +8,7 @@ namespace InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back;
 interface PollTransformerContract
 {
     /**
-     * Подготовка данных.
+     * Трансформация данных.
      *
      * @param object $item
      *

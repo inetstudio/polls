@@ -10,7 +10,7 @@ use InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract;
 interface ShowTransformerContract
 {
     /**
-     * Подготовка данных.
+     * Трансформация данных.
      *
      * @param PollOptionModelContract $item
      *

@@ -2,12 +2,12 @@
 
 namespace InetStudio\PollsPackage\Analytics\Contracts\Services\Back;
 
-use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
+use InetStudio\AdminPanel\Base\Contracts\Services\BaseServiceContract;
 
 /**
  * Interface AnalyticsServiceContract.
  */
-interface AnalyticsServiceContract
+interface AnalyticsServiceContract extends BaseServiceContract
 {
     /**
      * Возвращаем статьи, в которых содержится опрос.
@@ -17,14 +17,4 @@ interface AnalyticsServiceContract
      * @return array
      */
     public function getArticlesWithPoll(int $id): array;
-
-    /**
-     * Получаем объект по id.
-     *
-     * @param mixed $id
-     * @param array $params
-     *
-     * @return PollModelContract
-     */
-    public function getItemById($id = 0, array $params = []);
 }

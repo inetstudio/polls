@@ -3,12 +3,13 @@
 namespace InetStudio\PollsPackage\Options\Contracts\Services\Back;
 
 use Illuminate\Support\Collection;
+use InetStudio\AdminPanel\Base\Contracts\Services\BaseServiceContract;
 use InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract;
 
 /**
  * Interface ResourceServiceContract.
  */
-interface ResourceServiceContract
+interface ResourceServiceContract extends BaseServiceContract
 {
     /**
      * Сохраняем модель.
@@ -28,13 +29,4 @@ interface ResourceServiceContract
      * @return Collection
      */
     public function saveCollection($data): Collection;
-
-    /**
-     * Удаляем модель.
-     *
-     * @param mixed $id
-     *
-     * @return bool|null
-     */
-    public function destroy($id): ?bool;
 }

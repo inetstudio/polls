@@ -28,7 +28,7 @@ class SuggestionTransformer extends TransformerAbstract implements SuggestionTra
     }
 
     /**
-     * Подготовка данных.
+     * Трансформация данных.
      *
      * @param PollModelContract $item
      *

@@ -10,7 +10,7 @@ use Illuminate\Support\ServiceProvider;
 class AnalyticsBindingsServiceProvider extends ServiceProvider
 {
     /**
-     * @var  bool
+     * @var bool
      */
     protected $defer = true;
 
@@ -32,7 +32,7 @@ class AnalyticsBindingsServiceProvider extends ServiceProvider
     /**
      * Получить сервисы от провайдера.
      *
-     * @return  array
+     * @return array
      */
     public function provides()
     {

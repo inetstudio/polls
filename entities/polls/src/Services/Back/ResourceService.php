@@ -4,7 +4,7 @@ namespace InetStudio\PollsPackage\Polls\Services\Back;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
-use InetStudio\AdminPanel\Base\Services\Back\BaseService;
+use InetStudio\AdminPanel\Base\Services\BaseService;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Back\ResourceServiceContract;
 
@@ -36,7 +36,9 @@ class ResourceService extends BaseService implements ResourceServiceContract
         $pollsOptionsService = app()->make('InetStudio\PollsPackage\Options\Contracts\Services\Back\ResourceServiceContract');
 
         $action = ($id) ? 'отредактирован' : 'создан';
-        $item = $this->saveModel(Arr::only($data, $this->model->getFillable()), $id);
+
+        $data = Arr::only($data, $this->model->getFillable());
+        $item = $this->saveModel($data, $id);
 
         $optionsData = collect(Arr::get($data, 'options', []));
 

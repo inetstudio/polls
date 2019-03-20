@@ -11,7 +11,7 @@ use InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back\PollTransforme
 class PollTransformer extends TransformerAbstract implements PollTransformerContract
 {
     /**
-     * Подготовка данных для отображения в таблице.
+     * Трансформация данных.
      *
      * @param object $item
      *

@@ -20,7 +20,7 @@ class PollTransformer extends TransformerAbstract implements PollTransformerCont
     ];
 
     /**
-     * Подготовка данных.
+     * Трансформация данных.
      *
      * @param PollModelContract $item
      *

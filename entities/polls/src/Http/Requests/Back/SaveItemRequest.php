@@ -29,7 +29,11 @@ class SaveItemRequest extends FormRequest implements SaveItemRequestContract
     public function messages(): array
     {
         return [
+            'question.required' => 'Поле «Вопрос» обязательно для заполнения',
+            'question.max' => 'Поле «Вопрос» не должно превышать 255 символов',
 
+            'options.required' => 'Поле «Ответы» обязательно для заполнения',
+            'options.array' => 'Поле «Ответы» должно содержать значение в виде массива',
         ];
     }
 
@@ -43,7 +47,8 @@ class SaveItemRequest extends FormRequest implements SaveItemRequestContract
     public function rules(Request $request): array
     {
         return [
-
+            'question' => 'required|max:255',
+            'options' => 'required|array'
         ];
     }
 }

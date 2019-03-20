@@ -20,7 +20,7 @@ class ShowTransformer extends TransformerAbstract implements ShowTransformerCont
     ];
 
     /**
-     * Подготовка данных.
+     * Трансформация данных.
      *
      * @param PollModelContract $item
      *

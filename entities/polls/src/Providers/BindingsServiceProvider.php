@@ -2,12 +2,12 @@
 
 namespace InetStudio\PollsPackage\Polls\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 /**
- * Class PollsBindingsServiceProvider.
+ * Class BindingsServiceProvider.
  */
-class PollsBindingsServiceProvider extends ServiceProvider
+class BindingsServiceProvider extends BaseServiceProvider
 {
     /**
      * @var bool
@@ -38,7 +38,7 @@ class PollsBindingsServiceProvider extends ServiceProvider
         'InetStudio\PollsPackage\Polls\Contracts\Services\Back\ResourceServiceContract' => 'InetStudio\PollsPackage\Polls\Services\Back\ResourceService',
         'InetStudio\PollsPackage\Polls\Contracts\Services\Back\UtilityServiceContract' => 'InetStudio\PollsPackage\Polls\Services\Back\UtilityService',
         'InetStudio\PollsPackage\Polls\Contracts\Services\Back\DataTableServiceContract' => 'InetStudio\PollsPackage\Polls\Services\Back\DataTableService',
-        'InetStudio\PollsPackage\Polls\Contracts\Services\Front\PollsServiceContract' => 'InetStudio\PollsPackage\Polls\Services\Front\PollsService',
+        'InetStudio\PollsPackage\Polls\Contracts\Services\Front\ItemsServiceContract' => 'InetStudio\PollsPackage\Polls\Services\Front\ItemsService',
     ];
 
     /**

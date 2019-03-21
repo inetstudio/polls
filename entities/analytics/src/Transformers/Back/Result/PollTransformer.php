@@ -25,8 +25,6 @@ class PollTransformer extends TransformerAbstract implements PollTransformerCont
      * @param PollModelContract $item
      *
      * @return array
-     *
-     * @throws \Throwable
      */
     public function transform(PollModelContract $item): array
     {

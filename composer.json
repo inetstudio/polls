@@ -26,15 +26,15 @@
     "extra": {
       "laravel": {
         "providers": [
-          "InetStudio\\PollsPackage\\Providers\\PollsPackageServiceProvider",
-          "InetStudio\\PollsPackage\\Analytics\\Providers\\AnalyticsBindingsServiceProvider",
-          "InetStudio\\PollsPackage\\Analytics\\Providers\\AnalyticsServiceProvider",
-          "InetStudio\\PollsPackage\\Options\\Providers\\PollsOptionsBindingsServiceProvider",
-          "InetStudio\\PollsPackage\\Options\\Providers\\PollsOptionsServiceProvider",
-          "InetStudio\\PollsPackage\\Polls\\Providers\\PollsBindingsServiceProvider",
-          "InetStudio\\PollsPackage\\Polls\\Providers\\PollsServiceProvider",
-          "InetStudio\\PollsPackage\\Votes\\Providers\\PollsVotesBindingsServiceProvider",
-          "InetStudio\\PollsPackage\\Votes\\Providers\\PollsVotesServiceProvider"
+          "InetStudio\\PollsPackage\\Providers\\ServiceProvider",
+          "InetStudio\\PollsPackage\\Analytics\\Providers\\BindingsServiceProvider",
+          "InetStudio\\PollsPackage\\Analytics\\Providers\\ServiceProvider",
+          "InetStudio\\PollsPackage\\Options\\Providers\\BindingsServiceProvider",
+          "InetStudio\\PollsPackage\\Options\\Providers\\ServiceProvider",
+          "InetStudio\\PollsPackage\\Polls\\Providers\\BindingsServiceProvider",
+          "InetStudio\\PollsPackage\\Polls\\Providers\\ServiceProvider",
+          "InetStudio\\PollsPackage\\Votes\\Providers\\BindingsServiceProvider",
+          "InetStudio\\PollsPackage\\Votes\\Providers\\ServiceProvider"
         ]
       }
     }

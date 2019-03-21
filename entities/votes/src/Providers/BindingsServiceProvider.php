@@ -2,12 +2,12 @@
 
 namespace InetStudio\PollsPackage\Votes\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 /**
- * Class PollsVotesBindingsServiceProvider.
+ * Class BindingsServiceProvider.
  */
-class PollsVotesBindingsServiceProvider extends ServiceProvider
+class BindingsServiceProvider extends BaseServiceProvider
 {
     /**
      * @var bool
@@ -19,7 +19,7 @@ class PollsVotesBindingsServiceProvider extends ServiceProvider
      */
     public $bindings = [
         'InetStudio\PollsPackage\Votes\Contracts\Models\PollVoteModelContract' => 'InetStudio\PollsPackage\Votes\Models\PollVoteModel',
-        'InetStudio\PollsPackage\Votes\Contracts\Services\Front\PollsVotesServiceContract' => 'InetStudio\PollsPackage\Votes\Services\Front\PollsVotesService',
+        'InetStudio\PollsPackage\Votes\Contracts\Services\Front\ItemsServiceContract' => 'InetStudio\PollsPackage\Votes\Services\Front\ItemsService',
     ];
 
     /**

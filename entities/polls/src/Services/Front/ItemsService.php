@@ -6,15 +6,15 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Cookie;
 use InetStudio\AdminPanel\Base\Services\BaseService;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
-use InetStudio\PollsPackage\Polls\Contracts\Services\Front\PollsServiceContract;
+use InetStudio\PollsPackage\Polls\Contracts\Services\Front\ItemsServiceContract;
 
 /**
- * Class PollsService.
+ * Class ItemsService.
  */
-class PollsService extends BaseService implements PollsServiceContract
+class ItemsService extends BaseService implements ItemsServiceContract
 {
     /**
-     * PollsService constructor.
+     * ItemsService constructor.
      *
      * @param PollModelContract $model
      */
@@ -33,7 +33,7 @@ class PollsService extends BaseService implements PollsServiceContract
      */
     public function vote(int $pollID, int $optionID): ?PollModelContract
     {
-        $pollsVotesService = app()->make('InetStudio\PollsPackage\Votes\Contracts\Services\Front\PollsVotesServiceContract');
+        $pollsVotesService = app()->make('InetStudio\PollsPackage\Votes\Contracts\Services\Front\ItemsServiceContract');
 
         $item = $this->getItemById($pollID);
 

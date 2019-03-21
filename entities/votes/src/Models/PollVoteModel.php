@@ -2,7 +2,6 @@
 
 namespace InetStudio\PollsPackage\Votes\Models;
 
-use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -58,8 +57,8 @@ class PollVoteModel extends Model implements PollVoteModelContract
         ];
 
         self::$buildQueryScopeDefaults['relations'] = [
-            'option' => function (Builder $optionsQuery) {
-                $optionsQuery->select(['id', 'poll_id', 'answer']);
+            'option' => function (BelongsTo $optionQuery) {
+                $optionQuery->select(['id', 'poll_id', 'answer']);
             },
         ];
     }

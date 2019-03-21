@@ -3,7 +3,8 @@
 namespace InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
-use InetStudio\PollsPackage\Polls\Contracts\Services\Front\PollsServiceContract;
+use Illuminate\Contracts\Foundation\Application;
+use InetStudio\PollsPackage\Polls\Contracts\Services\Front\ItemsServiceContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Front\VoteResponseContract;
 
 /**
@@ -14,10 +15,13 @@ interface PollsControllerContract
     /**
      * Голосование в опросе.
      *
-     * @param PollsServiceContract $pollsService
+     * @param Application $app
+     * @param ItemsServiceContract $pollsService
      * @param Request $request
      *
      * @return VoteResponseContract
      */
-    public function vote(PollsServiceContract $pollsService, Request $request): VoteResponseContract;
+    public function vote(Application $app,
+                         ItemsServiceContract $pollsService,
+                         Request $request): VoteResponseContract;
 }

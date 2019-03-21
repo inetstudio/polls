@@ -3,12 +3,12 @@
 namespace InetStudio\PollsPackage\Options\Providers;
 
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 /**
- * Class PollsOptionsServiceProvider.
+ * Class ServiceProvider.
  */
-class PollsOptionsServiceProvider extends ServiceProvider
+class ServiceProvider extends BaseServiceProvider
 {
     /**
      * Загрузка сервиса.

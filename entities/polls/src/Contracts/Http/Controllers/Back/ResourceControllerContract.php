@@ -2,6 +2,7 @@
 
 namespace InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Back;
 
+use Illuminate\Contracts\Foundation\Application;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Back\ResourceServiceContract;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Back\DataTableServiceContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Requests\Back\SaveItemRequestContract;
@@ -19,69 +20,89 @@ interface ResourceControllerContract
     /**
      * Список объектов.
      *
+     * @param Application $app
      * @param DataTableServiceContract $dataTableService
      *
      * @return IndexResponseContract
      */
-    public function index(DataTableServiceContract $dataTableService): IndexResponseContract;
+    public function index(Application $app,
+                          DataTableServiceContract $dataTableService): IndexResponseContract;
 
     /**
      * Получение объекта.
      *
+     * @param Application $app
      * @param ResourceServiceContract $resourceService
      * @param int $id
      *
      * @return ShowResponseContract
      */
-    public function show(ResourceServiceContract $resourceService, int $id = 0): ShowResponseContract;
+    public function show(Application $app,
+                         ResourceServiceContract $resourceService,
+                         int $id = 0): ShowResponseContract;
 
     /**
      * Добавление объекта.
      *
+     * @param Application $app
      * @param ResourceServiceContract $resourceService
      *
      * @return FormResponseContract
      */
-    public function create(ResourceServiceContract $resourceService): FormResponseContract;
+    public function create(Application $app,
+                           ResourceServiceContract $resourceService): FormResponseContract;
 
     /**
      * Создание объекта.
      *
+     * @param Application $app
      * @param ResourceServiceContract $resourceService
      * @param SaveItemRequestContract $request
      *
      * @return SaveResponseContract
      */
-    public function store(ResourceServiceContract $resourceService, SaveItemRequestContract $request): SaveResponseContract;
+    public function store(Application $app,
+                          ResourceServiceContract $resourceService,
+                          SaveItemRequestContract $request): SaveResponseContract;
 
     /**
      * Редактирование объекта.
      *
+     * @param Application $app
      * @param ResourceServiceContract $resourceService
      * @param int $id
      *
      * @return FormResponseContract
      */
-    public function edit(ResourceServiceContract $resourceService, int $id = 0): FormResponseContract;
+    public function edit(Application $app,
+                         ResourceServiceContract $resourceService,
+                         int $id = 0): FormResponseContract;
 
     /**
      * Обновление объекта.
      *
+     * @param Application $app
      * @param ResourceServiceContract $resourceService
      * @param SaveItemRequestContract $request
      * @param int $id
      *
      * @return SaveResponseContract
      */
-    public function update(ResourceServiceContract $resourceService, SaveItemRequestContract $request, int $id = 0): SaveResponseContract;
+    public function update(Application $app,
+                           ResourceServiceContract $resourceService,
+                           SaveItemRequestContract $request,
+                           int $id = 0): SaveResponseContract;
 
     /**
      * Удаление объекта.
      *
+     * @param Application $app
      * @param ResourceServiceContract $resourceService
      * @param int $id
      *
      * @return DestroyResponseContract
      */
-    public function destroy(ResourceServiceContract $resourceService, int $id = 0): DestroyResponseContract;
+    public function destroy(Application $app,
+                            ResourceServiceContract $resourceService,
+                            int $id = 0): DestroyResponseContract;
 }

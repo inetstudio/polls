@@ -2,7 +2,6 @@
 
 namespace InetStudio\PollsPackage\Polls\Models;
 
-use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -64,7 +63,7 @@ class PollModel extends Model implements PollModelContract
         ];
 
         self::$buildQueryScopeDefaults['relations'] = [
-            'options' => function (Builder $optionsQuery) {
+            'options' => function (HasMany $optionsQuery) {
                 $optionsQuery->select(['id', 'poll_id', 'answer'])->withCount('votes');
             },
         ];
@@ -77,7 +76,9 @@ class PollModel extends Model implements PollModelContract
      */
     public function setQuestionAttribute($value): void
     {
-        $this->attributes['question'] = trim(str_replace('&nbsp;', ' ', strip_tags((isset($value['text'])) ? $value['text'] : (! is_array($value) ? $value : ''))));
+        $value = (isset($value['text'])) ? $value['text'] : (! is_array($value) ? $value : '');
+
+        $this->attributes['question'] = trim(str_replace('&nbsp;', ' ', strip_tags($value)));
     }
 
     /**

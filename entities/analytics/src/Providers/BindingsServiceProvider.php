@@ -2,12 +2,12 @@
 
 namespace InetStudio\PollsPackage\Analytics\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 /**
- * Class AnalyticsBindingsServiceProvider.
+ * Class BindingsServiceProvider.
  */
-class AnalyticsBindingsServiceProvider extends ServiceProvider
+class BindingsServiceProvider extends BaseServiceProvider
 {
     /**
      * @var bool

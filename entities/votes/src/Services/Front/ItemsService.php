@@ -5,15 +5,15 @@ namespace InetStudio\PollsPackage\Votes\Services\Front;
 use Illuminate\Support\Arr;
 use InetStudio\AdminPanel\Base\Services\BaseService;
 use InetStudio\PollsPackage\Votes\Contracts\Models\PollVoteModelContract;
-use InetStudio\PollsPackage\Votes\Contracts\Services\Front\PollsVotesServiceContract;
+use InetStudio\PollsPackage\Votes\Contracts\Services\Front\ItemsServiceContract;
 
 /**
- * Class PollsVotesService.
+ * Class ItemsService.
  */
-class PollsVotesService extends BaseService implements PollsVotesServiceContract
+class ItemsService extends BaseService implements ItemsServiceContract
 {
     /**
-     * PollsVotesService constructor.
+     * ItemsService constructor.
      *
      * @param PollVoteModelContract $model
      */

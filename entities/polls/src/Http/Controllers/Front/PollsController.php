@@ -3,7 +3,6 @@
 namespace InetStudio\PollsPackage\Polls\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Foundation\Application;
 use InetStudio\AdminPanel\Base\Http\Controllers\Controller;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Front\ItemsServiceContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Front\VoteResponseContract;
@@ -17,14 +16,12 @@ class PollsController extends Controller implements PollsControllerContract
     /**
      * Голосование в опросе.
      *
-     * @param Application $app
      * @param ItemsServiceContract $pollsService
      * @param Request $request
      *
      * @return VoteResponseContract
      */
-    public function vote(Application $app,
-                         ItemsServiceContract $pollsService,
+    public function vote(ItemsServiceContract $pollsService,
                          Request $request): VoteResponseContract
     {
         $pollID = $request->get('id', 0);
@@ -32,6 +29,6 @@ class PollsController extends Controller implements PollsControllerContract
 
         $item = $pollsService->vote($pollID, $optionID);
 
-        return $app->make(VoteResponseContract::class, compact('item'));
+        return $this->app->make(VoteResponseContract::class, compact('item'));
     }
 }

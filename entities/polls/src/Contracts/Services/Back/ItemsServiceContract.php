@@ -6,9 +6,9 @@ use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\AdminPanel\Base\Contracts\Services\BaseServiceContract;
 
 /**
- * Interface ResourceServiceContract.
+ * Interface ItemsServiceContract.
  */
-interface ResourceServiceContract extends BaseServiceContract
+interface ItemsServiceContract extends BaseServiceContract
 {
     /**
      * Сохраняем модель.

@@ -15,12 +15,12 @@ class BindingsServiceProvider extends BaseServiceProvider
     protected $defer = true;
 
     /**
-     * @var  array
+     * @var array
      */
     public $bindings = [
         'InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract' => 'InetStudio\PollsPackage\Options\Models\PollOptionModel',
         'InetStudio\PollsPackage\Options\Contracts\Transformers\Back\Resource\ShowTransformerContract' => 'InetStudio\PollsPackage\Options\Transformers\Back\Resource\ShowTransformer',
-        'InetStudio\PollsPackage\Options\Contracts\Services\Back\ResourceServiceContract' => 'InetStudio\PollsPackage\Options\Services\Back\ResourceService',
+        'InetStudio\PollsPackage\Options\Contracts\Services\Back\ItemsServiceContract' => 'InetStudio\PollsPackage\Options\Services\Back\ItemsService',
     ];
 
     /**

@@ -40,7 +40,7 @@ class ResultResponse implements ResultResponseContract, Responsable
     public function toResponse($request)
     {
         $transformer = app()->make('InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back\Result\PollTransformerContract');
-        $serializer = app()->make('InetStudio\AdminPanel\Contracts\Serializers\SimpleDataArraySerializerContract');
+        $serializer = app()->make('InetStudio\AdminPanel\Base\Contracts\Serializers\SimpleDataArraySerializerContract');
 
         $resource = new Item($this->item, $transformer);
 

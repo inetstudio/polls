@@ -6,6 +6,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Http\JsonResponse;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
+use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Back\DataTableServiceContract;
 
 /**
@@ -20,10 +21,12 @@ class DataTableService extends DataTable implements DataTableServiceContract
 
     /**
      * DataTableService constructor.
+     *
+     * @param PollModelContract $model
      */
-    public function __construct()
+    public function __construct(PollModelContract $model)
     {
-        $this->model = app()->make('InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract');
+        $this->model = $model;
     }
 
     /**

@@ -6,15 +6,15 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use InetStudio\AdminPanel\Base\Services\BaseService;
 use InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract;
-use InetStudio\PollsPackage\Options\Contracts\Services\Back\ResourceServiceContract;
+use InetStudio\PollsPackage\Options\Contracts\Services\Back\ItemsServiceContract;
 
 /**
- * Class ResourceService.
+ * Class ItemsService.
  */
-class ResourceService extends BaseService implements ResourceServiceContract
+class ItemsService extends BaseService implements ItemsServiceContract
 {
     /**
-     * ResourceService constructor.
+     * ItemsService constructor.
      *
      * @param PollOptionModelContract $model
      */

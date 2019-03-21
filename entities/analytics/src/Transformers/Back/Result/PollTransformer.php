@@ -43,7 +43,7 @@ class PollTransformer extends TransformerAbstract implements PollTransformerCont
      */
     public function includeOptions(PollModelContract $item): FractalCollection
     {
-        $transformer = app()->makeWith(
+        $transformer = app()->make(
             'InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back\Result\PollOptionTransformerContract',
             [
                 'totalVotes' => $item['options']->sum('votes_count'),

@@ -42,7 +42,7 @@ class ShowResponse implements ShowResponseContract, Responsable
             app()->make('InetStudio\PollsPackage\Polls\Contracts\Transformers\Back\Resource\ShowTransformerContract')
         );
 
-        $serializer = app()->make('InetStudio\AdminPanel\Contracts\Serializers\SimpleDataArraySerializerContract');
+        $serializer = app()->make('InetStudio\AdminPanel\Base\Contracts\Serializers\SimpleDataArraySerializerContract');
 
         $manager = new Manager();
         $manager->setSerializer($serializer);

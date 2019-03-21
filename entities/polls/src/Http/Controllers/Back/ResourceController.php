@@ -2,9 +2,8 @@
 
 namespace InetStudio\PollsPackage\Polls\Http\Controllers\Back;
 
-use Illuminate\Contracts\Foundation\Application;
 use InetStudio\AdminPanel\Base\Http\Controllers\Controller;
-use InetStudio\PollsPackage\Polls\Contracts\Services\Back\ResourceServiceContract;
+use InetStudio\PollsPackage\Polls\Contracts\Services\Back\ItemsServiceContract;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Back\DataTableServiceContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Requests\Back\SaveItemRequestContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Back\ResourceControllerContract;
@@ -22,17 +21,15 @@ class ResourceController extends Controller implements ResourceControllerContrac
     /**
      * Список объектов.
      *
-     * @param Application $app
      * @param DataTableServiceContract $dataTableService
      *
      * @return IndexResponseContract
      */
-    public function index(Application $app,
-                          DataTableServiceContract $dataTableService): IndexResponseContract
+    public function index(DataTableServiceContract $dataTableService): IndexResponseContract
     {
         $table = $dataTableService->html();
 
-        return $app->make(IndexResponseContract::class, [
+        return $this->app->make(IndexResponseContract::class, [
             'data' => compact('table'),
         ]);
     }
@@ -40,35 +37,31 @@ class ResourceController extends Controller implements ResourceControllerContrac
     /**
      * Получение объекта.
      *
-     * @param Application $app
-     * @param ResourceServiceContract $resourceService
+     * @param ItemsServiceContract $resourceService
      * @param int $id
      *
      * @return ShowResponseContract
      */
-    public function show(Application $app,
-                         ResourceServiceContract $resourceService,
+    public function show(ItemsServiceContract $resourceService,
                          int $id = 0): ShowResponseContract
     {
         $item = $resourceService->getItemById($id);
 
-        return $app->make(ShowResponseContract::class, compact('item'));
+        return $this->app->make(ShowResponseContract::class, compact('item'));
     }
 
     /**
      * Добавление объекта.
      *
-     * @param Application $app
-     * @param ResourceServiceContract $resourceService
+     * @param ItemsServiceContract $resourceService
      *
      * @return FormResponseContract
      */
-    public function create(Application $app,
-                           ResourceServiceContract $resourceService): FormResponseContract
+    public function create(ItemsServiceContract $resourceService): FormResponseContract
     {
         $item = $resourceService->getItemById();
 
-        return $app->make(FormResponseContract::class, [
+        return $this->app->make(FormResponseContract::class, [
             'data' => compact('item'),
         ]);
     }
@@ -76,35 +69,31 @@ class ResourceController extends Controller implements ResourceControllerContrac
     /**
      * Создание объекта.
      *
-     * @param Application $app
-     * @param ResourceServiceContract $resourceService
+     * @param ItemsServiceContract $resourceService
      * @param SaveItemRequestContract $request
      *
      * @return SaveResponseContract
      */
-    public function store(Application $app,
-                          ResourceServiceContract $resourceService,
+    public function store(ItemsServiceContract $resourceService,
                           SaveItemRequestContract $request): SaveResponseContract
     {
-        return $this->save($app, $resourceService, $request);
+        return $this->save($resourceService, $request);
     }
 
     /**
      * Редактирование объекта.
      *
-     * @param Application $app
-     * @param ResourceServiceContract $resourceService
+     * @param ItemsServiceContract $resourceService
      * @param int $id
      *
      * @return FormResponseContract
      */
-    public function edit(Application $app,
-                         ResourceServiceContract $resourceService,
+    public function edit(ItemsServiceContract $resourceService,
                          int $id = 0): FormResponseContract
     {
         $item = $resourceService->getItemById($id);
 
-        return $app->make(FormResponseContract::class, [
+        return $this->app->make(FormResponseContract::class, [
             'data' => compact('item'),
         ]);
     }
@@ -112,33 +101,29 @@ class ResourceController extends Controller implements ResourceControllerContrac
     /**
      * Обновление объекта.
      *
-     * @param Application $app
-     * @param ResourceServiceContract $resourceService
+     * @param ItemsServiceContract $resourceService
      * @param SaveItemRequestContract $request
      * @param int $id
      *
      * @return SaveResponseContract
      */
-    public function update(Application $app,
-                           ResourceServiceContract $resourceService,
+    public function update(ItemsServiceContract $resourceService,
                            SaveItemRequestContract $request,
                            int $id = 0): SaveResponseContract
     {
-        return $this->save($app, $resourceService, $request, $id);
+        return $this->save($resourceService, $request, $id);
     }
 
     /**
      * Сохранение объекта.
      *
-     * @param Application $app
-     * @param ResourceServiceContract $resourceService
+     * @param ItemsServiceContract $resourceService
      * @param SaveItemRequestContract $request
      * @param int $id
      *
      * @return SaveResponseContract
      */
-    protected function save(Application $app,
-                            ResourceServiceContract $resourceService,
+    protected function save(ItemsServiceContract $resourceService,
                             SaveItemRequestContract $request,
                             int $id = 0): SaveResponseContract
     {
@@ -146,25 +131,23 @@ class ResourceController extends Controller implements ResourceControllerContrac
 
         $item = $resourceService->save($data, $id);
 
-        return $app->make(SaveResponseContract::class, compact('item'));
+        return $this->app->make(SaveResponseContract::class, compact('item'));
     }
 
     /**
      * Удаление объекта.
      *
-     * @param Application $app
-     * @param ResourceServiceContract $resourceService
+     * @param ItemsServiceContract $resourceService
      * @param int $id
      *
      * @return DestroyResponseContract
      */
-    public function destroy(Application $app,
-                            ResourceServiceContract $resourceService,
+    public function destroy(ItemsServiceContract $resourceService,
                             int $id = 0): DestroyResponseContract
     {
         $result = $resourceService->destroy($id);
 
-        return $app->make(DestroyResponseContract::class, [
+        return $this->app->make(DestroyResponseContract::class, [
             'result' => ($result === null) ? false : $result,
         ]);
     }

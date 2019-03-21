@@ -6,15 +6,15 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use InetStudio\AdminPanel\Base\Services\BaseService;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
-use InetStudio\PollsPackage\Polls\Contracts\Services\Back\ResourceServiceContract;
+use InetStudio\PollsPackage\Polls\Contracts\Services\Back\ItemsServiceContract;
 
 /**
- * Class ResourceService.
+ * Class ItemsService.
  */
-class ResourceService extends BaseService implements ResourceServiceContract
+class ItemsService extends BaseService implements ItemsServiceContract
 {
     /**
-     * ResourceService constructor.
+     * ItemsService constructor.
      *
      * @param PollModelContract $model
      */
@@ -33,7 +33,7 @@ class ResourceService extends BaseService implements ResourceServiceContract
      */
     public function save(array $data, int $id): PollModelContract
     {
-        $pollsOptionsService = app()->make('InetStudio\PollsPackage\Options\Contracts\Services\Back\ResourceServiceContract');
+        $pollsOptionsService = app()->make('InetStudio\PollsPackage\Options\Contracts\Services\Back\ItemsServiceContract');
 
         $action = ($id) ? 'отредактирован' : 'создан';
 
@@ -43,9 +43,9 @@ class ResourceService extends BaseService implements ResourceServiceContract
         $optionsData = collect(Arr::get($data, 'options', []));
 
         $dataOptionsIds = $optionsData->pluck('id')->toArray();
-        $itemsOptionsIds = $item->options()->pluck('id')->toArray();
+        $itemOptionsIds = $item->options()->pluck('id')->toArray();
 
-        $pollsOptionsService->destroy(array_diff($itemsOptionsIds, $dataOptionsIds));
+        $pollsOptionsService->destroy(array_diff($itemOptionsIds, $dataOptionsIds));
         $optionsData->transform(function ($dataItem) use ($item) {
             $dataItem['poll_id'] = $item['id'];
 
@@ -53,7 +53,7 @@ class ResourceService extends BaseService implements ResourceServiceContract
         });
         $pollsOptionsService->saveCollection($optionsData);
 
-        event(app()->makeWith(
+        event(app()->make(
             'InetStudio\PollsPackage\Polls\Contracts\Events\Back\ModifyItemEventContract',
             compact('item')
         ));

@@ -17,5 +17,5 @@ interface DataControllerContract
      *
      * @return JsonResponse
      */
-    public function data(DataTableServiceContract $dataTableService);
+    public function data(DataTableServiceContract $dataTableService): JsonResponse;
 }

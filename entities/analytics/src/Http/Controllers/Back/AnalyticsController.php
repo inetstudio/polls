@@ -2,7 +2,6 @@
 
 namespace InetStudio\PollsPackage\Analytics\Http\Controllers\Back;
 
-use Illuminate\Contracts\Foundation\Application;
 use InetStudio\AdminPanel\Base\Http\Controllers\Controller;
 use InetStudio\PollsPackage\Analytics\Contracts\Services\Back\AnalyticsServiceContract;
 use InetStudio\PollsPackage\Analytics\Contracts\Services\Back\DataTableServiceContract;
@@ -18,17 +17,15 @@ class AnalyticsController extends Controller implements AnalyticsControllerContr
     /**
      * Список объектов.
      *
-     * @param Application $app
      * @param DataTableServiceContract $dataTableService
      *
      * @return IndexResponseContract
      */
-    public function index(Application $app,
-                          DataTableServiceContract $dataTableService): IndexResponseContract
+    public function index(DataTableServiceContract $dataTableService): IndexResponseContract
     {
         $table = $dataTableService->html();
 
-        return $app->make(IndexResponseContract::class, [
+        return $this->app->make(IndexResponseContract::class, [
             'data' => compact('table'),
         ]);
     }
@@ -36,7 +33,6 @@ class AnalyticsController extends Controller implements AnalyticsControllerContr
     /**
      * Результаты опроса.
      *
-     * @param Application $app
      * @param AnalyticsServiceContract $analyticsService
      * @param int $id
      *
@@ -44,14 +40,13 @@ class AnalyticsController extends Controller implements AnalyticsControllerContr
      *
      * @throws \Throwable
      */
-    public function getPollResult(Application $app,
-                                  AnalyticsServiceContract $analyticsService,
+    public function getPollResult(AnalyticsServiceContract $analyticsService,
                                   int $id = 0): ResultResponseContract
     {
         $item = $analyticsService->getItemById($id, [
             'relations' => ['options'],
         ]);
 
-        return $app->make(ResultResponseContract::class, compact('item'));
+        return $this->app->make(ResultResponseContract::class, compact('item'));
     }
 }

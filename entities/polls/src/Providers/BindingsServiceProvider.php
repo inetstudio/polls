@@ -35,7 +35,7 @@ class BindingsServiceProvider extends BaseServiceProvider
         'InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Back\UtilityControllerContract' => 'InetStudio\PollsPackage\Polls\Http\Controllers\Back\UtilityController',
         'InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Front\PollsControllerContract' => 'InetStudio\PollsPackage\Polls\Http\Controllers\Front\PollsController',
         'InetStudio\PollsPackage\Polls\Contracts\Events\Back\ModifyItemEventContract' => 'InetStudio\PollsPackage\Polls\Events\Back\ModifyItemEvent',
-        'InetStudio\PollsPackage\Polls\Contracts\Services\Back\ResourceServiceContract' => 'InetStudio\PollsPackage\Polls\Services\Back\ResourceService',
+        'InetStudio\PollsPackage\Polls\Contracts\Services\Back\ItemsServiceContract' => 'InetStudio\PollsPackage\Polls\Services\Back\ItemsService',
         'InetStudio\PollsPackage\Polls\Contracts\Services\Back\UtilityServiceContract' => 'InetStudio\PollsPackage\Polls\Services\Back\UtilityService',
         'InetStudio\PollsPackage\Polls\Contracts\Services\Back\DataTableServiceContract' => 'InetStudio\PollsPackage\Polls\Services\Back\DataTableService',
         'InetStudio\PollsPackage\Polls\Contracts\Services\Front\ItemsServiceContract' => 'InetStudio\PollsPackage\Polls\Services\Front\ItemsService',

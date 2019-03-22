@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use InetStudio\AdminPanel\Base\Http\Controllers\Controller;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Front\ItemsServiceContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Front\VoteResponseContract;
-use InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Front\PollsControllerContract;
+use InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Front\ItemsControllerContract;
 
 /**
- * Class PollsController.
+ * Class ItemsController.
  */
-class PollsController extends Controller implements PollsControllerContract
+class ItemsController extends Controller implements ItemsControllerContract
 {
     /**
      * Голосование в опросе.

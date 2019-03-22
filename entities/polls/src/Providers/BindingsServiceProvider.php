@@ -33,7 +33,7 @@ class BindingsServiceProvider extends BaseServiceProvider
         'InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Back\DataControllerContract' => 'InetStudio\PollsPackage\Polls\Http\Controllers\Back\DataController',
         'InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Back\ResourceControllerContract' => 'InetStudio\PollsPackage\Polls\Http\Controllers\Back\ResourceController',
         'InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Back\UtilityControllerContract' => 'InetStudio\PollsPackage\Polls\Http\Controllers\Back\UtilityController',
-        'InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Front\PollsControllerContract' => 'InetStudio\PollsPackage\Polls\Http\Controllers\Front\PollsController',
+        'InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Front\ItemsControllerContract' => 'InetStudio\PollsPackage\Polls\Http\Controllers\Front\ItemsController',
         'InetStudio\PollsPackage\Polls\Contracts\Events\Back\ModifyItemEventContract' => 'InetStudio\PollsPackage\Polls\Events\Back\ModifyItemEvent',
         'InetStudio\PollsPackage\Polls\Contracts\Services\Back\ItemsServiceContract' => 'InetStudio\PollsPackage\Polls\Services\Back\ItemsService',
         'InetStudio\PollsPackage\Polls\Contracts\Services\Back\UtilityServiceContract' => 'InetStudio\PollsPackage\Polls\Services\Back\UtilityService',

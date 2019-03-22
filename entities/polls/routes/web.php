@@ -17,5 +17,5 @@ Route::group([
     'namespace' => 'InetStudio\PollsPackage\Polls\Contracts\Http\Controllers\Front',
     'middleware' => ['web'],
 ], function () {
-    Route::post('polls/vote', 'PollsControllerContract@vote')->name('front.polls.vote');
+    Route::post('polls/vote', 'ItemsControllerContract@vote')->name('front.polls.vote');
 });

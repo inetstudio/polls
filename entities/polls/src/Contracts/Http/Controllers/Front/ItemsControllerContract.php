@@ -7,9 +7,9 @@ use InetStudio\PollsPackage\Polls\Contracts\Services\Front\ItemsServiceContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Front\VoteResponseContract;
 
 /**
- * Interface PollsControllerContract.
+ * Interface ItemsControllerContract.
  */
-interface PollsControllerContract
+interface ItemsControllerContract
 {
     /**
      * Голосование в опросе.

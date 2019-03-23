@@ -2,18 +2,14 @@
 
 namespace InetStudio\PollsPackage\Analytics\Providers;
 
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 /**
  * Class BindingsServiceProvider.
  */
-class BindingsServiceProvider extends BaseServiceProvider
+class BindingsServiceProvider extends BaseServiceProvider implements DeferrableProvider
 {
-    /**
-     * @var bool
-     */
-    protected $defer = true;
-
     /**
      * @var  array
      */

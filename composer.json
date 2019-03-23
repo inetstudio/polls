@@ -10,9 +10,8 @@
       }
     ],
     "require": {
-      "inetstudio/admin-panel": "1.7.*",
-      "inetstudio/widgets": "1.7.*",
-      "league/fractal": "^0.17.0"
+      "inetstudio/admin-panel": "1.8.*",
+      "inetstudio/widgets": "1.8.*"
     },
     "autoload": {
       "psr-4": {

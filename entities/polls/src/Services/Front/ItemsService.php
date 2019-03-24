@@ -2,8 +2,8 @@
 
 namespace InetStudio\PollsPackage\Polls\Services\Front;
 
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Database\Eloquent\Builder;
 use InetStudio\AdminPanel\Base\Services\BaseService;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Front\ItemsServiceContract;

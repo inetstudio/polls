@@ -1,11 +1,11 @@
 <template>
     <div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Ответы</label>
+            <label class="col-sm-2 col-form-label">Ответы</label>
             <div class="col-sm-10">
                 <div class="ibox float-e-margins">
                     <div class="ibox-content no-borders">
-                        <a href="#" class="btn btn-sm btn-primary btn-xs" v-on:click.prevent="addOption">Добавить</a>
+                        <a href="#" class="btn btn-xs btn-primary btn-xs" v-on:click.prevent="addOption">Добавить</a>
                         <ul class="options-list m-t small-list">
                             <poll-options-list-item
                                 v-for="option in options"

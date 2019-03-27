@@ -2,54 +2,54 @@
     <div id="poll_modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal inmodal fade" ref="modal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
+
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
                     <h1 class="modal-title">Создание опроса</h1>
                 </div>
+
                 <div class="modal-body polls-package">
-                    <div class="ibox-content form-horizontal" v-bind:class="{ 'sk-loading': options.loading }">
+                    <div class="ibox-content" v-bind:class="{ 'sk-loading': options.loading }">
                         <div class="sk-spinner sk-spinner-double-bounce">
                             <div class="sk-double-bounce1"></div>
                             <div class="sk-double-bounce2"></div>
                         </div>
-                        <div class="row">
 
-                            <base-input-text
-                                label = "Вопрос"
-                                name = "poll_question"
-                                v-bind:value.sync = "poll.model.question"
-                            />
+                        <base-input-text
+                            label = "Вопрос"
+                            name = "poll_question"
+                            v-bind:value.sync = "poll.model.question"
+                        />
 
-                            <poll-options-list
-                                v-bind:options-prop="poll.model.options"
-                                v-on:update:options="updateOptions"
-                            />
+                        <poll-options-list
+                            v-bind:options-prop="poll.model.options"
+                            v-on:update:options="updateOptions"
+                        />
 
-                            <base-checkboxes
-                                label = "Одиночный выбор"
-                                name = "poll_single"
-                                v-bind:checkboxes = "[
-                                    {
-                                        value: '1',
-                                        label: ''
-                                    }
-                                ]"
-                                v-bind:selected.sync = "poll.model.single"
-                            />
+                        <base-checkboxes
+                            label = "Одиночный выбор"
+                            name = "poll_single"
+                            v-bind:checkboxes = "[
+                                {
+                                    value: '1',
+                                    label: ''
+                                }
+                            ]"
+                            v-bind:selected.sync = "poll.model.single"
+                        />
 
-                            <base-checkboxes
-                                label = "Закрыть опрос"
-                                name = "poll_closed"
-                                v-bind:checkboxes = "[
-                                    {
-                                        value: '1',
-                                        label: ''
-                                    }
-                                ]"
-                                v-bind:selected.sync = "poll.model.closed"
-                            />
-                            
-                        </div>
+                        <base-checkboxes
+                            label = "Закрыть опрос"
+                            name = "poll_closed"
+                            v-bind:checkboxes = "[
+                                {
+                                    value: '1',
+                                    label: ''
+                                }
+                            ]"
+                            v-bind:selected.sync = "poll.model.closed"
+                        />
+
                     </div>
                 </div>
 

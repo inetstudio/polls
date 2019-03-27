@@ -2,20 +2,20 @@
     <div class="modal inmodal fade" id="options_list_item_form_modal" tabindex="-1" role="dialog" aria-hidden="true" ref="modal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
+
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
                     <h1 v-if="mode === 'add_list_item'" class="modal-title">Создание элемента</h1>
                     <h1 v-else class="modal-title">Редактирование элемента</h1>
                 </div>
+
                 <div class="modal-body">
-                    <div class="ibox-content form-horizontal">
-                        <div class="row">
-                            <base-input-text
-                                label = "Ответ"
-                                name = "answer"
-                                v-bind:value.sync = "option.model.answer"
-                            />
-                        </div>
+                    <div class="ibox-content">
+                        <base-input-text
+                            label = "Ответ"
+                            name = "answer"
+                            v-bind:value.sync = "option.model.answer"
+                        />
                     </div>
                 </div>
 

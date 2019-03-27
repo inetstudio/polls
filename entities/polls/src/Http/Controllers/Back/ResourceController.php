@@ -51,7 +51,7 @@ class ResourceController extends Controller implements ResourceControllerContrac
     }
 
     /**
-     * Добавление объекта.
+     * Создание объекта.
      *
      * @param ItemsServiceContract $resourceService
      *

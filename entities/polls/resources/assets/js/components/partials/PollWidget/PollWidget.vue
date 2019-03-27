@@ -7,25 +7,24 @@
                     <h1 class="modal-title">Опросы</h1>
                 </div>
                 <div class="modal-body">
-                    <div class="ibox-content form-horizontal" v-bind:class="{ 'sk-loading': options.loading }">
+                    <div class="ibox-content" v-bind:class="{ 'sk-loading': options.loading }">
                         <div class="sk-spinner sk-spinner-double-bounce">
                             <div class="sk-double-bounce1"></div>
                             <div class="sk-double-bounce2"></div>
                         </div>
-                        <div class="row">
-                            <base-autocomplete
-                                label = "Опросы"
-                                name = "poll"
-                                v-bind:value="poll.question"
-                                v-bind:attributes = "{
-                                    'data-search': suggestionsUrl,
-                                    'placeholder': 'Выберите опрос',
-                                    'autocomplete': 'off'
-                                }"
-                                v-on:select="suggestionSelect"
-                            />
-                            <p class="text-right"><a href="#" class="btn btn-xs btn-primary" v-on:click.prevent="createPoll">Создать новый</a></p>
-                        </div>
+
+                        <base-autocomplete
+                            label = "Опросы"
+                            name = "poll"
+                            v-bind:value="poll.question"
+                            v-bind:attributes = "{
+                                'data-search': suggestionsUrl,
+                                'placeholder': 'Выберите опрос',
+                                'autocomplete': 'off'
+                            }"
+                            v-on:select="suggestionSelect"
+                        />
+                        <p class="text-right"><a href="#" class="btn btn-xs btn-primary" v-on:click.prevent="createPoll">Создать новый</a></p>
                     </div>
                 </div>
 

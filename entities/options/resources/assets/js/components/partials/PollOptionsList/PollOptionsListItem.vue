@@ -1,7 +1,7 @@
 <template>
     <li>
         <span class="m-l-xs">{{ option.model.answer }}</span>
-        <div class="btn-group pull-right">
+        <div class="float-right">
             <a href="#" class="btn btn-xs btn-default edit-option m-r-xs" v-on:click.prevent.stop="editOption"><i class="fa fa-pencil-alt"></i></a>
             <a href="#" class="btn btn-xs btn-danger delete-option" v-on:click.prevent.stop="removeOption"><i class="fa fa-times"></i></a>
         </div>

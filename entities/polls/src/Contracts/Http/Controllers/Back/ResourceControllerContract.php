@@ -37,7 +37,7 @@ interface ResourceControllerContract
                          int $id = 0): ShowResponseContract;
 
     /**
-     * Добавление объекта.
+     * Создание объекта.
      *
      * @param ItemsServiceContract $resourceService
      *

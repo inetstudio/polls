@@ -4,7 +4,7 @@
         @foreach ($item['options'] as $option)
             <div>
                 <span>{{ $option['answer'] }}</span>
-                <small class="pull-right">{{ $option['votes_percent'].'% ('.$option['votes'].')' }}</small>
+                <small class="float-right">{{ $option['votes_percent'].'% ('.$option['votes'].')' }}</small>
             </div>
             <div class="progress progress-small">
                 <div style="width: {{ $option['votes_percent'] }}%;" class="progress-bar"></div>

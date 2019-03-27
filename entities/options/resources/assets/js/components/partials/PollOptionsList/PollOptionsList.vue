@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="form-group">
-            <label class="col-sm-2 col-form-label">Ответы</label>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label font-bold">Ответы</label>
             <div class="col-sm-10">
                 <div class="ibox float-e-margins">
                     <div class="ibox-content no-borders">

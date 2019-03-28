@@ -1,12 +1,18 @@
 <template>
     <li>
-        <span class="m-l-xs">{{ option.model.answer }}</span>
-        <div class="float-right">
-            <a href="#" class="btn btn-xs btn-default edit-option m-r-xs" v-on:click.prevent.stop="editOption"><i class="fa fa-pencil-alt"></i></a>
-            <a href="#" class="btn btn-xs btn-danger delete-option" v-on:click.prevent.stop="removeOption"><i class="fa fa-times"></i></a>
+        <div class="row">
+            <div class="col-10">
+                <span class="m-l-xs">{{ option.model.answer }}</span>
+            </div>
+            <div class="col-2">
+                <div class="float-right">
+                    <a href="#" class="btn btn-xs btn-default edit-option m-r-xs" v-on:click.prevent.stop="editOption"><i class="fa fa-pencil-alt"></i></a>
+                    <a href="#" class="btn btn-xs btn-danger delete-option" v-on:click.prevent.stop="removeOption"><i class="fa fa-times"></i></a>
+                </div>
+                <input :name="'options[' + option.model.id + '][id]'" type="hidden" :value="option.model.id">
+                <input :name="'options[' + option.model.id + '][answer]'" type="hidden" :value="option.model.answer">
+            </div>
         </div>
-        <input :name="'options[' + option.model.id + '][id]'" type="hidden" :value="option.model.id">
-        <input :name="'options[' + option.model.id + '][answer]'" type="hidden" :value="option.model.answer">
     </li>
 </template>
 

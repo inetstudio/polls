@@ -47,6 +47,11 @@ class PollModel extends Model implements PollModelContract
         'deleted_at',
     ];
 
+    /**
+     * Атрибуты, которые должны быть преобразованы к базовым типам.
+     *
+     * @var array
+     */
     protected $casts = [
         'single' => 'boolean',
         'closed' => 'boolean',

@@ -12,7 +12,7 @@ interface ShowTransformerContract
     /**
      * Трансформация данных.
      *
-     * @param PollOptionModelContract $item
+     * @param  PollOptionModelContract  $item
      *
      * @return array
      */

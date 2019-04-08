@@ -10,7 +10,7 @@ interface PollTransformerContract
     /**
      * Трансформация данных.
      *
-     * @param object $item
+     * @param  object  $item
      *
      * @return array
      */

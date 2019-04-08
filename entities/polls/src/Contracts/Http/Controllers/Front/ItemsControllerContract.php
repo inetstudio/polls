@@ -14,11 +14,13 @@ interface ItemsControllerContract
     /**
      * Голосование в опросе.
      *
-     * @param ItemsServiceContract $pollsService
-     * @param Request $request
+     * @param  ItemsServiceContract  $pollsService
+     * @param  Request  $request
      *
      * @return VoteResponseContract
      */
-    public function vote(ItemsServiceContract $pollsService,
-                         Request $request): VoteResponseContract;
+    public function vote(
+        ItemsServiceContract $pollsService,
+        Request $request
+    ): VoteResponseContract;
 }

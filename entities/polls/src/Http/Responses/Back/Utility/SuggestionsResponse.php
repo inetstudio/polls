@@ -3,8 +3,10 @@
 namespace InetStudio\PollsPackage\Polls\Http\Responses\Back\Utility;
 
 use League\Fractal\Manager;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Utility\SuggestionsResponseContract;
 
 /**
@@ -25,8 +27,8 @@ class SuggestionsResponse implements SuggestionsResponseContract, Responsable
     /**
      * SuggestionsResponse constructor.
      *
-     * @param Collection $items
-     * @param string $type
+     * @param  Collection  $items
+     * @param  string  $type
      */
     public function __construct(Collection $items, string $type = '')
     {
@@ -37,15 +39,22 @@ class SuggestionsResponse implements SuggestionsResponseContract, Responsable
     /**
      * Возвращаем подсказки для поля.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  Request  $request
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     *
+     * @throws BindingResolutionException
      */
     public function toResponse($request)
     {
-        $resource = (app()->make('InetStudio\PollsPackage\Polls\Contracts\Transformers\Back\Utility\SuggestionTransformerContract', [
-            'type' => $this->type,
-        ]))->transformCollection($this->items);
+        $transformer = app()->make(
+            'InetStudio\PollsPackage\Polls\Contracts\Transformers\Back\Utility\SuggestionTransformerContract',
+            [
+                 'type' => $this->type,
+             ]
+        );
+
+        $resource = $transformer->transformCollection($this->items);
 
         $serializer = app()->make('InetStudio\AdminPanel\Base\Contracts\Serializers\SimpleDataArraySerializerContract');
 

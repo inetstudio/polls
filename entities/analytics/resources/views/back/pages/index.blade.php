@@ -30,7 +30,8 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+                    <button type="button" class="close" data-dismiss="modal"><span
+                                aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
                     <h1 class="modal-title">Результаты опроса</h1>
                 </div>
                 <div class="modal-body">
@@ -45,5 +46,5 @@
 @endsection
 
 @pushonce('scripts:datatables_polls_analytics_index')
-    {!! $table->scripts() !!}
+{!! $table->scripts() !!}
 @endpushonce

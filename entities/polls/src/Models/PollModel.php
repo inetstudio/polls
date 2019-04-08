@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\AdminPanel\Base\Models\Traits\Scopes\BuildQueryScopeTrait;
 
@@ -30,7 +31,9 @@ class PollModel extends Model implements PollModelContract
      * @var array
      */
     protected $fillable = [
-        'question', 'single', 'closed',
+        'question',
+        'single',
+        'closed',
     ];
 
     /**
@@ -51,15 +54,16 @@ class PollModel extends Model implements PollModelContract
 
     /**
      * Загрузка модели.
-     *
-     * @return void
      */
     protected static function boot()
     {
         parent::boot();
 
         self::$buildQueryScopeDefaults['columns'] = [
-            'id', 'question', 'single', 'closed',
+            'id',
+            'question',
+            'single',
+            'closed',
         ];
 
         self::$buildQueryScopeDefaults['relations'] = [
@@ -109,6 +113,8 @@ class PollModel extends Model implements PollModelContract
      * Отношение "один ко многим" с моделью ответов.
      *
      * @return HasMany
+     *
+     * @throws BindingResolutionException
      */
     public function options(): HasMany
     {

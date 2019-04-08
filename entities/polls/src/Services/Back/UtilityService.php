@@ -15,7 +15,7 @@ class UtilityService extends BaseService implements UtilityServiceContract
     /**
      * UtilityService constructor.
      *
-     * @param PollModelContract $model
+     * @param  PollModelContract  $model
      */
     public function __construct(PollModelContract $model)
     {
@@ -25,15 +25,17 @@ class UtilityService extends BaseService implements UtilityServiceContract
     /**
      * Получаем подсказки.
      *
-     * @param string $search
+     * @param  string  $search
      *
      * @return Collection
      */
     public function getSuggestions(string $search): Collection
     {
-        $items = $this->model::where([
-            ['question', 'LIKE', '%'.$search.'%'],
-        ])->get();
+        $items = $this->model::where(
+            [
+                ['question', 'LIKE', '%'.$search.'%'],
+            ]
+        )->get();
 
         return $items;
     }

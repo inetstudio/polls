@@ -1,40 +1,40 @@
 {
-    "name": "inetstudio/polls",
-    "description": "Package for polls",
-    "homepage": "https://github.com/inetstudio/polls",
-    "license": "MIT",
-    "authors": [
-      {
-        "name": "Konstantin Bukin",
-        "email": "bukin@inetstudio.ru"
-      }
-    ],
-    "require": {
-      "inetstudio/admin-panel": "1.8.*",
-      "inetstudio/widgets": "1.8.*"
-    },
-    "autoload": {
-      "psr-4": {
-        "InetStudio\\PollsPackage\\": "package/src/",
-        "InetStudio\\PollsPackage\\Analytics\\": "entities/analytics/src/",
-        "InetStudio\\PollsPackage\\Options\\": "entities/options/src/",
-        "InetStudio\\PollsPackage\\Polls\\": "entities/polls/src/",
-        "InetStudio\\PollsPackage\\Votes\\": "entities/votes/src/"
-      }
-    },
-    "extra": {
-      "laravel": {
-        "providers": [
-          "InetStudio\\PollsPackage\\Providers\\ServiceProvider",
-          "InetStudio\\PollsPackage\\Analytics\\Providers\\BindingsServiceProvider",
-          "InetStudio\\PollsPackage\\Analytics\\Providers\\ServiceProvider",
-          "InetStudio\\PollsPackage\\Options\\Providers\\BindingsServiceProvider",
-          "InetStudio\\PollsPackage\\Options\\Providers\\ServiceProvider",
-          "InetStudio\\PollsPackage\\Polls\\Providers\\BindingsServiceProvider",
-          "InetStudio\\PollsPackage\\Polls\\Providers\\ServiceProvider",
-          "InetStudio\\PollsPackage\\Votes\\Providers\\BindingsServiceProvider",
-          "InetStudio\\PollsPackage\\Votes\\Providers\\ServiceProvider"
-        ]
-      }
+  "name": "inetstudio/polls",
+  "description": "Package for polls",
+  "homepage": "https://github.com/inetstudio/polls",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Konstantin Bukin",
+      "email": "bukin@inetstudio.ru"
     }
+  ],
+  "require": {
+    "inetstudio/admin-panel": "1.8.*",
+    "inetstudio/widgets": "1.8.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "InetStudio\\PollsPackage\\": "package/src/",
+      "InetStudio\\PollsPackage\\Analytics\\": "entities/analytics/src/",
+      "InetStudio\\PollsPackage\\Options\\": "entities/options/src/",
+      "InetStudio\\PollsPackage\\Polls\\": "entities/polls/src/",
+      "InetStudio\\PollsPackage\\Votes\\": "entities/votes/src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "InetStudio\\PollsPackage\\Providers\\ServiceProvider",
+        "InetStudio\\PollsPackage\\Analytics\\Providers\\BindingsServiceProvider",
+        "InetStudio\\PollsPackage\\Analytics\\Providers\\ServiceProvider",
+        "InetStudio\\PollsPackage\\Options\\Providers\\BindingsServiceProvider",
+        "InetStudio\\PollsPackage\\Options\\Providers\\ServiceProvider",
+        "InetStudio\\PollsPackage\\Polls\\Providers\\BindingsServiceProvider",
+        "InetStudio\\PollsPackage\\Polls\\Providers\\ServiceProvider",
+        "InetStudio\\PollsPackage\\Votes\\Providers\\BindingsServiceProvider",
+        "InetStudio\\PollsPackage\\Votes\\Providers\\ServiceProvider"
+      ]
+    }
+  }
 }

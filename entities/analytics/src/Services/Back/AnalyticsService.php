@@ -3,6 +3,7 @@
 namespace InetStudio\PollsPackage\Analytics\Services\Back;
 
 use InetStudio\AdminPanel\Base\Services\BaseService;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Analytics\Contracts\Services\Back\AnalyticsServiceContract;
 
@@ -14,7 +15,7 @@ class AnalyticsService extends BaseService implements AnalyticsServiceContract
     /**
      * AnalyticsService constructor.
      *
-     * @param PollModelContract $model
+     * @param  PollModelContract  $model
      */
     public function __construct(PollModelContract $model)
     {
@@ -24,25 +25,31 @@ class AnalyticsService extends BaseService implements AnalyticsServiceContract
     /**
      * Возвращаем статьи, в которых содержится опрос.
      *
-     * @param int $id
+     * @param  int  $id
      *
      * @return array
+     *
+     * @throws BindingResolutionException
      */
     public function getArticlesWithPoll(int $id): array
     {
         $widgetsService = app()->make('InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract');
         $articlesService = app()->make('InetStudio\Articles\Contracts\Services\Back\ArticlesServiceContract');
 
-        $widgetsWithPoll = $widgetsService->model::where([
-            ['view', '=', 'admin.module.polls::front.partials.content.poll_widget'],
-            ['params', 'like', '%'.$id.'%'],
-        ])->get();
+        $widgetsWithPoll = $widgetsService->getModel()::where(
+            [
+                ['view', '=', 'admin.module.polls::front.partials.content.poll_widget'],
+                ['params', 'like', '%'.$id.'%'],
+            ]
+        )->get();
 
         $items = [];
         foreach ($widgetsWithPoll ?? [] as $widget) {
-            $articles = $articlesService->model::where([
-                ['content', 'like', '%data-type="poll" data-id="'.$widget->id.'"%'],
-            ])->get();
+            $articles = $articlesService->getModel()::where(
+                [
+                    ['content', 'like', '%data-type="poll" data-id="'.$widget->id.'"%'],
+                ]
+            )->get();
 
             foreach ($articles as $article) {
                 $items[] = [

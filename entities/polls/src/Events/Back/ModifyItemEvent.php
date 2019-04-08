@@ -21,7 +21,7 @@ class ModifyItemEvent implements ModifyItemEventContract
     /**
      * ModifyItemEvent constructor.
      *
-     * @param PollModelContract $item
+     * @param  PollModelContract  $item
      */
     public function __construct(PollModelContract $item)
     {

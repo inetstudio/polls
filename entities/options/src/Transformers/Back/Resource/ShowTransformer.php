@@ -2,6 +2,7 @@
 
 namespace InetStudio\PollsPackage\Options\Transformers\Back\Resource;
 
+use Throwable;
 use League\Fractal\TransformerAbstract;
 use InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract;
 use InetStudio\PollsPackage\Options\Contracts\Transformers\Back\Resource\ShowTransformerContract;
@@ -14,11 +15,11 @@ class ShowTransformer extends TransformerAbstract implements ShowTransformerCont
     /**
      * Трансформация данных.
      *
-     * @param PollOptionModelContract $item
+     * @param  PollOptionModelContract  $item
      *
      * @return array
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function transform(PollOptionModelContract $item): array
     {

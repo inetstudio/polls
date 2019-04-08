@@ -10,7 +10,7 @@ use InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract;
 interface PollOptionTransformerContract
 {
     /**
-     * @param PollOptionModelContract $item
+     * @param  PollOptionModelContract  $item
      *
      * @return array
      */

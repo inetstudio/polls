@@ -15,7 +15,7 @@ class ItemsService extends BaseService implements ItemsServiceContract
     /**
      * ItemsService constructor.
      *
-     * @param PollVoteModelContract $model
+     * @param  PollVoteModelContract  $model
      */
     public function __construct(PollVoteModelContract $model)
     {
@@ -25,8 +25,8 @@ class ItemsService extends BaseService implements ItemsServiceContract
     /**
      * Сохраняем модель.
      *
-     * @param array $data
-     * @param int $id
+     * @param  array  $data
+     * @param  int  $id
      *
      * @return PollVoteModelContract
      */

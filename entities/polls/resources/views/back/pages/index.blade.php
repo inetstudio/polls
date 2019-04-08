@@ -31,5 +31,5 @@
 @endsection
 
 @pushonce('scripts:datatables_polls_index')
-    {!! $table->scripts() !!}
+{!! $table->scripts() !!}
 @endpushonce

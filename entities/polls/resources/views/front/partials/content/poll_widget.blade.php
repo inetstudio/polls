@@ -19,7 +19,9 @@
                 <input type="hidden" name="id" value="{{ $poll->id }}">
 
                 @foreach ($poll->options as $option)
-                    <label class="makeup-radio"><input type="radio" value="{{ $option->id }}" name="answer"><span class="makeup-radio_btn"></span><span class="makeup-radio_label">{{ $option->answer }}</span></label>
+                    <label class="makeup-radio"><input type="radio" value="{{ $option->id }}" name="answer"><span
+                                class="makeup-radio_btn"></span><span
+                                class="makeup-radio_label">{{ $option->answer }}</span></label>
                 @endforeach
 
                 <div class="makeup-btn-wrap">
@@ -36,7 +38,10 @@
                     @php
                         $percent = ($count == 0) ? 0 : round(($option->votes->count() / $count)*100);
                     @endphp
-                    <li><span class="answer">{{ $option->answer }}</span> <span class="result">{{ $percent }}%</span><span class="path"><i style="width:{{ $percent }}%" class="path-filled"></i></span></li>
+                    <li><span class="answer">{{ $option->answer }}</span> <span
+                                class="result">{{ $percent }}%</span><span class="path"><i style="width:{{ $percent }}%"
+                                                                                           class="path-filled"></i></span>
+                    </li>
                 @endforeach
             </ul>
         @endif

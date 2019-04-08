@@ -14,8 +14,8 @@ interface ItemsServiceContract extends BaseServiceContract
     /**
      * Сохраняем модель.
      *
-     * @param array $data
-     * @param int $id
+     * @param  array  $data
+     * @param  int  $id
      *
      * @return PollOptionModelContract
      */

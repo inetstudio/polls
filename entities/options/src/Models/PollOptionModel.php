@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\AdminPanel\Base\Models\Traits\Scopes\BuildQueryScopeTrait;
 use InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract;
 
@@ -31,7 +32,8 @@ class PollOptionModel extends Model implements PollOptionModelContract
      * @var array
      */
     protected $fillable = [
-        'poll_id', 'answer',
+        'poll_id',
+        'answer',
     ];
 
     /**
@@ -47,15 +49,15 @@ class PollOptionModel extends Model implements PollOptionModelContract
 
     /**
      * Загрузка модели.
-     *
-     * @return void
      */
     protected static function boot()
     {
         parent::boot();
 
         self::$buildQueryScopeDefaults['columns'] = [
-            'id', 'poll_id', 'answer',
+            'id',
+            'poll_id',
+            'answer',
         ];
 
         self::$buildQueryScopeDefaults['relations'] = [
@@ -90,13 +92,17 @@ class PollOptionModel extends Model implements PollOptionModelContract
      */
     public function setAnswerAttribute($value): void
     {
-        $this->attributes['answer'] = trim(str_replace('&nbsp;', ' ', strip_tags((isset($value['text'])) ? $value['text'] : (! is_array($value) ? $value : ''))));
+        $value = (isset($value['text'])) ? $value['text'] : (! is_array($value) ? $value : '');
+
+        $this->attributes['answer'] = trim(str_replace('&nbsp;', ' ', strip_tags($value)));
     }
 
     /**
      * Обратное отношение "один ко многим" с моделью опроса.
      *
      * @return BelongsTo
+     *
+     * @throws BindingResolutionException
      */
     public function poll(): BelongsTo
     {
@@ -111,6 +117,8 @@ class PollOptionModel extends Model implements PollOptionModelContract
      * Отношение "один ко многим" с моделью голосов.
      *
      * @return HasMany
+     *
+     * @throws BindingResolutionException
      */
     public function votes(): HasMany
     {
@@ -127,6 +135,8 @@ class PollOptionModel extends Model implements PollOptionModelContract
      * Получаем проголосовавших за этот ответ.
      *
      * @return BelongsToMany
+     *
+     * @throws BindingResolutionException
      */
     public function voters(): BelongsToMany
     {
@@ -141,7 +151,9 @@ class PollOptionModel extends Model implements PollOptionModelContract
     /**
      * Проверяем, что за этот ответ голосовали.
      *
-     * @return bool
+     * @return boolean
+     *
+     * @throws BindingResolutionException
      */
     public function isVoted(): bool
     {

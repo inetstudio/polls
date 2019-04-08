@@ -2,6 +2,7 @@
 
 namespace InetStudio\PollsPackage\Polls\Http\Responses\Front;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\Support\Responsable;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
@@ -30,14 +31,16 @@ class VoteResponse implements VoteResponseContract, Responsable
     /**
      * Возвращаем ответ при голосовании.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  Request  $request
      *
      * @return JsonResponse
      */
     public function toResponse($request): JsonResponse
     {
-        return response()->json([
-            'success' => ($this->item) ? true : false,
-        ]);
+        return response()->json(
+            [
+                'success' => ($this->item) ? true : false,
+            ]
+        );
     }
 }

@@ -4,6 +4,7 @@ namespace InetStudio\PollsPackage\Analytics\Transformers\Back\Result;
 
 use League\Fractal\TransformerAbstract;
 use League\Fractal\Resource\Collection as FractalCollection;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back\Result\PollTransformerContract;
 
@@ -22,7 +23,7 @@ class PollTransformer extends TransformerAbstract implements PollTransformerCont
     /**
      * Трансформация данных.
      *
-     * @param PollModelContract $item
+     * @param  PollModelContract  $item
      *
      * @return array
      */
@@ -37,9 +38,11 @@ class PollTransformer extends TransformerAbstract implements PollTransformerCont
     /**
      * Включаем ответы в трансформацию.
      *
-     * @param PollModelContract $item
+     * @param  PollModelContract  $item
      *
      * @return FractalCollection
+     *
+     * @throws BindingResolutionException
      */
     public function includeOptions(PollModelContract $item): FractalCollection
     {

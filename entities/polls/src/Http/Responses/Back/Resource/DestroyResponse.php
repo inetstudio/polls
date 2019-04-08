@@ -2,6 +2,7 @@
 
 namespace InetStudio\PollsPackage\Polls\Http\Responses\Back\Resource;
 
+use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Responsable;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Resource\DestroyResponseContract;
 
@@ -11,14 +12,14 @@ use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Resource\Destroy
 class DestroyResponse implements DestroyResponseContract, Responsable
 {
     /**
-     * @var bool
+     * @var boolean
      */
     protected $result;
 
     /**
      * DestroyResponse constructor.
      *
-     * @param bool $result
+     * @param  bool  $result
      */
     public function __construct(bool $result)
     {
@@ -28,14 +29,16 @@ class DestroyResponse implements DestroyResponseContract, Responsable
     /**
      * Возвращаем ответ при удалении объекта.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  Request  $request
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function toResponse($request)
     {
-        return response()->json([
-            'success' => $this->result,
-        ]);
+        return response()->json(
+            [
+                'success' => $this->result,
+            ]
+        );
     }
 }

@@ -17,7 +17,7 @@ interface PollOptionModelContract extends ArrayAccess, Arrayable, Jsonable, Json
     /**
      * Reload a fresh model instance from the database.
      *
-     * @param array|string $with
+     * @param  array|string  $with
      *
      * @return static|null
      */

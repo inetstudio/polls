@@ -13,8 +13,8 @@ interface ItemsServiceContract extends BaseServiceContract
     /**
      * Голосуем в опросе.
      *
-     * @param int $pollID
-     * @param int $optionID
+     * @param  int  $pollID
+     * @param  int  $optionID
      *
      * @return PollModelContract|null
      */
@@ -23,7 +23,7 @@ interface ItemsServiceContract extends BaseServiceContract
     /**
      * Участвовал пользователь в опросе или нет.
      *
-     * @param int $pollID
+     * @param  int  $pollID
      *
      * @return array
      */

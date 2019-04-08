@@ -13,7 +13,7 @@ interface ShowTransformerContract
     /**
      * Трансформация данных.
      *
-     * @param PollModelContract $item
+     * @param  PollModelContract  $item
      *
      * @return array
      */
@@ -22,7 +22,7 @@ interface ShowTransformerContract
     /**
      * Включаем ответы в трансформацию.
      *
-     * @param PollModelContract $item
+     * @param  PollModelContract  $item
      *
      * @return FractalCollection
      */

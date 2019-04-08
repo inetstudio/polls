@@ -15,7 +15,7 @@ interface AnalyticsControllerContract
     /**
      * Список объектов.
      *
-     * @param DataTableServiceContract $dataTableService
+     * @param  DataTableServiceContract  $dataTableService
      *
      * @return IndexResponseContract
      */
@@ -24,11 +24,13 @@ interface AnalyticsControllerContract
     /**
      * Результаты опроса.
      *
-     * @param AnalyticsServiceContract $analyticsService
-     * @param int $id
+     * @param  AnalyticsServiceContract  $analyticsService
+     * @param  int  $id
      *
      * @return ResultResponseContract
      */
-    public function getPollResult(AnalyticsServiceContract $analyticsService,
-                                  int $id = 0): ResultResponseContract;
+    public function getPollResult(
+        AnalyticsServiceContract $analyticsService,
+        int $id = 0
+    ): ResultResponseContract;
 }

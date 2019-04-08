@@ -12,7 +12,7 @@ interface AnalyticsServiceContract extends BaseServiceContract
     /**
      * Возвращаем статьи, в которых содержится опрос.
      *
-     * @param int $id
+     * @param  int  $id
      *
      * @return array
      */

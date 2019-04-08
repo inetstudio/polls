@@ -2,6 +2,7 @@
 
 namespace InetStudio\PollsPackage\Analytics\Transformers\Back\Result;
 
+use Throwable;
 use League\Fractal\TransformerAbstract;
 use InetStudio\PollsPackage\Options\Contracts\Models\PollOptionModelContract;
 use InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back\Result\PollOptionTransformerContract;
@@ -11,12 +12,15 @@ use InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back\Result\PollOpt
  */
 class PollOptionTransformer extends TransformerAbstract implements PollOptionTransformerContract
 {
+    /**
+     * @var int
+     */
     protected $totalVotes;
 
     /**
      * PollOptionTransformer constructor.
      *
-     * @param int $totalVotes
+     * @param  int  $totalVotes
      */
     public function __construct(int $totalVotes)
     {
@@ -26,11 +30,11 @@ class PollOptionTransformer extends TransformerAbstract implements PollOptionTra
     /**
      * Трансформация данных.
      *
-     * @param PollOptionModelContract $item
+     * @param  PollOptionModelContract  $item
      *
      * @return array
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function transform(PollOptionModelContract $item): array
     {

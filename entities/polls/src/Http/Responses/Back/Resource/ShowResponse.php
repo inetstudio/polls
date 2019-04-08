@@ -3,8 +3,10 @@
 namespace InetStudio\PollsPackage\Polls\Http\Responses\Back\Resource;
 
 use League\Fractal\Manager;
+use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Responsable;
 use League\Fractal\Resource\Item as FractalItem;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Resource\ShowResponseContract;
 
@@ -21,7 +23,7 @@ class ShowResponse implements ShowResponseContract, Responsable
     /**
      * ShowResponse constructor.
      *
-     * @param PollModelContract $item
+     * @param  PollModelContract  $item
      */
     public function __construct(PollModelContract $item)
     {
@@ -31,9 +33,11 @@ class ShowResponse implements ShowResponseContract, Responsable
     /**
      * Возвращаем ответ при получении объекта.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  Request  $request
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     *
+     * @throws BindingResolutionException
      */
     public function toResponse($request)
     {

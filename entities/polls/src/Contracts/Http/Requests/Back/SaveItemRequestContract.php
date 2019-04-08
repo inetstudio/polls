@@ -26,7 +26,7 @@ interface SaveItemRequestContract
     /**
      * Правила проверки запроса.
      *
-     * @param Request $request
+     * @param  Request  $request
      *
      * @return array
      */
@@ -35,7 +35,7 @@ interface SaveItemRequestContract
     /**
      * Get all of the input and files for the request.
      *
-     * @param array|mixed $keys
+     * @param  array|mixed  $keys
      *
      * @return array
      */

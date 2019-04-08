@@ -5,6 +5,7 @@ namespace InetStudio\PollsPackage\Votes\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\AdminPanel\Base\Models\Traits\Scopes\BuildQueryScopeTrait;
 use InetStudio\PollsPackage\Votes\Contracts\Models\PollVoteModelContract;
 
@@ -29,7 +30,8 @@ class PollVoteModel extends Model implements PollVoteModelContract
      * @var array
      */
     protected $fillable = [
-        'user_id', 'option_id',
+        'user_id',
+        'option_id',
     ];
 
     /**
@@ -45,15 +47,15 @@ class PollVoteModel extends Model implements PollVoteModelContract
 
     /**
      * Загрузка модели.
-     *
-     * @return void
      */
     protected static function boot()
     {
         parent::boot();
 
         self::$buildQueryScopeDefaults['columns'] = [
-            'id', 'user_id', 'option_id',
+            'id',
+            'user_id',
+            'option_id',
         ];
 
         self::$buildQueryScopeDefaults['relations'] = [
@@ -87,6 +89,8 @@ class PollVoteModel extends Model implements PollVoteModelContract
      * Обратное отношение "один ко многим" с моделью ответа.
      *
      * @return BelongsTo
+     *
+     * @throws BindingResolutionException
      */
     public function option(): BelongsTo
     {

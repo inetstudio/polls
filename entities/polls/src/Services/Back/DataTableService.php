@@ -2,10 +2,12 @@
 
 namespace InetStudio\PollsPackage\Polls\Services\Back;
 
+use Exception;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\JsonResponse;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Back\DataTableServiceContract;
 
@@ -22,7 +24,7 @@ class DataTableService extends DataTable implements DataTableServiceContract
     /**
      * DataTableService constructor.
      *
-     * @param PollModelContract $model
+     * @param  PollModelContract  $model
      */
     public function __construct(PollModelContract $model)
     {
@@ -34,11 +36,14 @@ class DataTableService extends DataTable implements DataTableServiceContract
      *
      * @return JsonResponse
      *
-     * @throws \Exception
+     * @throws BindingResolutionException
+     * @throws Exception
      */
     public function ajax(): JsonResponse
     {
-        $transformer = app()->make('InetStudio\PollsPackage\Polls\Contracts\Transformers\Back\Resource\IndexTransformerContract');
+        $transformer = app()->make(
+            'InetStudio\PollsPackage\Polls\Contracts\Transformers\Back\Resource\IndexTransformerContract'
+        );
 
         return DataTables::of($this->query())
             ->setTransformer($transformer)
@@ -53,9 +58,11 @@ class DataTableService extends DataTable implements DataTableServiceContract
      */
     public function query()
     {
-        $query = $this->model->buildQuery([
-            'columns' => ['created_at', 'updated_at'],
-        ]);
+        $query = $this->model->buildQuery(
+            [
+                'columns' => ['created_at', 'updated_at'],
+            ]
+        );
 
         return $query;
     }
@@ -63,7 +70,7 @@ class DataTableService extends DataTable implements DataTableServiceContract
     /**
      * Optional method if you want to use html builder.
      *
-     * @return \Yajra\DataTables\Html\Builder
+     * @return Builder
      */
     public function html(): Builder
     {
@@ -87,7 +94,13 @@ class DataTableService extends DataTable implements DataTableServiceContract
             ['data' => 'question', 'name' => 'question', 'title' => 'Вопрос'],
             ['data' => 'created_at', 'name' => 'created_at', 'title' => 'Дата создания'],
             ['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Дата обновления'],
-            ['data' => 'actions', 'name' => 'actions', 'title' => 'Действия', 'orderable' => false, 'searchable' => false],
+            [
+                'data' => 'actions',
+                'name' => 'actions',
+                'title' => 'Действия',
+                'orderable' => false,
+                'searchable' => false
+            ],
         ];
     }
 
@@ -111,7 +124,7 @@ class DataTableService extends DataTable implements DataTableServiceContract
      */
     protected function getParameters(): array
     {
-        $i18n = trans('admin::datatables');
+        $translation = trans('admin::datatables');
 
         return [
             'order' => [1, 'desc'],
@@ -120,7 +133,7 @@ class DataTableService extends DataTable implements DataTableServiceContract
             'searching' => true,
             'info' => false,
             'searchDelay' => 350,
-            'language' => $i18n,
+            'language' => $translation,
         ];
     }
 }

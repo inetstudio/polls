@@ -12,7 +12,7 @@ interface IndexTransformerContract
     /**
      * Трансформация данных.
      *
-     * @param PollModelContract $item
+     * @param  PollModelContract  $item
      *
      * @return array
      */

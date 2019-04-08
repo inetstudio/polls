@@ -2,8 +2,10 @@
 
 namespace InetStudio\PollsPackage\Polls\Transformers\Back\Resource;
 
+use Throwable;
 use League\Fractal\TransformerAbstract;
 use League\Fractal\Resource\Collection as FractalCollection;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Transformers\Back\Resource\ShowTransformerContract;
 
@@ -22,11 +24,11 @@ class ShowTransformer extends TransformerAbstract implements ShowTransformerCont
     /**
      * Трансформация данных.
      *
-     * @param PollModelContract $item
+     * @param  PollModelContract  $item
      *
      * @return array
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function transform(PollModelContract $item): array
     {
@@ -39,13 +41,17 @@ class ShowTransformer extends TransformerAbstract implements ShowTransformerCont
     /**
      * Включаем ответы в трансформацию.
      *
-     * @param PollModelContract $item
+     * @param  PollModelContract  $item
      *
      * @return FractalCollection
+     *
+     * @throws BindingResolutionException
      */
     public function includeOptions(PollModelContract $item): FractalCollection
     {
-        $transformer = app()->make('InetStudio\PollsPackage\Options\Contracts\Transformers\Back\Resource\ShowTransformerContract');
+        $transformer = app()->make(
+            'InetStudio\PollsPackage\Options\Contracts\Transformers\Back\Resource\ShowTransformerContract'
+        );
 
         return new FractalCollection($item['options'], $transformer);
     }

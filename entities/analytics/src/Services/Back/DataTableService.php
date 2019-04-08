@@ -2,6 +2,7 @@
 
 namespace InetStudio\PollsPackage\Analytics\Services\Back;
 
+use Exception;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -19,11 +20,13 @@ class DataTableService extends DataTable implements DataTableServiceContract
      *
      * @return JsonResponse
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function ajax(): JsonResponse
     {
-        $transformer = app()->make('InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back\PollTransformerContract');
+        $transformer = app()->make(
+            'InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back\PollTransformerContract'
+        );
 
         return DataTables::of($this->query())
             ->setTransformer($transformer)
@@ -73,9 +76,26 @@ class DataTableService extends DataTable implements DataTableServiceContract
     {
         return [
             ['data' => 'question', 'name' => 'question', 'title' => 'Вопрос'],
-            ['data' => 'votes_count', 'name' => 'votes_count', 'title' => 'Количество участников', 'searchable' => false],
-            ['data' => 'articles', 'name' => 'articles', 'title' => 'Статьи', 'orderable' => false, 'searchable' => false],
-            ['data' => 'results', 'name' => 'results', 'title' => 'Результаты', 'orderable' => false, 'searchable' => false],
+            [
+                'data' => 'votes_count',
+                'name' => 'votes_count',
+                'title' => 'Количество участников',
+                'searchable' => false
+            ],
+            [
+                'data' => 'articles',
+                'name' => 'articles',
+                'title' => 'Статьи',
+                'orderable' => false,
+                'searchable' => false
+            ],
+            [
+                'data' => 'results',
+                'name' => 'results',
+                'title' => 'Результаты',
+                'orderable' => false,
+                'searchable' => false
+            ],
         ];
     }
 

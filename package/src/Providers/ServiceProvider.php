@@ -11,8 +11,6 @@ class ServiceProvider extends BaseServiceProvider
 {
     /**
      * Загрузка сервиса.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -21,15 +19,17 @@ class ServiceProvider extends BaseServiceProvider
 
     /**
      * Регистрация команд.
-     *
-     * @return void
      */
     protected function registerConsoleCommands(): void
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                'InetStudio\PollsPackage\Console\Commands\SetupCommand',
-            ]);
+        if (! $this->app->runningInConsole()) {
+            return;
         }
+
+        $this->commands(
+            [
+                'InetStudio\PollsPackage\Console\Commands\SetupCommand',
+            ]
+        );
     }
 }

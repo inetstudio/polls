@@ -2,9 +2,12 @@
 
 namespace InetStudio\PollsPackage\Analytics\Http\Responses\Back;
 
+use Throwable;
 use League\Fractal\Manager;
+use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Analytics\Contracts\Http\Responses\Back\ResultResponseContract;
 
@@ -21,7 +24,7 @@ class ResultResponse implements ResultResponseContract, Responsable
     /**
      * ResultResponse constructor.
      *
-     * @param PollModelContract $item
+     * @param  PollModelContract  $item
      */
     public function __construct(PollModelContract $item)
     {
@@ -31,15 +34,18 @@ class ResultResponse implements ResultResponseContract, Responsable
     /**
      * Возвращаем результаты опроса.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  Request  $request
      *
      * @return \Illuminate\Http\Response|string
      *
-     * @throws \Throwable
+     * @throws Throwable
+     * @throws BindingResolutionException
      */
     public function toResponse($request)
     {
-        $transformer = app()->make('InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back\Result\PollTransformerContract');
+        $transformer = app()->make(
+            'InetStudio\PollsPackage\Analytics\Contracts\Transformers\Back\Result\PollTransformerContract'
+        );
         $serializer = app()->make('InetStudio\AdminPanel\Base\Contracts\Serializers\SimpleDataArraySerializerContract');
 
         $resource = new Item($this->item, $transformer);

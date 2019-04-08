@@ -5,6 +5,7 @@ namespace InetStudio\PollsPackage\Polls\Services\Back;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use InetStudio\AdminPanel\Base\Services\BaseService;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Back\ItemsServiceContract;
 
@@ -16,7 +17,7 @@ class ItemsService extends BaseService implements ItemsServiceContract
     /**
      * ItemsService constructor.
      *
-     * @param PollModelContract $model
+     * @param  PollModelContract  $model
      */
     public function __construct(PollModelContract $model)
     {
@@ -26,14 +27,18 @@ class ItemsService extends BaseService implements ItemsServiceContract
     /**
      * Сохраняем модель.
      *
-     * @param array $data
-     * @param int $id
+     * @param  array  $data
+     * @param  int  $id
      *
      * @return PollModelContract
+     *
+     * @throws BindingResolutionException
      */
     public function save(array $data, int $id): PollModelContract
     {
-        $pollsOptionsService = app()->make('InetStudio\PollsPackage\Options\Contracts\Services\Back\ItemsServiceContract');
+        $pollsOptionsService = app()->make(
+            'InetStudio\PollsPackage\Options\Contracts\Services\Back\ItemsServiceContract'
+        );
 
         $action = ($id) ? 'отредактирован' : 'создан';
 
@@ -46,17 +51,21 @@ class ItemsService extends BaseService implements ItemsServiceContract
         $itemOptionsIds = $item->options()->pluck('id')->toArray();
 
         $pollsOptionsService->destroy(array_diff($itemOptionsIds, $dataOptionsIds));
-        $optionsData->transform(function ($dataItem) use ($item) {
-            $dataItem['poll_id'] = $item['id'];
+        $optionsData->transform(
+            function ($dataItem) use ($item) {
+                $dataItem['poll_id'] = $item['id'];
 
-            return $dataItem;
-        });
+                return $dataItem;
+            }
+        );
         $pollsOptionsService->saveCollection($optionsData);
 
-        event(app()->make(
-            'InetStudio\PollsPackage\Polls\Contracts\Events\Back\ModifyItemEventContract',
-            compact('item')
-        ));
+        event(
+            app()->make(
+                'InetStudio\PollsPackage\Polls\Contracts\Events\Back\ModifyItemEventContract',
+                compact('item')
+            )
+        );
 
         Session::flash('success', 'Опрос «'.$item['question'].'» успешно '.$action);
 

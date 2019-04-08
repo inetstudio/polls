@@ -2,6 +2,7 @@
 
 namespace InetStudio\PollsPackage\Analytics\Http\Responses\Back;
 
+use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Responsable;
 use InetStudio\PollsPackage\Analytics\Contracts\Http\Responses\Back\IndexResponseContract;
 
@@ -18,7 +19,7 @@ class IndexResponse implements IndexResponseContract, Responsable
     /**
      * IndexResponse constructor.
      *
-     * @param array $data
+     * @param  array  $data
      */
     public function __construct(array $data)
     {
@@ -28,7 +29,7 @@ class IndexResponse implements IndexResponseContract, Responsable
     /**
      * Возвращаем ответ при открытии списка объектов.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  Request  $request
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */

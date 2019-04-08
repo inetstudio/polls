@@ -5,6 +5,7 @@ namespace InetStudio\PollsPackage\Polls\Services\Front;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Database\Eloquent\Builder;
 use InetStudio\AdminPanel\Base\Services\BaseService;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Services\Front\ItemsServiceContract;
 
@@ -16,7 +17,7 @@ class ItemsService extends BaseService implements ItemsServiceContract
     /**
      * ItemsService constructor.
      *
-     * @param PollModelContract $model
+     * @param  PollModelContract  $model
      */
     public function __construct(PollModelContract $model)
     {
@@ -26,10 +27,12 @@ class ItemsService extends BaseService implements ItemsServiceContract
     /**
      * Голосуем в опросе.
      *
-     * @param int $pollID
-     * @param int $optionID
+     * @param  int  $pollID
+     * @param  int  $optionID
      *
      * @return PollModelContract|null
+     *
+     * @throws BindingResolutionException
      */
     public function vote(int $pollID, int $optionID): ?PollModelContract
     {
@@ -48,10 +51,13 @@ class ItemsService extends BaseService implements ItemsServiceContract
         $result = $this->isVote($pollID);
 
         if (! $result['vote']) {
-            $pollsVotesService->save([
-                'user_id' => $result['userID'],
-                'option_id' => $optionID,
-            ], 0);
+            $pollsVotesService->save(
+                [
+                    'user_id' => $result['userID'],
+                    'option_id' => $optionID,
+                ],
+                0
+            );
 
             Cookie::queue('poll_vote_'.$pollID, '1', 14400);
         }
@@ -62,9 +68,11 @@ class ItemsService extends BaseService implements ItemsServiceContract
     /**
      * Участвовал пользователь в опросе или нет.
      *
-     * @param int $pollID
+     * @param  int  $pollID
      *
      * @return array
+     *
+     * @throws BindingResolutionException
      */
     public function isVote(int $pollID): array
     {
@@ -73,11 +81,17 @@ class ItemsService extends BaseService implements ItemsServiceContract
 
         $voteCookie = (bool) request()->cookie('poll_vote_'.$pollID, null);
 
-        $userVote = $this->model::whereHas('options', function (Builder $optionsQuery) use ($userID) {
-            $optionsQuery->whereHas('votes', function (Builder $votesQuery) use ($userID) {
-                $votesQuery->where('user_id', '=', $userID);
-            });
-        })
+        $userVote = $this->model::whereHas(
+                'options',
+                function (Builder $optionsQuery) use ($userID) {
+                    $optionsQuery->whereHas(
+                        'votes',
+                        function (Builder $votesQuery) use ($userID) {
+                            $votesQuery->where('user_id', '=', $userID);
+                        }
+                    );
+                }
+            )
             ->where('id', $pollID)
             ->first();
 

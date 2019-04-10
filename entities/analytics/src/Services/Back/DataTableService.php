@@ -80,21 +80,21 @@ class DataTableService extends DataTable implements DataTableServiceContract
                 'data' => 'votes_count',
                 'name' => 'votes_count',
                 'title' => 'Количество участников',
-                'searchable' => false
+                'searchable' => false,
             ],
             [
                 'data' => 'articles',
                 'name' => 'articles',
                 'title' => 'Статьи',
                 'orderable' => false,
-                'searchable' => false
+                'searchable' => false,
             ],
             [
                 'data' => 'results',
                 'name' => 'results',
                 'title' => 'Результаты',
                 'orderable' => false,
-                'searchable' => false
+                'searchable' => false,
             ],
         ];
     }

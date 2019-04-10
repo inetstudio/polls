@@ -12,7 +12,7 @@ use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Resource\Destroy
 class DestroyResponse implements DestroyResponseContract, Responsable
 {
     /**
-     * @var boolean
+     * @var bool
      */
     protected $result;
 

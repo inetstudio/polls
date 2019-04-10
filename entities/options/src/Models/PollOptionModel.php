@@ -151,7 +151,7 @@ class PollOptionModel extends Model implements PollOptionModelContract
     /**
      * Проверяем, что за этот ответ голосовали.
      *
-     * @return boolean
+     * @return bool
      *
      * @throws BindingResolutionException
      */

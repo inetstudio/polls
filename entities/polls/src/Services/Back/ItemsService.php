@@ -42,8 +42,8 @@ class ItemsService extends BaseService implements ItemsServiceContract
 
         $action = ($id) ? 'отредактирован' : 'создан';
 
-        $data = Arr::only($data, $this->model->getFillable());
-        $item = $this->saveModel($data, $id);
+        $itemData = Arr::only($data, $this->model->getFillable());
+        $item = $this->saveModel($itemData, $id);
 
         $optionsData = collect(Arr::get($data, 'options', []));
 

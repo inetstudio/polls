@@ -2,8 +2,6 @@
 
 namespace InetStudio\PollsPackage\Polls\Contracts\Http\Requests\Back;
 
-use Illuminate\Http\Request;
-
 /**
  * Interface SaveItemRequestContract.
  */
@@ -26,11 +24,9 @@ interface SaveItemRequestContract
     /**
      * Правила проверки запроса.
      *
-     * @param  Request  $request
-     *
      * @return array
      */
-    public function rules(Request $request): array;
+    public function rules(): array;
 
     /**
      * Get all of the input and files for the request.

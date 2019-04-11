@@ -2,7 +2,6 @@
 
 namespace InetStudio\PollsPackage\Polls\Http\Requests\Back;
 
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Requests\Back\SaveItemRequestContract;
 
@@ -40,11 +39,9 @@ class SaveItemRequest extends FormRequest implements SaveItemRequestContract
     /**
      * Правила проверки запроса.
      *
-     * @param  Request  $request
-     *
      * @return array
      */
-    public function rules(Request $request): array
+    public function rules(): array
     {
         return [
             'question' => 'required|max:255',

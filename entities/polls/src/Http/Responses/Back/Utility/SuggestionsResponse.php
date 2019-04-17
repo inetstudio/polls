@@ -5,14 +5,13 @@ namespace InetStudio\PollsPackage\Polls\Http\Responses\Back\Utility;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Utility\SuggestionsResponseContract;
 
 /**
  * Class SuggestionsResponse.
  */
-class SuggestionsResponse implements SuggestionsResponseContract, Responsable
+class SuggestionsResponse implements SuggestionsResponseContract
 {
     /**
      * @var Collection

@@ -6,7 +6,6 @@ use Throwable;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Analytics\Contracts\Http\Responses\Back\ResultResponseContract;
@@ -14,7 +13,7 @@ use InetStudio\PollsPackage\Analytics\Contracts\Http\Responses\Back\ResultRespon
 /**
  * Class ResultsResponse.
  */
-class ResultResponse implements ResultResponseContract, Responsable
+class ResultResponse implements ResultResponseContract
 {
     /**
      * @var PollModelContract

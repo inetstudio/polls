@@ -3,14 +3,13 @@
 namespace InetStudio\PollsPackage\Polls\Http\Responses\Back\Resource;
 
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Support\Responsable;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Resource\SaveResponseContract;
 
 /**
  * Class SaveResponse.
  */
-class SaveResponse implements SaveResponseContract, Responsable
+class SaveResponse implements SaveResponseContract
 {
     /**
      * @var PollModelContract

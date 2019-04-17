@@ -3,15 +3,13 @@
 namespace InetStudio\PollsPackage\Polls\Http\Responses\Front;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Contracts\Support\Responsable;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
 use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Front\VoteResponseContract;
 
 /**
  * Class VoteResponse.
  */
-class VoteResponse implements VoteResponseContract, Responsable
+class VoteResponse implements VoteResponseContract
 {
     /**
      * @var PollModelContract
@@ -33,9 +31,9 @@ class VoteResponse implements VoteResponseContract, Responsable
      *
      * @param  Request  $request
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function toResponse($request): JsonResponse
+    public function toResponse($request)
     {
         return response()->json(
             [

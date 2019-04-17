@@ -3,13 +3,12 @@
 namespace InetStudio\PollsPackage\Analytics\Http\Responses\Back;
 
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Support\Responsable;
 use InetStudio\PollsPackage\Analytics\Contracts\Http\Responses\Back\IndexResponseContract;
 
 /**
  * Class IndexResponse.
  */
-class IndexResponse implements IndexResponseContract, Responsable
+class IndexResponse implements IndexResponseContract
 {
     /**
      * @var array

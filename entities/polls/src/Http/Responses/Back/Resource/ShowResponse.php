@@ -4,7 +4,6 @@ namespace InetStudio\PollsPackage\Polls\Http\Responses\Back\Resource;
 
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Support\Responsable;
 use League\Fractal\Resource\Item as FractalItem;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use InetStudio\PollsPackage\Polls\Contracts\Models\PollModelContract;
@@ -13,7 +12,7 @@ use InetStudio\PollsPackage\Polls\Contracts\Http\Responses\Back\Resource\ShowRes
 /**
  * Class ShowResponse.
  */
-class ShowResponse implements ShowResponseContract, Responsable
+class ShowResponse implements ShowResponseContract
 {
     /**
      * @var PollModelContract

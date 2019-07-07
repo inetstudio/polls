@@ -45,7 +45,7 @@ window.tinymce.PluginManager.add('polls', function(editor) {
 
   editor.addButton('add_poll_widget', {
     title: 'Опросы',
-    icon: 'question',
+    icon: 'fa fa-poll',
     onclick: function() {
       let content = editor.selection.getContent();
 

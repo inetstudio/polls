@@ -61,7 +61,7 @@
                                                 v-bind:options-prop="{{ json_encode($item->options->toArray()) }}"></poll-options-list>
 
                                         {!! Form::hidden('single', 0) !!}
-                                        {!! Form::checks('single', $item->single, [
+                                        {!! Form::checks('single', ($item->id) ? $item->single : 1, [
                                             'label' => [
                                                 'title' => 'Одиночный выбор',
                                             ],

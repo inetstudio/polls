@@ -13,12 +13,12 @@ interface ItemsServiceContract extends BaseServiceContract
     /**
      * Голосуем в опросе.
      *
-     * @param  int  $pollID
-     * @param  int  $optionID
+     * @param  int  $pollId
+     * @param  array  $optionsIds
      *
      * @return PollModelContract|null
      */
-    public function vote(int $pollID, int $optionID): ?PollModelContract;
+    public function vote(int $pollId, array $optionsIds): ?PollModelContract;
 
     /**
      * Участвовал пользователь в опросе или нет.

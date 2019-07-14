@@ -27,39 +27,41 @@ class ItemsService extends BaseService implements ItemsServiceContract
     /**
      * Голосуем в опросе.
      *
-     * @param  int  $pollID
-     * @param  int  $optionID
+     * @param  int  $pollId
+     * @param  array  $optionsIds
      *
      * @return PollModelContract|null
      *
      * @throws BindingResolutionException
      */
-    public function vote(int $pollID, int $optionID): ?PollModelContract
+    public function vote(int $pollId, array $optionsIds): ?PollModelContract
     {
         $pollsVotesService = app()->make('InetStudio\PollsPackage\Votes\Contracts\Services\Front\ItemsServiceContract');
 
-        $item = $this->getItemById($pollID);
+        $item = $this->getItemById($pollId);
 
         if (! $item->id) {
             return null;
         }
 
-        if (! $item->options->contains('id', $optionID)) {
+        if (! array_diff($optionsIds, $item->options()->pluck('id'))) {
             return null;
         }
 
-        $result = $this->isVote($pollID);
+        $result = $this->isVote($pollId);
 
         if (! $result['vote']) {
-            $pollsVotesService->save(
-                [
-                    'user_id' => $result['userID'],
-                    'option_id' => $optionID,
-                ],
-                0
-            );
+            foreach ($optionsIds as $optionId) {
+                $pollsVotesService->save(
+                    [
+                        'user_id' => $result['userID'],
+                        'option_id' => $optionId,
+                    ],
+                    0
+                );
+            }
 
-            Cookie::queue('poll_vote_'.$pollID, '1', 14400);
+            Cookie::queue('poll_vote_'.$pollId, '1', 14400);
         }
 
         return $item;

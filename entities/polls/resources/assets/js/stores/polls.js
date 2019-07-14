@@ -4,7 +4,7 @@ window.Admin.vue.stores['polls'] = new Vuex.Store({
       model: {
         question: '',
         options: [],
-        single: [],
+        single: ['1'],
         closed: [],
         created_at: null,
         updated_at: null,

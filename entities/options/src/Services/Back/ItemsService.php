@@ -52,7 +52,7 @@ class ItemsService extends BaseService implements ItemsServiceContract
         $items = collect();
 
         foreach ($data as $optionData) {
-            $item = $this->save($optionData, (int) ($optionData['id'] ?? 0));
+            $item = $this->save($optionData, is_numeric($optionData['id']) ? (int) $optionData['id'] : 0);
 
             $items->push($item);
         }

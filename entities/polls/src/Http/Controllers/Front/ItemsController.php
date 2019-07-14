@@ -28,10 +28,10 @@ class ItemsController extends Controller implements ItemsControllerContract
         ItemsServiceContract $pollsService,
         Request $request
     ): VoteResponseContract {
-        $pollID = $request->get('id', 0);
-        $optionID = $request->get('answer', 0);
+        $pollId = $request->get('id', 0);
+        $optionsIds = $request->get('answer', []);
 
-        $item = $pollsService->vote($pollID, $optionID);
+        $item = $pollsService->vote($pollId, $optionsIds);
 
         return $this->app->make(VoteResponseContract::class, compact('item'));
     }

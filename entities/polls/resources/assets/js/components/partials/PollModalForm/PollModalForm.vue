@@ -17,38 +17,38 @@
                         </div>
 
                         <base-input-text
-                                label="Вопрос"
-                                name="poll_question"
-                                v-bind:value.sync="poll.model.question"
+                            label="Вопрос"
+                            name="poll_question"
+                            v-bind:value.sync="poll.model.question"
                         />
 
                         <poll-options-list
-                                v-bind:options-prop="poll.model.options"
-                                v-on:update:options="updateOptions"
+                            v-bind:options-prop="poll.model.options"
+                            v-on:update:options="updateOptions"
                         />
 
                         <base-checkboxes
-                                label="Одиночный выбор"
-                                name="poll_single"
-                                v-bind:checkboxes="[
+                            label="Одиночный выбор"
+                            name="poll_single"
+                            v-bind:checkboxes="[
                                 {
                                     value: '1',
                                     label: ''
                                 }
                             ]"
-                                v-bind:selected.sync="poll.model.single"
+                            v-bind:selected.sync="poll.model.single"
                         />
 
                         <base-checkboxes
-                                label="Закрыть опрос"
-                                name="poll_closed"
-                                v-bind:checkboxes="[
+                            label="Закрыть опрос"
+                            name="poll_closed"
+                            v-bind:checkboxes="[
                                 {
                                     value: '1',
                                     label: ''
                                 }
                             ]"
-                                v-bind:selected.sync="poll.model.closed"
+                            v-bind:selected.sync="poll.model.closed"
                         />
 
                     </div>

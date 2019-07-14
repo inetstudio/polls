@@ -44,7 +44,7 @@ class ItemsService extends BaseService implements ItemsServiceContract
             return null;
         }
 
-        if (! array_diff($optionsIds, $item->options()->pluck('id'))) {
+        if (! empty(array_diff($optionsIds, $item->options()->pluck('id')->toArray()))) {
             return null;
         }
 

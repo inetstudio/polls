@@ -78,7 +78,7 @@ class ItemsService extends BaseService implements ItemsServiceContract
      */
     public function isVote(int $pollID): array
     {
-        $usersService = app()->make('InetStudio\ACL\Users\Contracts\Services\Front\UsersServiceContract');
+        $usersService = app()->make('InetStudio\ACL\Users\Contracts\Services\Front\ItemsServiceContract');
         $userID = $usersService->getUserId();
 
         $voteCookie = (bool) request()->cookie('poll_vote_'.$pollID, null);

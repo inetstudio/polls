@@ -36,11 +36,13 @@ window.tinymce.PluginManager.add('polls', function(editor) {
               data: {},
             },
           ]);
-    } else {
-      let component = window.Admin.vue.modulesComponents.$refs['polls_PollWidget'][0];
-
-      component.$data.model.id = widgetData.model.id;
     }
+  }
+
+  function loadWidget() {
+    let component = window.Admin.vue.modulesComponents.$refs['polls_PollWidget'][0];
+
+    component.$data.model.id = widgetData.model.id;
   }
 
   editor.addButton('add_poll_widget', {
@@ -49,8 +51,7 @@ window.tinymce.PluginManager.add('polls', function(editor) {
     onclick: function() {
       let content = editor.selection.getContent();
 
-      let isPoll = /<img class="content-widget".+data-type="poll".+>/g.test(
-          content);
+      let isPoll = /<img class="content-widget".+data-type="poll".+>/g.test(content);
 
       if (content === '' || isPoll) {
         widgetData.model = {
@@ -60,6 +61,8 @@ window.tinymce.PluginManager.add('polls', function(editor) {
         initPollsComponents('widget');
 
         window.waitForElement('#add_poll_widget_modal', function() {
+          loadWidget();
+
           $('#add_poll_widget_modal').modal();
         });
       } else {

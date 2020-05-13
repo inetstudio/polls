@@ -33,7 +33,7 @@ class AnalyticsService extends BaseService implements AnalyticsServiceContract
      */
     public function getArticlesWithPoll(int $id): array
     {
-        $widgetsService = app()->make('InetStudio\Widgets\Contracts\Services\Back\WidgetsServiceContract');
+        $widgetsService = app()->make('InetStudio\WidgetsPackage\Widgets\Contracts\Services\Back\ItemsServiceContract');
         $articlesService = app()->make('InetStudio\ArticlesPackage\Articles\Contracts\Services\Back\ItemsServiceContract');
 
         $widgetsWithPoll = $widgetsService->getModel()::where(

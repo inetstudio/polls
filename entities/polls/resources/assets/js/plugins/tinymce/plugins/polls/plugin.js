@@ -12,35 +12,8 @@ window.tinymce.PluginManager.add('polls', function(editor) {
     },
   };
 
-  function initPollsComponents() {
-    if (typeof window.Admin.vue.modulesComponents.$refs['polls_PollWidget'] ==
-        'undefined') {
-      window.Admin.vue.modulesComponents.modules.polls.components = _.union(
-          window.Admin.vue.modulesComponents.modules.polls.components, [
-            {
-              name: 'PollWidget',
-              data: widgetData,
-            },
-          ]);
-      window.Admin.vue.modulesComponents.modules.polls.components = _.union(
-          window.Admin.vue.modulesComponents.modules.polls.components, [
-            {
-              name: 'PollModalForm',
-              data: {},
-            },
-          ]);
-      window.Admin.vue.modulesComponents.modules.polls.components = _.union(
-          window.Admin.vue.modulesComponents.modules.polls.components, [
-            {
-              name: 'PollOptionsListItemForm',
-              data: {},
-            },
-          ]);
-    }
-  }
-
   function loadWidget() {
-    let component = window.Admin.vue.modulesComponents.$refs['polls_PollWidget'][0];
+    let component = window.Admin.vue.helpers.getVueComponent('polls', 'PollWidget');
 
     component.$data.model.id = widgetData.model.id;
   }
@@ -58,7 +31,9 @@ window.tinymce.PluginManager.add('polls', function(editor) {
           id: parseInt($(content).attr('data-id')) || 0,
         };
 
-        initPollsComponents('widget');
+        window.Admin.vue.helpers.initComponent('polls', 'PollWidget', widgetData);
+        window.Admin.vue.helpers.initComponent('polls', 'PollModalForm', {});
+        window.Admin.vue.helpers.initComponent('polls', 'PollOptionsListItemForm', {});
 
         window.waitForElement('#add_poll_widget_modal', function() {
           loadWidget();

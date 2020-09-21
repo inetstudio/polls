@@ -14,9 +14,9 @@
                 <div class="modal-body">
                     <div class="ibox-content">
                         <base-input-text
-                                label="Ответ"
-                                name="answer"
-                                v-bind:value.sync="option.model.answer"
+                              label="Ответ"
+                              name="answer"
+                              v-bind:value.sync="option.model.answer"
                         />
                     </div>
                 </div>

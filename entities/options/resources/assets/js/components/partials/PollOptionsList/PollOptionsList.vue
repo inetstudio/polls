@@ -24,6 +24,9 @@
 </template>
 
 <script>
+  import hash from 'object-hash';
+  import Swal from 'sweetalert2';
+
   export default {
     name: 'PollOptionsList',
     props: {
@@ -62,7 +65,7 @@
           options.push({
             isModified: false,
             model: element,
-            hash: window.hash(element),
+            hash: hash(element),
           });
         });
 
@@ -77,9 +80,9 @@
       removeOption(payload) {
         let component = this;
 
-        swal({
+        Swal.fire({
           title: 'Вы уверены?',
-          type: 'warning',
+          icon: 'warning',
           showCancelButton: true,
           cancelButtonText: 'Отмена',
           confirmButtonColor: '#DD6B55',
@@ -100,7 +103,7 @@
         let component = this;
 
         let storeOption = JSON.parse(JSON.stringify(window.Admin.vue.stores['pollOptions'].state.option));
-        storeOption.hash = window.hash(storeOption.model);
+        storeOption.hash = hash(storeOption.model);
 
         let index = this.getOptionIndex(storeOption.model.id);
 

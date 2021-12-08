@@ -64,6 +64,8 @@
 </template>
 
 <script>
+  import hash from 'object-hash';
+
   export default {
     name: 'PollModalForm',
     props: {
@@ -93,7 +95,7 @@
           this.poll.isModified = !(!newValue
               || typeof newValue.id === 'undefined'
               || typeof oldValue.id === 'undefined'
-              || this.poll.hash === window.hash(newValue));
+              || this.poll.hash === hash(newValue));
         },
         deep: true,
       },
@@ -125,7 +127,7 @@
             errors: {},
             isModified: false,
             model: response.data,
-            hash: window.hash(response.data),
+            hash: hash(response.data),
           };
 
           this.options.loading = false;

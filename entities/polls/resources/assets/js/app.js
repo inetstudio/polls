@@ -4,13 +4,13 @@ require('../../../../../../widgets/entities/widgets/resources/assets/js/mixins/w
 
 require('./stores/polls');
 
-Vue.component(
+window.Vue.component(
     'PollWidget',
-    require('./components/partials/PollWidget/PollWidget.vue').default,
+    () => import('./components/partials/PollWidget/PollWidget.vue'),
 );
-Vue.component(
+window.Vue.component(
     'PollModalForm',
-    require('./components/partials/PollModalForm/PollModalForm.vue').default,
+    () => import('./components/partials/PollModalForm/PollModalForm.vue'),
 );
 
 let polls = require('./package/polls');

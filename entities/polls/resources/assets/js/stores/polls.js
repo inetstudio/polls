@@ -1,4 +1,7 @@
-window.Admin.vue.stores['polls'] = new Vuex.Store({
+import hash from 'object-hash';
+import { v4 as uuidv4 } from 'uuid';
+
+window.Admin.vue.stores['polls'] = new window.Vuex.Store({
   state: {
     emptyPoll: {
       model: {
@@ -19,10 +22,10 @@ window.Admin.vue.stores['polls'] = new Vuex.Store({
   mutations: {
     setPoll(state, poll) {
       let emptyPoll = JSON.parse(JSON.stringify(state.emptyPoll));
-      emptyPoll.model.id = UUID.generate();
+      emptyPoll.model.id = uuidv4();
 
       let resultPoll = _.merge(emptyPoll, poll);
-      resultPoll.hash = window.hash(resultPoll.model);
+      resultPoll.hash = hash(resultPoll.model);
 
       state.poll = resultPoll;
     },

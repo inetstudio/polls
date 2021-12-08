@@ -1,12 +1,16 @@
 require('./stores/pollOptions');
 
-Vue.component(
+window.Vue.component(
     'PollOptionsList',
-    require('./components/partials/PollOptionsList/PollOptionsList.vue').default,
+    () => import('./components/partials/PollOptionsList/PollOptionsList.vue'),
 );
-Vue.component(
-    'PollOptionsListItem', require(
-        './components/partials/PollOptionsList/PollOptionsListItem.vue').default);
-Vue.component(
-    'PollOptionsListItemForm', require(
-        './components/partials/PollOptionsList/PollOptionsListItemForm.vue').default);
+
+window.Vue.component(
+    'PollOptionsListItem',
+    () => import('./components/partials/PollOptionsList/PollOptionsListItem.vue')
+);
+
+window.Vue.component(
+    'PollOptionsListItemForm',
+    () => import('./components/partials/PollOptionsList/PollOptionsListItemForm.vue')
+);

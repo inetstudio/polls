@@ -1,4 +1,7 @@
-window.Admin.vue.stores['pollOptions'] = new Vuex.Store({
+import hash from 'object-hash';
+import { v4 as uuidv4 } from 'uuid';
+
+window.Admin.vue.stores['pollOptions'] = new window.Vuex.Store({
   state: {
     emptyOption: {
       model: {
@@ -16,10 +19,10 @@ window.Admin.vue.stores['pollOptions'] = new Vuex.Store({
   mutations: {
     setOption(state, option) {
       let emptyOption = JSON.parse(JSON.stringify(state.emptyOption));
-      emptyOption.model.id = UUID.generate();
+      emptyOption.model.id = uuidv4();
 
       let resultOption = _.merge(emptyOption, option);
-      resultOption.hash = window.hash(resultOption.model);
+      resultOption.hash = hash(resultOption.model);
 
       state.option = resultOption;
     },

@@ -31,6 +31,8 @@
 </template>
 
 <script>
+  import hash from 'object-hash';
+
   export default {
     name: 'PollOptionsListItemForm',
     data() {
@@ -49,7 +51,7 @@
           this.option.isModified = !(!newValue
               || typeof newValue.id === 'undefined'
               || typeof oldValue.id === 'undefined'
-              || this.option.hash === window.hash(newValue));
+              || this.option.hash === hash(newValue));
         },
         deep: true,
       },

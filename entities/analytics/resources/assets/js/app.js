@@ -1,2 +1,3 @@
-let pollsAnalytics = require('./package/polls-analytics');
+import {pollsAnalytics} from './package/polls-analytics';
+
 pollsAnalytics.init();

@@ -1,3 +1,5 @@
+import {polls} from './package/polls';
+
 require('./plugins/tinymce/plugins/polls');
 
 require('../../../../../../widgets/entities/widgets/resources/assets/js/mixins/widget');
@@ -13,5 +15,4 @@ window.Vue.component(
     () => import('./components/partials/PollModalForm/PollModalForm.vue'),
 );
 
-let polls = require('./package/polls');
 polls.init();

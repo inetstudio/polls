@@ -1,15 +1,13 @@
-let polls = {};
+export let polls = {
+  init: function () {
+    $(document).ready(function() {
+      if ($('#pollForm').length > 0) {
+        let formApp = new window.Vue({
+          el: '#pollForm',
+        });
 
-polls.init = function() {
-  $(document).ready(function() {
-    if ($('#pollForm').length > 0) {
-      let formApp = new window.Vue({
-        el: '#pollForm',
-      });
-
-      window.Admin.vue.helpers.initComponent('polls', 'PollOptionsListItemForm', {});
-    }
-  });
+        window.Admin.vue.helpers.initComponent('polls', 'PollOptionsListItemForm', {});
+      }
+    });
+  }
 };
-
-module.exports = polls;

@@ -17,7 +17,7 @@ class ShowTransformer extends TransformerAbstract implements ShowTransformerCont
     /**
      * @var array
      */
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'options',
     ];
 

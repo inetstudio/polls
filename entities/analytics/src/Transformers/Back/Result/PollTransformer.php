@@ -16,7 +16,7 @@ class PollTransformer extends TransformerAbstract implements PollTransformerCont
     /**
      * @var array
      */
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'options',
     ];
 
